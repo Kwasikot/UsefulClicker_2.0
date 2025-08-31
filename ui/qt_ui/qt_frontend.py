@@ -11,6 +11,7 @@ try:
     from PyQt5 import QtWidgets, QtCore, uic
 except Exception:
     QtWidgets = None
+import json
 
 from core.xml_engine import XMLProgram
 
@@ -682,7 +683,7 @@ class MainWindowWrapper:
         if not intent:
             intent = 'open search menu'
         parts = []
-        for L in lines_from_json[:8]:
+        for L in lines_from_json:
             lid = L.get('line_id')
             txt = L.get('text') or ''
             ctx = ''
