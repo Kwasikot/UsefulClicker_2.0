@@ -581,6 +581,59 @@ class MainWindowWrapper:
             except Exception:
                 pass
             return
+        # If a layout_result.json exists in cwd, prefer using it to build prompt
+        layout_path = os.path.join(os.getcwd(), 'layout_result.json')
+        if os.path.exists(layout_path):
+            try:
+                with open(layout_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                lines_from_json = data.get('lines', [])
+                # prepare intent from UI
+                intent = ''
+                try:
+                    if getattr(self.win, 'userIntent', None) is not None:
+                        intent = self.win.userIntent.toPlainText().strip()
+                    elif getattr(self.win, 'perceiveLlmPromt', None) is not None:
+                        intent = self.win.perceiveLlmPromt.toPlainText().strip()
+                except Exception:
+                    intent = ''
+                if not intent:
+                    intent = 'open search menu'
+                # Build prompt using ocr_preproc if available, else simple assembly
+                try:
+                    import ocr_preproc
+                    # use top K lines as candidates
+                    topk = 8
+                    candidates = lines_from_json[:topk]
+                    prompt = ocr_preproc.build_llm_prompt(candidates, intent=intent)
+                except Exception:
+                    # fallback simple prompt
+                    parts = []
+                    for L in lines_from_json[:8]:
+                        lid = L.get('line_id')
+                        txt = L.get('text') or ''
+                        parts.append(f'[ID={lid}] text="{txt}"')
+                    prompt = 'Intent: ' + intent + '\nCandidates:\n' + '\n'.join(parts) + '\nReturn the ID only or NONE.'
+                # call LLM (ollama hardcoded)
+                try:
+                    from llm.ollama_client import OllamaClient
+                    client = OllamaClient()
+                    llm_out = client.generate_text(prompt, model='llama3.2:latest')
+                    cur = self.win.consoleText.toPlainText()
+                    self.win.consoleText.setPlainText(cur + '\n\n==== LAYOUT JSON PROMPT ====\n' + prompt + '\n\n==== LLM OUTPUT (ollama) ====\n' + llm_out)
+                except Exception as e:
+                    try:
+                        cur = self.win.consoleText.toPlainText()
+                        self.win.consoleText.setPlainText(cur + f'\n\nLLM call failed: {e}')
+                    except Exception:
+                        pass
+                return
+            except Exception as e:
+                try:
+                    self.win.consoleText.setPlainText(f'Failed to load layout_result.json: {e}')
+                except Exception:
+                    pass
+                # continue with OCR fallback
         # try easyocr
         try:
             import easyocr
