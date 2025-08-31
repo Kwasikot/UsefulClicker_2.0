@@ -600,21 +600,19 @@ class MainWindowWrapper:
                     intent = ''
                 if not intent:
                     intent = 'open search menu'
-                # Build prompt using ocr_preproc if available, else simple assembly
-                try:
-                    import ocr_preproc
-                    # use top K lines as candidates
-                    topk = 8
-                    candidates = lines_from_json[:topk]
-                    prompt = ocr_preproc.build_llm_prompt(candidates, intent=intent)
-                except Exception:
-                    # fallback simple prompt
-                    parts = []
-                    for L in lines_from_json[:8]:
-                        lid = L.get('line_id')
-                        txt = L.get('text') or ''
-                        parts.append(f'[ID={lid}] text="{txt}"')
-                    prompt = 'Intent: ' + intent + '\nCandidates:\n' + '\n'.join(parts) + '\nReturn the ID only or NONE.'
+                # build prompt from all lines
+                parts = []
+                for L in lines_from_json:
+                    lid = L.get('line_id')
+                    txt = L.get('text') or ''
+                    ctx = ''
+                    try:
+                        raw = L.get('raw_texts') or []
+                        ctx = ' | '.join([r.strip() for r in raw if r])
+                    except Exception:
+                        ctx = ''
+                    parts.append(f'[ID={lid}] text="{txt}" context_hint="{ctx}"')
+                prompt = f"You are a helper that selects the best match for the user's intent.\nIntent: {intent}\nCandidates:\n" + '\n'.join(parts) + "\n\nInstructions: Return only the ID (number) of the best match, or NONE."
                 # call LLM (ollama hardcoded)
                 try:
                     from llm.ollama_client import OllamaClient
