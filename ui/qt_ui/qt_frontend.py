@@ -594,20 +594,44 @@ class MainWindowWrapper:
             results = reader.readtext(img_rgb)
             if not results:
                 out = 'No text detected by easyocr'
+                try:
+                    self.win.consoleText.setPlainText(out)
+                except Exception:
+                    pass
             else:
-                lines = []
+                # print detected lines first (text + bbox)
+                lines_display = []
+                parse_input_lines = []
                 for bbox, text, conf in results:
-                    # bbox is list of 4 points [[x1,y1],[x2,y2],[x3,y3],[x4,y4]]
                     try:
                         pts = [f'({int(p[0])},{int(p[1])})' for p in bbox]
                     except Exception:
                         pts = [str(p) for p in bbox]
-                    lines.append(f"{text} (conf={conf}) bbox: {pts}")
-                out = '\n'.join(lines)
-            try:
-                self.win.consoleText.setPlainText(out)
-            except Exception:
-                pass
+                    line_str = f"{text} (conf={conf}) bbox: {pts}"
+                    lines_display.append(line_str)
+                    parse_input_lines.append(line_str)
+                try:
+                    self.win.consoleText.setPlainText('\n'.join(lines_display))
+                except Exception:
+                    pass
+                # run preprocessing module to build prompt
+                try:
+                    import ocr_preproc
+                    tokens = ocr_preproc.parse_ocr_lines(parse_input_lines)
+                    grouped = ocr_preproc.group_into_lines(tokens)
+                    cands = ocr_preproc.rank_candidates(grouped, intent='open search menu', top_k=8)
+                    prompt = ocr_preproc.build_llm_prompt(cands, intent='open search menu')
+                    # append prompt to consoleText (separated)
+                    try:
+                        cur = self.win.consoleText.toPlainText()
+                        self.win.consoleText.setPlainText(cur + '\n\n==== LLM PROMPT ====\n' + prompt)
+                    except Exception:
+                        pass
+                except Exception as e:
+                    try:
+                        self.win.consoleText.setPlainText(f'Preprocessing failed: {e}')
+                    except Exception:
+                        pass
         except Exception as e:
             try:
                 self.win.consoleText.setPlainText(f'easyocr.readtext failed: {e}')
