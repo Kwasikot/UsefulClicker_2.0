@@ -80,7 +80,11 @@ def process_word(image, n):
       
         cropped_img = grayscale_image[bounding_rect[1]:bounding_rect[1] + bounding_rect[3],bounding_rect[0]:bounding_rect[0]+ bounding_rect[2]]
         if cropped_img.shape[0] > 0 and cropped_img.shape[1]>0 :
-            cv2.imwrite(f"preprocess\chars\{n}_{i}.png", cropped_img)
+            # use os.path.join to avoid escape-sequence issues on Windows
+            import os
+            outd = os.path.join('preprocess','chars')
+            os.makedirs(outd, exist_ok=True)
+            cv2.imwrite(os.path.join(outd, f"{n}_{i}.png"), cropped_img)
             
 def detect_words():
   # Read the image.

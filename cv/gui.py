@@ -26,7 +26,7 @@ def convertQImageToMat(incomingImage):
     arr = np.array(ptr).reshape(height, width, 4)  #  Copies the data
     return arr
 
-class MainWindow(QtWidgets.QMainWindow):
+class PerceiveWindow(QtWidgets.QMainWindow):
 
     
     def __init__(self, img_path, words=None, rects=None):
@@ -39,6 +39,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.selected_rect = QtCore.QRect()
         self.hash = ""
         self.words = words
+        # will hold OCR results as list of dicts: {x,y,w,h,text,conf}
+        self.rects_texts = []
        
         for r in self.rects:
             self.qrects.append(self.tuple_to_qrect(r))
@@ -74,6 +76,63 @@ class MainWindow(QtWidgets.QMainWindow):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update)
         self.timer.start(10)
+        # perform OCR on detected rects (best-effort)
+        # Attempt to initialize easyocr reader, but guard against binary
+        # incompatibilities (NumPy 2 vs packages compiled against NumPy 1.x).
+        reader = None
+        try:
+            import numpy as _np
+            try:
+                major = int(str(_np.__version__).split('.')[0])
+            except Exception:
+                major = 0
+            if major >= 2:
+                # avoid importing easyocr/scipy which may be incompatible with NumPy 2.x
+                print('Skipping easyocr import: detected numpy version', _np.__version__)
+                reader = None
+            else:
+                import easyocr
+                reader = easyocr.Reader(['ru', 'en'], gpu=False)
+        except Exception as _e:
+            # any import error -> disable OCR gracefully
+            print('easyocr init failed:', _e)
+            reader = None
+
+        try:
+            # for each rect, crop and run OCR
+            for i, r in enumerate(self.qrects):
+                try:
+                    cropped_qimg = self.crop_image(self.qimg, r)
+                    arr = convertQImageToMat(cropped_qimg)  # RGBA
+                    # convert RGBA -> RGB
+                    try:
+                        img_rgb = cv2.cvtColor(arr, cv2.COLOR_RGBA2RGB)
+                    except Exception:
+                        img_rgb = arr[..., :3]
+                    text = ""
+                    conf = 0.0
+                    if reader is not None:
+                        try:
+                            res = reader.readtext(img_rgb)
+                            if res:
+                                texts = [t[1] for t in res if t and len(t) > 1]
+                                confs = [float(t[2]) for t in res if t and len(t) > 2]
+                                text = " ".join(texts)
+                                conf = sum(confs)/len(confs) if confs else 0.0
+                        except Exception:
+                            text = ""
+                    # store in words mapping for UI label display
+                    if self.words is None:
+                        self.words = {}
+                    self.words[i] = text
+                    self.rects_texts.append({
+                        'x': r.x(), 'y': r.y(), 'w': r.width(), 'h': r.height(),
+                        'text': text, 'conf': conf
+                    })
+                except Exception:
+                    continue
+        except Exception:
+            pass
     
     def find_image_hashes(self, know_image_hashes):
         index = 0
@@ -149,26 +208,30 @@ class MainWindow(QtWidgets.QMainWindow):
 def get_image_hash_window():
     app = QtWidgets.QApplication(sys.argv)
     img_path = 'screenshot.png'
-    window = MainWindow(img_path)
+    window = PerceiveWindow(img_path)
     window.show()
     app.exec()
     return window.hash
 
+
 def get_rect_window():
     app = QtWidgets.QApplication(sys.argv)
     img_path = 'screenshot.png'
-    window = MainWindow(img_path)
+    window = PerceiveWindow(img_path)
     window.show()
     app.exec()
     r = window.selected_rect
     return (r.x(),r.y(),r.width(),r.height())
 
+
 def get_words_window(words, rects):
     app = QtWidgets.QApplication(sys.argv)
     img_path = 'screenshot.png'
-    window = MainWindow(img_path, words, rects)
+    window = PerceiveWindow(img_path, words, rects)
     window.show()
     app.exec()
-    
-hash_value = get_image_hash_window()
-print(f"hash_value = {hash_value}")
+
+
+if __name__ == '__main__':
+    hash_value = get_image_hash_window()
+    print(f"hash_value = {hash_value}")

@@ -8,7 +8,8 @@ keyboard==0.13.5
 # --- GUI / Image processing ---
 PyQt5==5.15.11
 opencv-python==4.10.0.84
-numpy==1.26.4
+numpy==1.24.4
+easyocr
 
 # --- LLM integration ---
 openai==1.43.0
