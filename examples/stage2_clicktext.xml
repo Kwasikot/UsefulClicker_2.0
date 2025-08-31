@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+    <func name="Click by text (OCR)">
+        <shell bg="1" cmd="notepad.exe"/>
+        <wait ms="800"/>
+        <focus title="Notepad"/>
+        <type mode="copy_paste" text="Формат Format Test"/>
+        <wait ms="300"/>
+        <clicktext text="Format" lang="eng" partial="0" case_sensitive="0"/>
+    </func>
+    <call name="Click by text (OCR)"/>
+</program>

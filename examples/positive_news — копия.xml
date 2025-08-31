@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+<call name="Main"/>
+<func name="Main">
+<llmcall
+  output_var="pragmatism_tips"
+  output_format="list"
+  separator="\n"
+  prompt="You are a query generator for a clicker that searches YouTube and the web. 
+
+Goal: produce exactly 20 concise search queries (3–7 words each) that will surface POSITIVE, RECENT scientific progress stories from the last 90 days.
+
+Coverage (mix across these): biomedicine &amp; gene therapy (trial successes, approvals), clean energy &amp; storage (solar, wind, batteries, fusion), space &amp; astronomy (mission milestones, new instruments, exoplanets), materials science (supercapacitors, semiconductors, graphene-like breakthroughs), climate solutions (carbon capture, reforestation tech), robotics &amp; automation (helpful use-cases), agriculture &amp; food tech (drought-resistant crops, precision farming), computing &amp; quantum (useful benchmarks, new qubits), neuroscience (noninvasive BCI milestones), transportation (efficient EVs, sustainable fuels).
+
+Style &amp; constraints:
+- Positive outcomes only; avoid politics, war, layoffs, scandals, risks/doom.
+- Prefer English queries and include “2025” or a month when sensible.
+- No brand/channel names; focus on topic + outcome words: “breakthrough”, “record”, “first”, “milestone”, “approved”, “demonstrates”, “surpasses”, “net gain”, “clinical success”.
+- Plain text output, one query per line, no numbering, no quotes, no trailing punctuation.
+
+Return exactly 20 lines."
+/>
+
+
+	<func name="SearchYoutube">
+	  <click button="left" x="200" y="10" />
+	  <wait ms="150"/>
+	  <hotkey hotkey="ctrl+l"/>
+	  <wait ms="150"/>
+	  <type mode="type" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+	  <wait ms="150"/>
+	  <hotkey hotkey="enter"/>
+	  <wait ms="1500"/>
+	  
+	  <!-- Случайный скролл вниз 3..7 раз -->
+		<repeat times="randint(3,7)">
+		  <hotkey hotkey="pgdn"/>
+		  <wait ms="300"/>   <!-- дай странице дорисоваться -->
+		</repeat>
+		
+		<wait ms="1000"/> 
+		<!-- Клик в центре экрана в случайной области 400x300 -->
+		<set CX="SCREEN_W // 2"/>
+		<set CY="SCREEN_H // 2"/>
+		<set X1="CX - 200"/>
+		<set Y1="CY - 150"/>
+		<set X2="CX + 200"/>
+		<set Y2="CY + 150"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+
+
+	  <wait ms="60000"/>
+
+	</func>
+
+	<foreach list="pragmatism_tips" random_shuffle="true" do="SearchYoutube"/>
+</func>
+</program>

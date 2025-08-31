@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+	<call name="Main"/>
+	<func name="Main">
+        <llmcall output_var="pragmatism_tips"
+                 output_format="list"
+                 separator="\n"
+                 provider="ollama"
+                 model="llama3.2:latest"
+                 temperature="0.7"
+			 prompt="Generate a list of 5 practical tips, exercises, or decision-making scenarios that help develop pragmatism. 
+	Each item should be concise, action-oriented, and focus on realistic, result-driven thinking. 
+	Cover diverse areas: everyday choices, career, learning, problem-solving, and social interactions. 
+	Avoid abstract philosophy; emphasize practical outcomes. 
+	Output format: Format the response as a simple numbered list, one tip per line. Separated by line breaks."/>
+
+		<func name="SearchYoutube">
+		  <click button="left" x="200" y="10" />
+		  <wait ms="150"/>
+		  <hotkey hotkey="ctrl+l"/>
+		  <wait ms="150"/>
+		  <type mode="type" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+		  <wait ms="150"/>
+		  <hotkey hotkey="enter"/>
+		  <wait ms="1500"/>
+		  <repeat times="randint(3,7)">
+		    <hotkey hotkey="pgdn"/>
+		    <wait ms="300"/>
+		  </repeat>
+		  <wait ms="1000"/>
+		<!-- Клик в центре экрана в случайной области 400x300 -->
+			<set CX="SCREEN_W // 2"/>
+			<set CY="SCREEN_H // 2"/>
+			<set X1="CX - 200"/>
+			<set Y1="CY - 150"/>
+			<set X2="CX + 200"/>
+			<set Y2="CY + 150"/>
+			<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+			<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+
+		  <wait ms="60000"/>
+		</func>
+
+		<foreach list="pragmatism_tips" random_shuffle="true" do="SearchYoutube"/>
+	</func>
+</program>

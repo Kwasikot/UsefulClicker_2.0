@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+
+<llmcall output_var="tunes_list"
+			 output_format="list"
+			 separator="\n"
+			 prompt="Give me a list of 100 amazing videos and programs about science and technology. Include diverse styles: documentaries (Discovery, National Geographic, PBS, BBC), science shows, lectures, podcasts, popularization of space, technology, and biology. Output format: only a list of titles separated by line breaks. Each run must produce different options, avoiding repetitions"/>
+
+	<func name="SearchYoutube">
+	  <click button="left" x="200" y="10" />
+	  <wait ms="150"/>
+	  <hotkey hotkey="ctrl+l"/>
+	  <wait ms="150"/>
+	  <type mode="type" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+	  <wait ms="150"/>
+	  <hotkey hotkey="enter"/>
+	  <wait ms="1500"/>
+	  
+	  <!-- Случайный скролл вниз 3..7 раз -->
+		<repeat times="randint(3,7)">
+		  <hotkey hotkey="pgdn"/>
+		  <wait ms="300"/>   <!-- дай странице дорисоваться -->
+		</repeat>
+		
+		<wait ms="1000"/> 
+		<!-- Клик в центре экрана в случайной области 400x300 -->
+		<set CX="SCREEN_W // 2"/>
+		<set CY="SCREEN_H // 2"/>
+		<set X1="CX - 200"/>
+		<set Y1="CY - 150"/>
+		<set X2="CX + 200"/>
+		<set Y2="CY + 150"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+
+
+	  <wait ms="60000"/>
+
+	</func>
+
+	<foreach list="tunes_list" random_shuffle="true" do="SearchYoutube"/>
+</program>
