@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+
+  <set VOICE_ENABLED="True"/>
+
+  <!-- «разогрев» демона -->
+  <voice_event wait="30000" type="any" out="VOICE_TEXT"/>
+
+  <!-- Команды плеера -->
+  <func name="CmdNext"><hotkey hotkey="shift+n"/></func>
+  <func name="CmdTogglePause"><hotkey hotkey="k"/></func>
+  <func name="CmdSeekFwdOnce"><hotkey hotkey="l"/></func>
+  <func name="CmdSeekBackOnce"><hotkey hotkey="j"/></func>
+  <func name="CmdScrollDown"><hotkey hotkey="pgdn"/></func>
+  <func name="CmdScrollUp"><hotkey hotkey="pgup"/></func>
+
+  <!-- Один короткий шаг поиска -->
+  <func name="SearchYoutubeStep">
+    <click button="left" x="200" y="10"/>
+    <hotkey hotkey="ctrl+l"/><wait ms="120"/>
+    <type mode="copy_paste" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+    <wait ms="800"/><hotkey hotkey="enter"/>
+    <wait ms="800"/>
+    <repeat times="randint(1,2)"><hotkey hotkey="pgdn"/><wait ms="180"/></repeat>
+    <!-- было -->
+	<set CX="${SCREEN_W // 2}"/>
+	<set CY="${SCREEN_H * 0.34}"/>
+
+	<!-- стало: операторы — вне ${}, только VAR внутри -->
+	<set CX="${SCREEN_W}*0.5"/>
+	<set CY="${SCREEN_H}*0.34"/>
+	<click x="${CX}" y="${CY}"/>
+
+  </func>
+
+  <repeat times="999999">
+    <!-- голос → оркестратор -->
+    <voice_event wait="1500" type="any" out="VOICE_TEXT"/>
+    <extnode module="yt_orchestrator" func="on_voice"
+             text="${VOICE_TEXT}" vtype="${VOICE_TEXT_type}"/>
+			 
+	 <!-- добавьте паузу -->
+    <wait ms="500"/>
+
+    <!-- выполнить одну команду (если есть) -->
+    <extnode module="yt_orchestrator" func="next_cmd" output_var="CMD"/>
+    <if cond="'${CMD}'!=''">
+      <if cond="'${CMD}'=='next'"><call name="CmdNext"/></if>
+      <if cond="'${CMD}'=='pause' or '${CMD}'=='resume'"><call name="CmdTogglePause"/></if>
+      <if cond="'${CMD}'=='seek_fwd'"><call name="CmdSeekFwdOnce"/></if>
+      <if cond="'${CMD}'=='seek_back'"><call name="CmdSeekBackOnce"/></if>
+      <if cond="'${CMD}'=='scroll_down'"><call name="CmdScrollDown"/></if>
+      <if cond="'${CMD}'=='scroll_up'"><call name="CmdScrollUp"/></if>
+    </if>
+
+    <!-- выполнить один запрос (если есть) -->
+    <extnode module="yt_orchestrator" func="next_query" output_var="Q"/>
+    <if cond="'${Q}'!=''">
+      <shell cmd="echo YT query: '${Q}'"/>
+      <call name="SearchYoutubeStep" arg0="${Q}"/>
+    </if>
+
+    <wait ms="120"/>
+  </repeat>
+
+</program>

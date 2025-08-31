@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program>
+  <!-- === Voice settings === -->
+  <set VOICE_ENABLED="True"/>
+  <!-- выбери устройство при необходимости -->
+  <!-- <set VOICE_DEVICE="1"/> -->
+  <set VOICE_LANG="ru"/>
+  <!-- автофлаш по таймеру внутри VoiceDaemon (секунды) -->
+  <set VOICE_WAIT_SECONDS="60"/>
+
+  <!-- анти-дубли + пауза после успешной обработки -->
+  <set LAST_Q=""/>
+  <set SEARCH_COOLDOWN_MS="60000"/>
+
+  <!-- Главное: больше не вызываем LLM/YouTube до тех пор,
+       пока не придёт новый query из voice_daemon (Ctrl+S или 60s таймаут) -->
+  <repeat times="999999">
+
+    <!-- опрашиваем только очередь запросов (не блокируясь) -->
+    <voice_poll out_query="Q"/>
+
+    <!-- обработка один раз на новый Q -->
+    <if cond="'${Q}'!='' and '${Q}'!='${LAST_Q}'">
+      <shell cmd="echo YT query: '${Q}'"/>
+      <!-- здесь вызывай свой LLM ИЛИ сразу YouTube-поиск; пример: -->
+      <call name="SearchYoutubeStep" arg0="${Q}"/>
+      <set LAST_Q="${Q}"/>
+      <!-- пауза 60 сек, прерываемая Ctrl+S / Ctrl+N / Esc -->
+      <wait ms="${SEARCH_COOLDOWN_MS}"/>
+    </if>
+
+    <!-- лёгкий idle, чтобы не грузить CPU -->
+    <wait ms="120"/>
+  </repeat>
+
+  <!-- пример функции поиска на YouTube (оставь свою реализацию) -->
+  <func name="SearchYoutubeStep">
+    <extnode module="yt_orchestrator" method="on_text" text="${arg0}"/>
+    <extnode module="yt_orchestrator" method="search" query="${arg0}" output_var="YT_RESULTS"/>
+    <shell cmd="echo Found: ${YT_RESULTS}"/>
+  </func>
+</program>

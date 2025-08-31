@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+	<llmcall output_var="pragmatism_tips"
+			 output_format="list"
+			 separator="\n"
+			 prompt="Сгенерируй список из 20 поисковых запросов о событиях которые могли бы теоретически произойти на русском языке. Формат ответа: список запросов разделенный переносом строки."/>
+
+	<func name="SearchYoutube">
+	  <click button="left" x="200" y="10" />
+	  <wait ms="150"/>
+	  <hotkey hotkey="ctrl+l"/>
+	  <wait ms="150"/>
+	  <type mode="type" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+	  <wait ms="150"/>
+	  <hotkey hotkey="enter"/>
+	  <wait ms="1500"/>
+	  
+	  <!-- Случайный скролл вниз 3..7 раз -->
+		<repeat times="randint(3,7)">
+		  <hotkey hotkey="pgdn"/>
+		  <wait ms="300"/>   <!-- дай странице дорисоваться -->
+		</repeat>
+		
+		<wait ms="1000"/> 
+		<!-- Клик в центре экрана в случайной области 400x300 -->
+		<set CX="SCREEN_W // 2"/>
+		<set CY="SCREEN_H // 2"/>
+		<set X1="CX - 200"/>
+		<set Y1="CY - 150"/>
+		<set X2="CX + 200"/>
+		<set Y2="CY + 150"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+
+
+	  <wait ms="60000"/>
+
+	</func>
+
+	<foreach list="pragmatism_tips" random_shuffle="true" do="SearchYoutube"/>
+</program>

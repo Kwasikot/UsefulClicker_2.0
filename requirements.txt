@@ -1,0 +1,24 @@
+# --- Core ---
+lxml==5.2.2
+pyautogui==0.9.54
+pyperclip==1.9.0
+pygetwindow==0.0.9
+keyboard==0.13.5
+
+# --- GUI / Image processing ---
+PyQt5==5.15.11
+opencv-python==4.10.0.84
+numpy==1.26.4
+
+# --- LLM integration ---
+openai==1.43.0
+httpx==0.27.2
+tiktoken==0.7.0   # иногда нужен для токенизации
+
+# --- Whisper (speech recognition) ---
+openai-whisper==20231117
+torch==2.3.1 --extra-index-url https://download.pytorch.org/whl/cpu
+
+# --- Voice control (optional) ---
+sounddevice==0.4.6
+webrtcvad==2.0.10

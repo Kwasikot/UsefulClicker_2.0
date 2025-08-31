@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+    <func name="SearchYoutube">
+	   <click button="left" x="10" y="10" />
+       <hotkey hotkey="F6"/>
+	   <wait ms="800"/>
+	   <type mode="copy_paste" text="https://www.youtube.com/results?search_query=Ohio"/>
+	   <wait ms="800"/>
+	   <hotkey hotkey="enter"/>
+    </func>
+    <call name="Demo"/>
+</program>

@@ -1,0 +1,11 @@
+<program>
+    <func name="Click text demo">
+        <shell bg="1" cmd="notepad.exe"/>
+        <wait ms="800"/>
+        <focus title="Notepad"/>
+        <type mode="copy_paste" text="Hello OCR world"/>
+        <wait ms="500"/>
+        <clicktext text="Hello" lang="eng"/>
+    </func>
+    <call name="Click text demo"/>
+</program>

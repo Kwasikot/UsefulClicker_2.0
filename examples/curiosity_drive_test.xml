@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+
+
+<extnode module="curiosity_drive_node"
+         class="CuriosityDriveNode"
+         method="run"
+         output_var="science_terms_list"
+         output_format="list"
+         separator="\n"
+         disciplines="Evolutionary biology, Epigenetics, Transcription factors, Developmental biology, Immunology, Infectious diseases, Hepatology, Neurobiology, Cell biology, Oncology, Biotechnology, Pharmacology, Gerontology, Machine learning"
+        num_terms="15"
+        model="gpt-5"
+        temperature="1"/>
+
+	<func name="SearchYoutube">
+	  <click button="left" x="200" y="10" />
+	  <wait ms="150"/>
+	  <hotkey hotkey="ctrl+l"/>
+	  <wait ms="150"/>
+	  <type mode="type" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+	  <wait ms="150"/>
+	  <hotkey hotkey="enter"/>
+	  <wait ms="1500"/>
+	  
+	  <!-- Случайный скролл вниз 3..7 раз -->
+		<repeat times="randint(3,7)">
+		  <hotkey hotkey="pgdn"/>
+		  <wait ms="300"/>   <!-- дай странице дорисоваться -->
+		</repeat>
+		
+		<wait ms="1000"/> 
+		<!-- Клик в центре экрана в случайной области 400x300 -->
+		<set CX="SCREEN_W // 2"/>
+		<set CY="SCREEN_H // 2"/>
+		<set X1="CX - 200"/>
+		<set Y1="CY - 150"/>
+		<set X2="CX + 200"/>
+		<set Y2="CY + 150"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+		<click area="${X1},${Y1},${X2},${Y2}" button="left"/>
+
+
+	  <wait ms="60000"/>
+
+	</func>
+
+	<foreach list="science_terms_list" random_shuffle="true" do="SearchYoutube"/>
+</program>

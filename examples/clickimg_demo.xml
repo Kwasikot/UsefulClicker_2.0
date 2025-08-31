@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+    <func name="Demo">
+        <!-- Подставь хеш, полученный через get_image_hash_window() -->
+        <clickimg hash="0x445fbe716f6bb700" button="left"/>
+    </func>
+    <call name="Demo"/>
+</program>

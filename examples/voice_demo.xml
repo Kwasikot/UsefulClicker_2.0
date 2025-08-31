@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+
+  <!-- включаем голос -->
+  <set VOICE_ENABLED="True"/>
+
+  <!-- первый захват фразы (разбудить демон) -->
+  <voice_event wait="30000" type="any" out="VOICE_TEXT"/>
+
+  <!-- функции управления YouTube -->
+  <func name="CmdNext">        <hotkey hotkey="shift+n"/> </func>
+  <func name="CmdTogglePause"> <hotkey hotkey="k"/>       </func>
+  <func name="CmdSeekFwdOnce"> <hotkey hotkey="l"/>       </func>
+  <func name="CmdSeekBackOnce"><hotkey hotkey="j"/>       </func>
+  <func name="CmdScrollDown">  <hotkey hotkey="pgdn"/>    </func>
+  <func name="CmdScrollUp">    <hotkey hotkey="pgup"/>    </func>
+	<!-- Клик по зоне, где обычно первый результат (десктоп-верстка) -->
+	<func name="CmdClickFirstResult">
+	<set X1="${SCREEN_W}*0.28"/>
+	<set X2="${SCREEN_W}*0.72"/>
+	<set Y1="${SCREEN_H}*0.26"/>
+	<set Y2="${SCREEN_H}*0.44"/>
+	<!-- или: <set X1="round(${SCREEN_W}*0.28)"/> и т.д. -->
+	<click area="${X1},${Y1},${X2},${Y2}"/>
+    <wait ms="150"/>
+	</func>
+
+  <!-- поиск на YouTube -->
+  <func name="SearchYoutube">
+    <click button="left" x="200" y="10"/>
+    <wait ms="150"/>
+    <hotkey hotkey="ctrl+l"/><wait ms="150"/>
+    <type mode="copy_paste" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
+    <wait ms="200"/>
+    <hotkey hotkey="enter"/>
+  </func>
+
+  <!-- основной цикл -->
+  <repeat times="999999">
+    <!-- ждём новую команду или запрос -->
+    <voice_event wait="60000" type="any" out="VOICE_TEXT"/>
+
+    <!-- если команда -->
+    <if cond="'${VOICE_TEXT_type}'=='command'">
+      <shell cmd="echo COMMAND: '${VOICE_TEXT}'"/>
+
+      <!-- диспетчер по названию команды -->
+	  <if cond="'${VOICE_TEXT}'=='click_first'">
+		<call name="CmdClickFirstResult"/>
+	  </if>
+      <if cond="'${VOICE_TEXT}'=='next'">
+        <call name="CmdNext"/>
+      </if>
+      <if cond="'${VOICE_TEXT}'=='pause' or '${VOICE_TEXT}'=='resume'">
+        <call name="CmdTogglePause"/>
+      </if>
+      <if cond="'${VOICE_TEXT}'=='seek_fwd'">
+        <call name="CmdSeekFwdOnce"/>
+      </if>
+      <if cond="'${VOICE_TEXT}'=='seek_back'">
+        <call name="CmdSeekBackOnce"/>
+      </if>
+      <if cond="'${VOICE_TEXT}'=='scroll_down'">
+        <call name="CmdScrollDown"/>
+      </if>
+      <if cond="'${VOICE_TEXT}'=='scroll_up'">
+        <call name="CmdScrollUp"/>
+      </if>
+    <else/>
+      <!-- иначе это поисковая фраза -->
+      <shell cmd="echo QUERY: '${VOICE_TEXT}'"/>
+      <call name="SearchYoutube" arg0="${VOICE_TEXT}"/>
+    </if>
+
+    <wait ms="500"/>
+  </repeat>
+
+</program>

@@ -1,0 +1,74 @@
+  def handle_clickimg(self, node: ET.Element):
+        """
+        <clickimg hash="0xDEADBEEF..." button="left"/>
+        Алгоритм:
+          1) получаем кандидаты через preprocess.detect_words() (он же сохраняет screenshot.png),
+          2) для каждого прямоугольника обрезаем ROI из screenshot.png,
+          3) считаем хеш через hash_image.hash_image(roi),
+          4) при точном совпадении кликаем в центр прямоугольника.
+        """
+        target_hash = (node.get("hash") or node.get("target_hash") or "").strip()
+        if not target_hash:
+            self.logger.info("CLICKIMG: no 'hash' provided")
+            self._delays(node)
+            return
+
+        # Импорты ваших модулей
+        try:
+            from gui.preprocess import detect_words
+            from gui.hash_image import hash_image
+            import cv2
+        except Exception as e:
+            self.logger.info(f"CLICKIMG import error: {e}")
+            self._delays(node)
+            return
+
+        # 1) кандидаты + скрин
+        try:
+            rects = detect_words()  # ДОЛЖЕН сохранить 'screenshot.png' в текущей директории
+        except Exception as e:
+            self.logger.info(f"CLICKIMG detect_words() failed: {e}")
+            self._delays(node)
+            return
+
+        img = cv2.imread("screenshot.png")
+        if img is None:
+            # fallback: свежий скрин, если по какой-то причине файл не появился
+            try:
+                from gui.screenshot import take_screenshot  # простой шима на pyautogui
+                img = take_screenshot()
+            except Exception as e:
+                self.logger.info(f"CLICKIMG: no screenshot available: {e}")
+                self._delays(node)
+                return
+
+        button = node.get("button", "left")
+        matched = False
+
+        for (x, y, w, h) in rects:
+            x2 = x + max(1, w)
+            y2 = y + max(1, h)
+            roi = img[y:y2, x:x2]
+            if roi.size == 0:
+                continue
+
+            try:
+                roi_hash = str(hash_image(roi)).strip()
+            except Exception as e:
+                self.logger.info(f"CLICKIMG hash error: {e}")
+                continue
+
+            # Сравниваем СТРОГО (как в вашей GUI/хеш-логике)
+            if roi_hash.lower() == target_hash.lower():
+                cx = x + w // 2
+                cy = y + h // 2
+                self.logger.info(f"CLICKIMG match -> rect={(x,y,w,h)}, click={button}")
+                from input.mouse_keyboard import click_xy
+                click_xy(cx, cy, button=button)
+                matched = True
+                break
+
+        if not matched:
+            self.logger.info("CLICKIMG: no exact hash match among detected regions")
+
+        self._delays(node)
