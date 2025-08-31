@@ -640,16 +640,43 @@ class MainWindowWrapper:
                 # run preprocessing module to build prompt
                 try:
                     import ocr_preproc
+                    # get intent from UI (userIntent or perceiveLlmPromt)
+                    intent = ''
+                    try:
+                        if getattr(self.win, 'userIntent', None) is not None:
+                            intent = self.win.userIntent.toPlainText().strip()
+                        elif getattr(self.win, 'perceiveLlmPromt', None) is not None:
+                            intent = self.win.perceiveLlmPromt.toPlainText().strip()
+                    except Exception:
+                        intent = ''
+                    if not intent:
+                        intent = 'open search menu'
                     tokens = ocr_preproc.parse_ocr_lines(parse_input_lines)
                     grouped = ocr_preproc.group_into_lines(tokens)
-                    cands = ocr_preproc.rank_candidates(grouped, intent='open search menu', top_k=8)
-                    prompt = ocr_preproc.build_llm_prompt(cands, intent='open search menu')
+                    cands = ocr_preproc.rank_candidates(grouped, intent=intent, top_k=8)
+                    prompt = ocr_preproc.build_llm_prompt(cands, intent=intent)
                     # append prompt to consoleText (separated)
                     try:
                         cur = self.win.consoleText.toPlainText()
                         self.win.consoleText.setPlainText(cur + '\n\n==== LLM PROMPT ====\n' + prompt)
                     except Exception:
                         pass
+                    # Call hardcoded Ollama model
+                    try:
+                        from llm.ollama_client import OllamaClient
+                        client = OllamaClient()
+                        llm_out = client.generate_text(prompt, model='llama3.2:latest')
+                        try:
+                            cur2 = self.win.consoleText.toPlainText()
+                            self.win.consoleText.setPlainText(cur2 + '\n\n==== LLM OUTPUT (ollama) ====\n' + llm_out)
+                        except Exception:
+                            pass
+                    except Exception as e:
+                        try:
+                            cur2 = self.win.consoleText.toPlainText()
+                            self.win.consoleText.setPlainText(cur2 + f'\n\nLLM call failed: {e}')
+                        except Exception:
+                            pass
                 except Exception as e:
                     try:
                         self.win.consoleText.setPlainText(f'Preprocessing failed: {e}')
