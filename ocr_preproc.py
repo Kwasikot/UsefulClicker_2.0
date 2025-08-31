@@ -171,64 +171,26 @@ def group_into_lines(tokens: List[Dict[str, Any]],
     """
     if not tokens:
         return []
-    # More robust row clustering based on token center-y and heights.
+    # copy tokens and sort by cy
     toks = sorted(tokens, key=lambda t: (t['cy'], t['cx']))
-    # rows: list of dicts {'tokens': [...], 'sum_cy': float, 'count': int, 'mean_cy': float, 'max_h': int}
-    rows: List[Dict[str, Any]] = []
+    groups: List[List[Dict[str, Any]]] = []
     for t in toks:
-        placed_row = None
-        best_dist = None
-        for r in rows:
-            # compute distance in y between token and row mean
-            row_cy = r['mean_cy']
-            dist = abs(t['cy'] - row_cy)
-            # dynamic tolerance based on token/row heights
-            tol = max(t.get('h', 0), r.get('max_h', 0)) * 0.6 + y_merge_tol_px
-            # also allow if vertical overlap is significant
-            overlaps = False
-            for gt in r['tokens']:
+        placed = False
+        for g in groups:
+            # check overlap with any token in group
+            for gt in g:
                 inter = _vertical_overlap(tuple(t['bbox']), tuple(gt['bbox']))
-                min_h = min(max(1, t.get('h', 0)), max(1, gt.get('h', 0)))
-                if inter >= y_overlap_ratio * min_h:
-                    overlaps = True
+                min_h = min(t['h'] or 1, gt['h'] or 1)
+                if min_h <= 0:
+                    continue
+                if inter >= y_overlap_ratio * min_h and abs(t['cy'] - gt['cy']) <= y_merge_tol_px:
+                    g.append(t)
+                    placed = True
                     break
-            if dist <= tol or overlaps:
-                if best_dist is None or dist < best_dist:
-                    placed_row = r
-                    best_dist = dist
-        if placed_row is not None:
-            placed_row['tokens'].append(t)
-            placed_row['sum_cy'] += t['cy']
-            placed_row['count'] += 1
-            placed_row['mean_cy'] = placed_row['sum_cy'] / placed_row['count']
-            placed_row['max_h'] = max(placed_row['max_h'], t.get('h', 0))
-        else:
-            rows.append({'tokens': [t], 'sum_cy': t['cy'], 'count': 1, 'mean_cy': t['cy'], 'max_h': t.get('h', 0)})
-
-    # Optionally merge rows that are very close vertically (gap <= y_merge_tol_px)
-    merged_rows: List[Dict[str, Any]] = []
-    for r in rows:
-        if not merged_rows:
-            merged_rows.append(r)
-            continue
-        prev = merged_rows[-1]
-        # compute vertical gap between prev and r
-        prev_ys = [tt['bbox'][1] for tt in prev['tokens']] + [tt['bbox'][3] for tt in prev['tokens']]
-        r_ys = [tt['bbox'][1] for tt in r['tokens']] + [tt['bbox'][3] for tt in r['tokens']]
-        prev_min, prev_max = min(prev_ys), max(prev_ys)
-        r_min, r_max = min(r_ys), max(r_ys)
-        gap = max(0, r_min - prev_max)
-        if gap <= y_merge_tol_px:
-            # merge r into prev
-            prev['tokens'].extend(r['tokens'])
-            prev['sum_cy'] += r['sum_cy']
-            prev['count'] += r['count']
-            prev['mean_cy'] = prev['sum_cy'] / prev['count']
-            prev['max_h'] = max(prev['max_h'], r['max_h'])
-        else:
-            merged_rows.append(r)
-
-    groups = [r['tokens'] for r in merged_rows]
+            if placed:
+                break
+        if not placed:
+            groups.append([t])
 
     lines: List[Dict[str, Any]] = []
     for lid, g in enumerate(groups):
