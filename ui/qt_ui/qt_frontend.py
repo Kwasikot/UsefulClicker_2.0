@@ -130,6 +130,27 @@ class MainWindowWrapper:
                 self.win.perceiveButton.clicked.connect(self.on_perceive)
         except Exception:
             pass
+        # Add a second perceive button (Perceive full OCR) if not present in UI
+        try:
+            if getattr(self.win, 'PerceiveNodeTab', None) is not None:
+                tab = self.win.PerceiveNodeTab
+                if getattr(tab, 'perceiveButton_2', None) is None:
+                    btn2 = QtWidgets.QPushButton('Perceive FullOCR', tab)
+                    btn2.setObjectName('perceiveButton_2')
+                    # place it near existing perceiveButton if possible
+                    try:
+                        orig = getattr(tab, 'perceiveButton', None)
+                        if orig is not None:
+                            geo = orig.geometry()
+                            btn2.setGeometry(geo.x()+140, geo.y(), 140, geo.height())
+                        else:
+                            btn2.setGeometry(10, 120, 140, 40)
+                    except Exception:
+                        btn2.setGeometry(10, 120, 140, 40)
+                    btn2.show()
+                    btn2.clicked.connect(self.on_perceive_full)
+        except Exception:
+            pass
 
         # timer to refresh state (buttons, labels)
         self.timer = QtCore.QTimer()
@@ -525,6 +546,73 @@ class MainWindowWrapper:
             except Exception:
                 pass
             return
+
+    def on_perceive_full(self):
+        """Run OCR on full screenshot using easyocr if available and print text+bboxes."""
+        # try to read screenshot file
+        import os
+        fn = os.path.join(os.getcwd(), 'screenshot.png')
+        if not os.path.exists(fn):
+            try:
+                self.win.consoleText.setPlainText('screenshot.png not found')
+            except Exception:
+                pass
+            return
+        # try easyocr
+        try:
+            import easyocr
+        except Exception as e:
+            try:
+                self.win.consoleText.setPlainText(f'easyocr import failed: {e}')
+            except Exception:
+                pass
+            return
+
+        try:
+            import cv2
+            img = cv2.imread(fn)
+            if img is None:
+                raise RuntimeError('cv2.imread returned None')
+            img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        except Exception as e:
+            try:
+                self.win.consoleText.setPlainText(f'Failed to load screenshot: {e}')
+            except Exception:
+                pass
+            return
+
+        try:
+            reader = easyocr.Reader(['ru', 'en'], gpu=False)
+        except Exception as e:
+            try:
+                self.win.consoleText.setPlainText(f'easyocr.Reader init failed: {e}')
+            except Exception:
+                pass
+            return
+
+        try:
+            results = reader.readtext(img_rgb)
+            if not results:
+                out = 'No text detected by easyocr'
+            else:
+                lines = []
+                for bbox, text, conf in results:
+                    # bbox is list of 4 points [[x1,y1],[x2,y2],[x3,y3],[x4,y4]]
+                    try:
+                        pts = [f'({int(p[0])},{int(p[1])})' for p in bbox]
+                    except Exception:
+                        pts = [str(p) for p in bbox]
+                    lines.append(f"{text} (conf={conf}) bbox: {pts}")
+                out = '\n'.join(lines)
+            try:
+                self.win.consoleText.setPlainText(out)
+            except Exception:
+                pass
+        except Exception as e:
+            try:
+                self.win.consoleText.setPlainText(f'easyocr.readtext failed: {e}')
+            except Exception:
+                pass
         try:
             # Use local screenshot file
             w = PerceiveWindow('screenshot.png')
