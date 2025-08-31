@@ -57,6 +57,16 @@ class MainWindowWrapper:
         if QtWidgets is None:
             raise RuntimeError("PyQt5 is required for qt_ui")
         self.app = QtWidgets.QApplication(sys.argv)
+        # Ensure repo root is on sys.path so modules like cv.gui and perceive_node
+        # can be imported from UI callbacks (on_perceive etc.).
+        try:
+            repo_root = Path(__file__).resolve().parents[2]
+            rp = str(repo_root)
+            import sys as _sys
+            if rp not in _sys.path:
+                _sys.path.insert(0, rp)
+        except Exception:
+            pass
         ui_file = Path(__file__).parent / "mainwindow.ui"
         self.win = _load_ui_file(ui_file)
         self.xml_path = Path(xml_path)
@@ -113,6 +123,13 @@ class MainWindowWrapper:
                 btn.clicked.connect(self.on_load_program_clicked)
             except Exception:
                 pass
+
+        # PerceiveNode testing: connect Perceive button if present
+        try:
+            if getattr(self.win, 'perceiveButton', None) is not None:
+                self.win.perceiveButton.clicked.connect(self.on_perceive)
+        except Exception:
+            pass
 
         # timer to refresh state (buttons, labels)
         self.timer = QtCore.QTimer()
@@ -464,6 +481,99 @@ class MainWindowWrapper:
         for ch in list(root):
             add_item(root_item, ch)
         tw.expandAll()
+
+    def on_perceive(self):
+        """Show perception window and dump detected rects+texts to PerceiveNode tab console."""
+        try:
+            # import the window class from cv.gui
+            from cv.gui import PerceiveWindow
+        except Exception:
+            PerceiveWindow = None
+        if PerceiveWindow is None:
+            # Try headless fallback: call perceive_node.PerceiveNode.perceive() if available
+            try:
+                import perceive_node
+                pn = perceive_node.PerceiveNode()
+                res = pn.perceive()
+                items = res.get('rects') if isinstance(res, dict) else None
+                if not items:
+                    msg = 'PerceiveNode returned no rects (or perceive_node not available)'
+                else:
+                    # filter out zero-confidence results
+                    filtered = []
+                    for i, it in enumerate(items):
+                        try:
+                            conf = float(it.get('conf') or 0)
+                        except Exception:
+                            try:
+                                conf = float(str(it.get('conf') or '0').strip())
+                            except Exception:
+                                conf = 0.0
+                        if conf != 0.0:
+                            filtered.append((i, it, conf))
+                    if not filtered:
+                        msg = 'No OCR results with conf != 0'
+                    else:
+                        lines = []
+                        for i, it, conf in filtered:
+                            lines.append(f"{i}: {it.get('x')},{it.get('y')},{it.get('w')},{it.get('h')} -> {it.get('text')} (conf={conf})")
+                        msg = "\n".join(lines)
+            except Exception as e:
+                msg = f'PerceiveWindow not available and perceive_node fallback failed: {e}'
+            try:
+                self.win.consoleText.setPlainText(msg)
+            except Exception:
+                pass
+            return
+        try:
+            # Use local screenshot file
+            w = PerceiveWindow('screenshot.png')
+            w.show()
+        except Exception as e:
+            try:
+                self.win.consoleText.setPlainText(f'PerceiveWindow error: {e}')
+            except Exception:
+                pass
+            return
+
+        # collect rects with texts and show in console
+        try:
+            items = getattr(w, 'rects_texts', None)
+            if items is None:
+                # fallback: build from w.rects and w.words
+                items = []
+                for i, r in enumerate(getattr(w, 'rects', []) or []):
+                    txt = ''
+                    try:
+                        txt = (w.words or {}).get(i, '')
+                    except Exception:
+                        txt = ''
+                    items.append({'x': r[0], 'y': r[1], 'w': r[2], 'h': r[3], 'text': txt, 'conf': 0.0})
+            # show only items with non-zero confidence
+            filtered = []
+            for i, it in enumerate(items):
+                try:
+                    conf = float(it.get('conf') or 0)
+                except Exception:
+                    try:
+                        conf = float(str(it.get('conf') or '0').strip())
+                    except Exception:
+                        conf = 0.0
+                if conf != 0.0:
+                    filtered.append((i, it, conf))
+            if not filtered:
+                txt = 'No OCR results with conf != 0'
+            else:
+                lines = []
+                for i, it, conf in filtered:
+                    lines.append(f"{i}: {it.get('x')},{it.get('y')},{it.get('w')},{it.get('h')} -> {it.get('text')} (conf={conf})")
+                txt = "\n".join(lines)
+            try:
+                self.win.consoleText.setPlainText(txt)
+            except Exception:
+                pass
+        except Exception:
+            pass
 
     def on_regenerate_curiosity(self):
         # best-effort: call curiosity_drive_node.run_node in background and show results

@@ -154,7 +154,8 @@ python gui/usefulcliker_gui.py --mode hash
 ```
 
 ```bash
-python main.py examples/stage1.xml --debug
+python main.py examples/curiosity_drive_test_broad_topics.xml --debug
+python main.py examples/curiosity_drive_test_broad_topics.xml --ui qt_ui
 ```
 
 Draw a rectangle, press **Enter** or click **Save Hash**. The hex pHash is printed and saved to `gui/hashes/last_hash.txt`.
