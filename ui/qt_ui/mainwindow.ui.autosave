@@ -718,7 +718,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;User Intent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="perceiveLlmPromt">
+       <widget class="QPlainTextEdit" name="userIntent">
         <property name="geometry">
          <rect>
           <x>590</x>

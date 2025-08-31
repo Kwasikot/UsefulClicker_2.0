@@ -634,113 +634,81 @@ class MainWindowWrapper:
                 except Exception:
                     pass
                 # continue with OCR fallback
-        # try easyocr
+        # Run ready_layout_infer to produce layout_result.json (run OCR there too)
         try:
-            import easyocr
+            import ready_layout_infer
+            out_json = os.path.join(os.getcwd(), 'layout_result.json')
+            # call main to produce layout_result.json; pass --run-ocr to ensure tokens
+            try:
+                ready_layout_infer.main(['--image', fn, '--run-ocr', '--out', out_json])
+            except SystemExit:
+                # ready_layout_infer calls sys.exit; ignore
+                pass
         except Exception as e:
             try:
-                self.win.consoleText.setPlainText(f'easyocr import failed: {e}')
+                self.win.consoleText.setPlainText(f'ready_layout_infer failed: {e}')
             except Exception:
                 pass
             return
 
+        # Now load layout_result.json and build prompt from its lines
+        layout_path = os.path.join(os.getcwd(), 'layout_result.json')
+        if not os.path.exists(layout_path):
+            try:
+                self.win.consoleText.setPlainText('layout_result.json not found after ready_layout_infer')
+            except Exception:
+                pass
+            return
         try:
-            import cv2
-            img = cv2.imread(fn)
-            if img is None:
-                raise RuntimeError('cv2.imread returned None')
-            img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            with open(layout_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
         except Exception as e:
             try:
-                self.win.consoleText.setPlainText(f'Failed to load screenshot: {e}')
+                self.win.consoleText.setPlainText(f'Failed to read layout_result.json: {e}')
             except Exception:
                 pass
             return
 
+        lines_from_json = data.get('lines', [])
+        # build prompt from lines
+        intent = ''
         try:
-            reader = easyocr.Reader(['ru', 'en'], gpu=False)
-        except Exception as e:
+            if getattr(self.win, 'userIntent', None) is not None:
+                intent = self.win.userIntent.toPlainText().strip()
+            elif getattr(self.win, 'perceiveLlmPromt', None) is not None:
+                intent = self.win.perceiveLlmPromt.toPlainText().strip()
+        except Exception:
+            intent = ''
+        if not intent:
+            intent = 'open search menu'
+        parts = []
+        for L in lines_from_json[:8]:
+            lid = L.get('line_id')
+            txt = L.get('text') or ''
+            ctx = ''
             try:
-                self.win.consoleText.setPlainText(f'easyocr.Reader init failed: {e}')
+                raw = L.get('raw_texts') or []
+                ctx = ' | '.join([r.strip() for r in raw if r])
             except Exception:
-                pass
-            return
+                ctx = ''
+            parts.append(f'[ID={lid}] text="{txt}" context_hint="{ctx}"')
+        prompt = f"You are a helper that selects the best match for the user's intent.\nIntent: {intent}\nCandidates:\n" + '\n'.join(parts) + "\n\nInstructions: Return only the ID (number) of the best match, or NONE."
 
         try:
-            results = reader.readtext(img_rgb)
-            if not results:
-                out = 'No text detected by easyocr'
-                try:
-                    self.win.consoleText.setPlainText(out)
-                except Exception:
-                    pass
-            else:
-                # print detected lines first (text + bbox)
-                lines_display = []
-                parse_input_lines = []
-                for bbox, text, conf in results:
-                    try:
-                        pts = [f'({int(p[0])},{int(p[1])})' for p in bbox]
-                    except Exception:
-                        pts = [str(p) for p in bbox]
-                    line_str = f"{text} (conf={conf}) bbox: {pts}"
-                    lines_display.append(line_str)
-                    parse_input_lines.append(line_str)
-                try:
-                    self.win.consoleText.setPlainText('\n'.join(lines_display))
-                except Exception:
-                    pass
-                # run preprocessing module to build prompt
-                try:
-                    import ocr_preproc
-                    # get intent from UI (userIntent or perceiveLlmPromt)
-                    intent = ''
-                    try:
-                        if getattr(self.win, 'userIntent', None) is not None:
-                            intent = self.win.userIntent.toPlainText().strip()
-                        elif getattr(self.win, 'perceiveLlmPromt', None) is not None:
-                            intent = self.win.perceiveLlmPromt.toPlainText().strip()
-                    except Exception:
-                        intent = ''
-                    if not intent:
-                        intent = 'open search menu'
-                    tokens = ocr_preproc.parse_ocr_lines(parse_input_lines)
-                    grouped = ocr_preproc.group_into_lines(tokens)
-                    cands = ocr_preproc.rank_candidates(grouped, intent=intent, top_k=8)
-                    prompt = ocr_preproc.build_llm_prompt(cands, intent=intent)
-                    # append prompt to consoleText (separated)
-                    try:
-                        cur = self.win.consoleText.toPlainText()
-                        self.win.consoleText.setPlainText(cur + '\n\n==== LLM PROMPT ====\n' + prompt)
-                    except Exception:
-                        pass
-                    # Call hardcoded Ollama model
-                    try:
-                        from llm.ollama_client import OllamaClient
-                        client = OllamaClient()
-                        llm_out = client.generate_text(prompt, model='llama3.2:latest')
-                        try:
-                            cur2 = self.win.consoleText.toPlainText()
-                            self.win.consoleText.setPlainText(cur2 + '\n\n==== LLM OUTPUT (ollama) ====\n' + llm_out)
-                        except Exception:
-                            pass
-                    except Exception as e:
-                        try:
-                            cur2 = self.win.consoleText.toPlainText()
-                            self.win.consoleText.setPlainText(cur2 + f'\n\nLLM call failed: {e}')
-                        except Exception:
-                            pass
-                except Exception as e:
-                    try:
-                        self.win.consoleText.setPlainText(f'Preprocessing failed: {e}')
-                    except Exception:
-                        pass
-        except Exception as e:
+            from llm.ollama_client import OllamaClient
+            client = OllamaClient()
+            llm_out = client.generate_text(prompt, model='llama3.2:latest')
             try:
-                self.win.consoleText.setPlainText(f'easyocr.readtext failed: {e}')
+                cur = self.win.consoleText.toPlainText()
+                self.win.consoleText.setPlainText(cur + '\n\n==== LLM PROMPT ====\n' + prompt + '\n\n==== LLM OUTPUT (ollama) ====\n' + llm_out)
             except Exception:
                 pass
-        # after full-screen OCR and output, we are done
+        except Exception as e:
+            try:
+                cur = self.win.consoleText.toPlainText()
+                self.win.consoleText.setPlainText(cur + f'\n\nLLM call failed: {e}')
+            except Exception:
+                pass
         return
         
 
