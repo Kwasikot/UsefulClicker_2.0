@@ -549,12 +549,35 @@ class MainWindowWrapper:
 
     def on_perceive_full(self):
         """Run OCR on full screenshot using easyocr if available and print text+bboxes."""
-        # try to read screenshot file
+        # Ensure a fresh screenshot is taken on each click (best-effort).
+        # Prefer cv.preprocess.take_screenshot if available (it saves screenshot.png),
+        # otherwise try pyautogui directly; if both fail, fall back to an existing screenshot.png.
         import os
         fn = os.path.join(os.getcwd(), 'screenshot.png')
+        screenshot_taken = False
+        try:
+            try:
+                from cv.preprocess import take_screenshot
+                try:
+                    take_screenshot()
+                    screenshot_taken = True
+                except Exception:
+                    screenshot_taken = False
+            except Exception:
+                # fallback: pyautogui
+                try:
+                    import pyautogui
+                    img = pyautogui.screenshot()
+                    img.save(fn)
+                    screenshot_taken = True
+                except Exception:
+                    screenshot_taken = False
+        except Exception:
+            screenshot_taken = False
+
         if not os.path.exists(fn):
             try:
-                self.win.consoleText.setPlainText('screenshot.png not found')
+                self.win.consoleText.setPlainText('screenshot.png not found and could not be captured')
             except Exception:
                 pass
             return
