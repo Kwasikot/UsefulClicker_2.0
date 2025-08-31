@@ -294,10 +294,13 @@ def rank_candidates(lines: List[Dict[str, Any]], intent: str, top_k: int = 8) ->
             continue
         bbox = L.get('bbox', [0,0,0,0])
         area = max(0, (bbox[2]-bbox[0])*(bbox[3]-bbox[1]))
-        if area < 15:
+        # Include small UI items (menu labels) as candidates even if their
+        # bounding box is small or confidence is low. Use a very small area
+        # cutoff to filter complete junk while keeping single-word menu items.
+        if area < 4:
             continue
-        if float(L.get('avg_conf',0.0)) < 0.25:
-            continue
+        # Do not drop low-confidence lines here; low confidence will reduce
+        # their score via score_line but still allow them to be clicked.
         sc = score_line(L, intent)
         Lc = dict(L)
         Lc['score'] = sc
