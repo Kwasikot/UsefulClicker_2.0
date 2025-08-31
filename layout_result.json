@@ -5,29 +5,40 @@
   ],
   "blocks": [
     {
-      "block_id": 27,
+      "block_id": 34,
+      "bbox": [
+        1183,
+        11,
+        1448,
+        39
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 33,
       "bbox": [
         0,
-        14,
-        349,
+        13,
+        526,
         38
       ],
       "type": "block",
       "score": 1.0
     },
     {
-      "block_id": 26,
+      "block_id": 32,
       "bbox": [
-        365,
-        14,
-        944,
+        588,
+        13,
+        762,
         38
       ],
       "type": "block",
       "score": 1.0
     },
     {
-      "block_id": 25,
+      "block_id": 31,
       "bbox": [
         1747,
         14,
@@ -38,9 +49,42 @@
       "score": 1.0
     },
     {
-      "block_id": 24,
+      "block_id": 30,
       "bbox": [
-        1614,
+        886,
+        16,
+        944,
+        34
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 29,
+      "bbox": [
+        959,
+        16,
+        1158,
+        38
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 28,
+      "bbox": [
+        1481,
+        16,
+        1539,
+        34
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 27,
+      "bbox": [
+        1569,
         62,
         1918,
         101
@@ -49,29 +93,29 @@
       "score": 1.0
     },
     {
-      "block_id": 23,
+      "block_id": 26,
       "bbox": [
         86,
         66,
-        412,
-        93
+        834,
+        94
       ],
       "type": "block",
       "score": 1.0
     },
     {
-      "block_id": 22,
+      "block_id": 25,
       "bbox": [
-        1432,
+        1284,
         66,
-        1589,
+        1544,
         93
       ],
       "type": "block",
       "score": 1.0
     },
     {
-      "block_id": 21,
+      "block_id": 24,
       "bbox": [
         0,
         67,
@@ -82,29 +126,29 @@
       "score": 1.0
     },
     {
-      "block_id": 20,
+      "block_id": 22,
       "bbox": [
-        498,
+        0,
+        111,
+        1920,
+        1080
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 23,
+      "bbox": [
+        497,
         111,
         835,
-        139
+        133
       ],
       "type": "block",
       "score": 1.0
     },
     {
-      "block_id": 19,
-      "bbox": [
-        1444,
-        111,
-        1591,
-        139
-      ],
-      "type": "block",
-      "score": 1.0
-    },
-    {
-      "block_id": 18,
+      "block_id": 21,
       "bbox": [
         0,
         113,
@@ -115,12 +159,45 @@
       "score": 1.0
     },
     {
+      "block_id": 20,
+      "bbox": [
+        94,
+        113,
+        259,
+        138
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 19,
+      "bbox": [
+        424,
+        115,
+        491,
+        133
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 18,
+      "bbox": [
+        842,
+        115,
+        901,
+        133
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
       "block_id": 17,
       "bbox": [
-        98,
+        908,
         115,
-        259,
-        137
+        1037,
+        133
       ],
       "type": "block",
       "score": 1.0
@@ -128,10 +205,10 @@
     {
       "block_id": 16,
       "bbox": [
-        422,
+        1045,
         115,
-        490,
-        137
+        1149,
+        133
       ],
       "type": "block",
       "score": 1.0
@@ -139,10 +216,10 @@
     {
       "block_id": 15,
       "bbox": [
-        842,
+        1156,
         115,
-        898,
-        134
+        1249,
+        133
       ],
       "type": "block",
       "score": 1.0
@@ -150,10 +227,10 @@
     {
       "block_id": 14,
       "bbox": [
-        909,
+        1256,
         115,
-        1037,
-        137
+        1350,
+        133
       ],
       "type": "block",
       "score": 1.0
@@ -161,49 +238,16 @@
     {
       "block_id": 13,
       "bbox": [
-        1045,
+        1358,
         115,
-        1149,
-        134
+        1436,
+        133
       ],
       "type": "block",
       "score": 1.0
     },
     {
       "block_id": 12,
-      "bbox": [
-        1156,
-        115,
-        1249,
-        137
-      ],
-      "type": "block",
-      "score": 1.0
-    },
-    {
-      "block_id": 11,
-      "bbox": [
-        1256,
-        115,
-        1350,
-        134
-      ],
-      "type": "block",
-      "score": 1.0
-    },
-    {
-      "block_id": 10,
-      "bbox": [
-        1358,
-        115,
-        1436,
-        134
-      ],
-      "type": "block",
-      "score": 1.0
-    },
-    {
-      "block_id": 9,
       "bbox": [
         1599,
         115,
@@ -214,7 +258,7 @@
       "score": 1.0
     },
     {
-      "block_id": 8,
+      "block_id": 11,
       "bbox": [
         1784,
         115,
@@ -225,7 +269,7 @@
       "score": 1.0
     },
     {
-      "block_id": 7,
+      "block_id": 10,
       "bbox": [
         353,
         116,
@@ -236,7 +280,7 @@
       "score": 1.0
     },
     {
-      "block_id": 6,
+      "block_id": 9,
       "bbox": [
         268,
         118,
@@ -247,12 +291,45 @@
       "score": 1.0
     },
     {
+      "block_id": 8,
+      "bbox": [
+        643,
+        230,
+        722,
+        247
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 7,
+      "bbox": [
+        727,
+        230,
+        829,
+        247
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
+      "block_id": 6,
+      "bbox": [
+        576,
+        335,
+        698,
+        355
+      ],
+      "type": "block",
+      "score": 1.0
+    },
+    {
       "block_id": 5,
       "bbox": [
-        0,
-        147,
-        1920,
-        1080
+        1046,
+        341,
+        1156,
+        358
       ],
       "type": "block",
       "score": 1.0
@@ -260,10 +337,10 @@
     {
       "block_id": 4,
       "bbox": [
-        1557,
-        655,
-        1636,
-        672
+        1001,
+        373,
+        1155,
+        394
       ],
       "type": "block",
       "score": 1.0
@@ -271,10 +348,10 @@
     {
       "block_id": 3,
       "bbox": [
-        1641,
-        655,
-        1742,
-        672
+        452,
+        387,
+        546,
+        404
       ],
       "type": "block",
       "score": 1.0
@@ -282,10 +359,10 @@
     {
       "block_id": 2,
       "bbox": [
-        1490,
-        760,
-        1612,
-        780
+        1040,
+        545,
+        1122,
+        563
       ],
       "type": "block",
       "score": 1.0
@@ -293,10 +370,10 @@
     {
       "block_id": 1,
       "bbox": [
-        1366,
-        812,
-        1460,
-        829
+        1154,
+        545,
+        1227,
+        563
       ],
       "type": "block",
       "score": 1.0
@@ -306,1140 +383,575 @@
     {
       "line_id": 1,
       "token_ids": [
-        0,
-        127,
-        1
+        5,
+        6
       ],
-      "text": "post irony skits YouTube",
+      "text": "API keys OpenAI API",
       "bbox": [
-        111,
-        16,
-        277,
+        1277,
+        17,
+        1429,
         37
       ],
-      "avg_conf": 0.9856666840994134,
-      "block_id": 27
+      "avg_conf": 0.7708257431029912,
+      "block_id": 34
     },
     {
       "line_id": 2,
       "token_ids": [
-        2,
-        3,
-        4
+        0,
+        1,
+        2
       ],
-      "text": "Pelehne OLVGKM numpy Just the Two of Us (feat: Bill",
+      "text": "Savage Garden To The Moi Qt Account Login",
       "bbox": [
-        387,
-        17,
-        891,
-        37
+        110,
+        18,
+        507,
+        38
       ],
-      "avg_conf": 0.6759734280114061,
-      "block_id": 26
+      "avg_conf": 0.769790558446966,
+      "block_id": 33
     },
     {
       "line_id": 3,
       "token_ids": [
-        6
+        3
       ],
-      "text": "0",
+      "text": "Settings",
       "bbox": [
-        1768,
-        64,
-        1800,
-        92
+        683,
+        19,
+        741,
+        37
       ],
-      "avg_conf": 0.4457337391431935,
-      "block_id": 24
+      "avg_conf": 0.9999922449674185,
+      "block_id": 32
     },
     {
       "line_id": 4,
       "token_ids": [
-        7
+        4
       ],
-      "text": "141",
+      "text": "3anyck Ollama Mojenn",
       "bbox": [
-        1725,
-        83,
-        1747,
-        97
+        980,
+        18,
+        1139,
+        38
       ],
-      "avg_conf": 0.9990173739948277,
-      "block_id": 24
+      "avg_conf": 0.23238454055517413,
+      "block_id": 29
     },
     {
       "line_id": 5,
       "token_ids": [
-        5
+        9
       ],
-      "text": ":I-p? _=10.+%2%2 -",
+      "text": "0 | =",
       "bbox": [
-        236,
-        68,
-        392,
+        1722,
+        64,
+        1818,
         92
       ],
-      "avg_conf": 0.22770488086676915,
-      "block_id": 23
+      "avg_conf": 0.8324593929653005,
+      "block_id": 27
     },
     {
       "line_id": 6,
       "token_ids": [
-        14,
-        15,
-        16,
-        17,
-        18
+        8
       ],
-      "text": "C 3d N YouTube IAS search",
+      "text": "264",
       "bbox": [
-        487,
-        115,
-        815,
-        137
+        1679,
+        83,
+        1703,
+        97
       ],
-      "avg_conf": 0.6935527552669816,
-      "block_id": 20
+      "avg_conf": 0.9998580143122371,
+      "block_id": 27
     },
     {
       "line_id": 7,
       "token_ids": [
-        26
+        7
       ],
-      "text": "net",
+      "text": "youtube com/watch?v-HCm6gRHINqA&list-RDcGgbQFOK_LA&index-10",
       "bbox": [
-        1465,
-        119,
-        1491,
-        133
+        234,
+        66,
+        814,
+        94
       ],
-      "avg_conf": 0.9999816924353525,
-      "block_id": 19
+      "avg_conf": 0.5555056142113038,
+      "block_id": 26
     },
     {
       "line_id": 8,
       "token_ids": [
-        8
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
       ],
-      "text": "88 | O",
+      "text": "88 | O B Backlog news tst iob Youluhe HS search science_man Exercises enalish discard E-LB net Mail AII Bookmarks",
       "bbox": [
         12,
         112,
-        100,
-        138
+        1905,
+        140
       ],
-      "avg_conf": 0.5495512435059552,
-      "block_id": 18
+      "avg_conf": 0.8115204121043094,
+      "block_id": 22
     },
     {
       "line_id": 9,
       "token_ids": [
-        9,
-        10
+        27
       ],
-      "text": "B Backlog",
+      "text": "UsefulClicker",
       "bbox": [
-        114,
-        112,
-        239,
-        140
+        451,
+        139,
+        539,
+        157
       ],
-      "avg_conf": 0.9500816429890242,
-      "block_id": 17
+      "avg_conf": 0.9837818079373001,
+      "block_id": 22
     },
     {
       "line_id": 10,
       "token_ids": [
-        13
-      ],
-      "text": "C job",
-      "bbox": [
-        413,
-        115,
-        471,
-        135
-      ],
-      "avg_conf": 0.7112517387074578,
-      "block_id": 16
-    },
-    {
-      "line_id": 11,
-      "token_ids": [
-        19
-      ],
-      "text": "C AI",
-      "bbox": [
-        833,
-        115,
-        881,
-        135
-      ],
-      "avg_conf": 0.30918311011469196,
-      "block_id": 15
-    },
-    {
-      "line_id": 12,
-      "token_ids": [
-        20,
-        21
-      ],
-      "text": "O science_mag",
-      "bbox": [
-        899,
-        117,
-        1017,
-        135
-      ],
-      "avg_conf": 0.7711578201145071,
-      "block_id": 14
-    },
-    {
-      "line_id": 13,
-      "token_ids": [
-        22
-      ],
-      "text": "Exercises",
-      "bbox": [
-        1067,
-        117,
-        1129,
-        133
-      ],
-      "avg_conf": 0.9637318966963069,
-      "block_id": 13
-    },
-    {
-      "line_id": 14,
-      "token_ids": [
-        23
-      ],
-      "text": "english",
-      "bbox": [
-        1179,
-        117,
-        1229,
-        135
-      ],
-      "avg_conf": 0.7686409559959199,
-      "block_id": 12
-    },
-    {
-      "line_id": 15,
-      "token_ids": [
-        24
-      ],
-      "text": "discord",
-      "bbox": [
-        1277,
-        117,
-        1329,
-        133
-      ],
-      "avg_conf": 0.9999448048347015,
-      "block_id": 11
-    },
-    {
-      "line_id": 16,
-      "token_ids": [
-        25
-      ],
-      "text": "E-LIB",
-      "bbox": [
-        1379,
-        117,
-        1417,
-        133
-      ],
-      "avg_conf": 0.8826932443864319,
-      "block_id": 10
-    },
-    {
-      "line_id": 17,
-      "token_ids": [
-        27
-      ],
-      "text": "Mail",
-      "bbox": [
-        1621,
-        117,
-        1653,
-        133
-      ],
-      "avg_conf": 0.9999697804450989,
-      "block_id": 9
-    },
-    {
-      "line_id": 18,
-      "token_ids": [
-        28
-      ],
-      "text": "AII Bookmarks",
-      "bbox": [
-        1807,
-        115,
-        1905,
-        136
-      ],
-      "avg_conf": 0.6676644058585627,
-      "block_id": 8
-    },
-    {
-      "line_id": 19,
-      "token_ids": [
-        12
-      ],
-      "text": "tst",
-      "bbox": [
-        375,
-        119,
-        397,
-        133
-      ],
-      "avg_conf": 0.542563796043396,
-      "block_id": 7
-    },
-    {
-      "line_id": 20,
-      "token_ids": [
-        11
-      ],
-      "text": "news",
-      "bbox": [
-        289,
-        119,
-        327,
-        133
-      ],
-      "avg_conf": 0.9993330240249634,
-      "block_id": 6
-    },
-    {
-      "line_id": 21,
-      "token_ids": [
+        28,
         29,
-        30,
-        31
+        30
       ],
-      "text": "Youlube post-irony skits YouTube Create",
+      "text": "Youlube Control panel Create",
       "bbox": [
         124,
         172,
         1720,
         204
       ],
-      "avg_conf": 0.9844049243943918,
-      "block_id": 5
+      "avg_conf": 0.8605915084851068,
+      "block_id": 22
+    },
+    {
+      "line_id": 11,
+      "token_ids": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "text": "Now : Current elenent of the list",
+      "bbox": [
+        895,
+        219,
+        1219,
+        235
+      ],
+      "avg_conf": 0.8493043331900559,
+      "block_id": 22
+    },
+    {
+      "line_id": 12,
+      "token_ids": [
+        37,
+        38,
+        39,
+        40
+      ],
+      "text": "1 / 12 RESUME STOP RESTART",
+      "bbox": [
+        446,
+        224,
+        807,
+        254
+      ],
+      "avg_conf": 0.8610331529894067,
+      "block_id": 22
+    },
+    {
+      "line_id": 13,
+      "token_ids": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "text": "Next : Next elenent of the list",
+      "bbox": [
+        895,
+        249,
+        1209,
+        265
+      ],
+      "avg_conf": 0.897378529509401,
+      "block_id": 22
+    },
+    {
+      "line_id": 14,
+      "token_ids": [
+        47
+      ],
+      "text": "nbHbleee",
+      "bbox": [
+        1505,
+        279,
+        1581,
+        297
+      ],
+      "avg_conf": 0.4854305341820366,
+      "block_id": 22
+    },
+    {
+      "line_id": 15,
+      "token_ids": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "text": "XML Program CuriosityNode Ilmcall PerceiveNode",
+      "bbox": [
+        441,
+        289,
+        803,
+        308
+      ],
+      "avg_conf": 0.9481564049225372,
+      "block_id": 22
+    },
+    {
+      "line_id": 16,
+      "token_ids": [
+        52,
+        53
+      ],
+      "text": "Kohconb User Intent",
+      "bbox": [
+        599,
+        337,
+        1137,
+        357
+      ],
+      "avg_conf": 0.8544973677535578,
+      "block_id": 22
+    },
+    {
+      "line_id": 17,
+      "token_ids": [
+        81,
+        54
+      ],
+      "text": "open Search menu",
+      "bbox": [
+        1022,
+        375,
+        1135,
+        393
+      ],
+      "avg_conf": 0.899991546305797,
+      "block_id": 22
+    },
+    {
+      "line_id": 18,
+      "token_ids": [
+        55
+      ],
+      "text": "Perceive",
+      "bbox": [
+        474,
+        388,
+        525,
+        406
+      ],
+      "avg_conf": 0.7934480459375682,
+      "block_id": 22
+    },
+    {
+      "line_id": 19,
+      "token_ids": [
+        56
+      ],
+      "text": "nnel",
+      "bbox": [
+        1505,
+        399,
+        1537,
+        415
+      ],
+      "avg_conf": 0.999968945980072,
+      "block_id": 22
+    },
+    {
+      "line_id": 20,
+      "token_ids": [
+        57
+      ],
+      "text": "tion",
+      "bbox": [
+        1503,
+        431,
+        1537,
+        451
+      ],
+      "avg_conf": 0.9132925940496144,
+      "block_id": 22
+    },
+    {
+      "line_id": 21,
+      "token_ids": [
+        58
+      ],
+      "text": "Perceive FullocR",
+      "bbox": [
+        459,
+        443,
+        561,
+        457
+      ],
+      "avg_conf": 0.792597764598243,
+      "block_id": 22
     },
     {
       "line_id": 22,
       "token_ids": [
-        32
+        59
       ],
-      "text": "Home",
+      "text": "whole screenshot",
       "bbox": [
-        87,
-        253,
-        141,
-        271
+        447,
+        467,
+        553,
+        481
       ],
-      "avg_conf": 0.9976931810379028,
-      "block_id": 5
+      "avg_conf": 0.9928450331524845,
+      "block_id": 22
     },
     {
       "line_id": 23,
       "token_ids": [
-        33
+        60,
+        61,
+        62
       ],
-      "text": "Show more",
+      "text": "Select Click deo)",
       "bbox": [
-        1039,
-        265,
-        1133,
-        285
+        1063,
+        543,
+        1543,
+        563
       ],
-      "avg_conf": 0.9890552434335449,
-      "block_id": 5
+      "avg_conf": 0.8733509349782808,
+      "block_id": 22
     },
     {
       "line_id": 24,
       "token_ids": [
-        34
+        63
       ],
-      "text": "Shorts",
+      "text": "Moon",
       "bbox": [
-        87,
-        301,
-        145,
-        321
+        1507,
+        605,
+        1557,
+        625
       ],
-      "avg_conf": 0.704463348640217,
-      "block_id": 5
+      "avg_conf": 0.9999916553497314,
+      "block_id": 22
     },
     {
       "line_id": 25,
       "token_ids": [
-        36
+        64
       ],
-      "text": "Veggietales predicts modern internet humour",
+      "text": "pn)",
       "bbox": [
-        971,
-        335,
-        1431,
-        371
+        1501,
+        633,
+        1529,
+        651
       ],
-      "avg_conf": 0.82136757515939,
-      "block_id": 5
+      "avg_conf": 0.9865562300468735,
+      "block_id": 22
     },
     {
       "line_id": 26,
       "token_ids": [
-        35
+        65
       ],
-      "text": "Subscriptions",
+      "text": "ke You",
       "bbox": [
-        86,
-        350,
-        202,
-        374
+        1501,
+        853,
+        1559,
+        873
       ],
-      "avg_conf": 0.9999805259126754,
-      "block_id": 5
+      "avg_conf": 0.9999335203968388,
+      "block_id": 22
     },
     {
       "line_id": 27,
       "token_ids": [
-        37,
-        38
+        66,
+        67
       ],
-      "text": "21M views 9 years ago",
+      "text": "Savage Garden To The Moon & Back (Extended Version)",
       "bbox": [
-        971,
-        369,
-        1141,
-        391
+        241,
+        927,
+        892,
+        960
       ],
-      "avg_conf": 0.9312907883242405,
-      "block_id": 5
+      "avg_conf": 0.8236057283078811,
+      "block_id": 22
     },
     {
       "line_id": 28,
-      "token_ids": [
-        39
-      ],
-      "text": "Tibees",
-      "bbox": [
-        1015,
-        413,
-        1063,
-        431
-      ],
-      "avg_conf": 0.9999336177322694,
-      "block_id": 5
-    },
-    {
-      "line_id": 29,
-      "token_ids": [
-        40
-      ],
-      "text": "You",
-      "bbox": [
-        26,
-        428,
-        68,
-        452
-      ],
-      "avg_conf": 0.9999382637679942,
-      "block_id": 5
-    },
-    {
-      "line_id": 30,
-      "token_ids": [
-        41
-      ],
-      "text": "The Nostradamus of its age, Veggietales predicts shitpostgenerator 12 years ahead of its time: My stop-motion short film about _",
-      "bbox": [
-        972,
-        454,
-        1828,
-        479
-      ],
-      "avg_conf": 0.8163492882745066,
-      "block_id": 5
-    },
-    {
-      "line_id": 31,
-      "token_ids": [
-        42
-      ],
-      "text": "History",
-      "bbox": [
-        84,
-        479,
-        151,
-        506
-      ],
-      "avg_conf": 0.9996515468548278,
-      "block_id": 5
-    },
-    {
-      "line_id": 32,
-      "token_ids": [
-        43
-      ],
-      "text": "CC",
-      "bbox": [
-        979,
-        489,
-        1003,
-        505
-      ],
-      "avg_conf": 0.8138772244117322,
-      "block_id": 5
-    },
-    {
-      "line_id": 33,
-      "token_ids": [
-        44
-      ],
-      "text": "Playlists",
-      "bbox": [
-        86,
-        530,
-        160,
-        556
-      ],
-      "avg_conf": 0.7986329233151418,
-      "block_id": 5
-    },
-    {
-      "line_id": 34,
-      "token_ids": [
-        45
-      ],
-      "text": "UsefulClicker",
-      "bbox": [
-        1365,
-        565,
-        1453,
-        581
-      ],
-      "avg_conf": 0.998771676804179,
-      "block_id": 5
-    },
-    {
-      "line_id": 35,
-      "token_ids": [
-        46
-      ],
-      "text": "Your videos",
-      "bbox": [
-        86,
-        580,
-        184,
-        604
-      ],
-      "avg_conf": 0.9999180119111756,
-      "block_id": 5
-    },
-    {
-      "line_id": 36,
-      "token_ids": [
-        47,
-        48
-      ],
-      "text": "Control panel",
-      "bbox": [
-        1351,
-        605,
-        1427,
-        619
-      ],
-      "avg_conf": 0.9830349377452436,
-      "block_id": 5
-    },
-    {
-      "line_id": 37,
-      "token_ids": [
-        49
-      ],
-      "text": "Watch later",
-      "bbox": [
-        87,
-        633,
-        181,
-        653
-      ],
-      "avg_conf": 0.7921743668661353,
-      "block_id": 5
-    },
-    {
-      "line_id": 38,
-      "token_ids": [
-        50,
-        51
-      ],
-      "text": "Now : Curren",
-      "bbox": [
-        1809,
-        645,
-        1919,
-        659
-      ],
-      "avg_conf": 0.9148228638664532,
-      "block_id": 5
-    },
-    {
-      "line_id": 39,
-      "token_ids": [
-        52,
-        53,
-        54,
-        55,
-        56
-      ],
-      "text": "1:10 1 /12 RESUME STOP RESTART",
-      "bbox": [
-        909,
-        648,
-        1721,
-        680
-      ],
-      "avg_conf": 0.9514781067381177,
-      "block_id": 5
-    },
-    {
-      "line_id": 40,
-      "token_ids": [
-        57,
-        58
-      ],
-      "text": "Next : Next",
-      "bbox": [
-        1809,
-        675,
-        1919,
-        689
-      ],
-      "avg_conf": 0.7956650589915826,
-      "block_id": 5
-    },
-    {
-      "line_id": 41,
-      "token_ids": [
-        59
-      ],
-      "text": "Liked videos",
-      "bbox": [
-        86,
-        680,
-        190,
-        704
-      ],
-      "avg_conf": 0.7014654722840962,
-      "block_id": 5
-    },
-    {
-      "line_id": 42,
-      "token_ids": [
-        60,
-        61,
-        62,
-        128,
-        63,
-        64,
-        65,
-        66
-      ],
-      "text": "LLY SUBVERSIVE '01nzitonirg Post-Irony VS Meta -Irony XML Program CuriosityNode Ilmcall PerceiveNode",
-      "bbox": [
-        492,
-        705,
-        1717,
-        739
-      ],
-      "avg_conf": 0.8037364445695196,
-      "block_id": 5
-    },
-    {
-      "line_id": 43,
-      "token_ids": [
-        67
-      ],
-      "text": "Downloads",
-      "bbox": [
-        86,
-        730,
-        182,
-        754
-      ],
-      "avg_conf": 0.999975760630904,
-      "block_id": 5
-    },
-    {
-      "line_id": 44,
       "token_ids": [
         68,
         69,
         70
       ],
-      "text": "e 13K views 6 years ago",
+      "text": "AlI From SavageGardenVEVO Soft Rock",
       "bbox": [
-        916,
-        741,
-        1137,
-        761
+        1167,
+        958,
+        1551,
+        984
       ],
-      "avg_conf": 0.5960426031734717,
-      "block_id": 5
+      "avg_conf": 0.7972513539194371,
+      "block_id": 22
     },
     {
-      "line_id": 45,
+      "line_id": 29,
       "token_ids": [
         71
       ],
-      "text": "Etd?",
+      "text": "Savage Garden &",
       "bbox": [
-        914,
-        762,
-        936,
-        766
+        305,
+        970,
+        470,
+        999
       ],
-      "avg_conf": 0.0012241428485140204,
-      "block_id": 5
+      "avg_conf": 0.5974277647402054,
+      "block_id": 22
     },
     {
-      "line_id": 46,
+      "line_id": 30,
       "token_ids": [
         72,
-        73
+        73,
+        74
       ],
-      "text": "No Kohconb",
+      "text": "Subscribe 0 IM Share",
       "bbox": [
-        583,
-        763,
-        1591,
-        779
+        515,
+        982,
+        1051,
+        1010
       ],
-      "avg_conf": 0.6469000699928908,
-      "block_id": 5
+      "avg_conf": 0.6668471140294633,
+      "block_id": 22
     },
     {
-      "line_id": 47,
+      "line_id": 31,
       "token_ids": [
-        74,
-        75,
-        76
+        75
       ],
-      "text": "Doesn't act like : meme for itself",
+      "text": "1.3M subscribers",
       "bbox": [
-        531,
-        785,
-        1075,
-        801
+        309,
+        1001,
+        429,
+        1017
       ],
-      "avg_conf": 0.8114708515297231,
-      "block_id": 5
+      "avg_conf": 0.8437867251444403,
+      "block_id": 22
     },
     {
-      "line_id": 48,
-      "token_ids": [
-        129
-      ],
-      "text": "irony",
-      "bbox": [
-        503,
-        790,
-        796,
-        934
-      ],
-      "avg_conf": 0.9974941243657851,
-      "block_id": 5
-    },
-    {
-      "line_id": 49,
-      "token_ids": [
-        79
-      ],
-      "text": "SIMPLE",
-      "bbox": [
-        677,
-        793,
-        723,
-        807
-      ],
-      "avg_conf": 0.965196513033925,
-      "block_id": 5
-    },
-    {
-      "line_id": 50,
-      "token_ids": [
-        77,
-        78,
-        80,
-        81
-      ],
-      "text": "poks Iike , meme Goeesmnr from OCR-detected text snippets;",
-      "bbox": [
-        551,
-        797,
-        1707,
-        813
-      ],
-      "avg_conf": 0.37485032514676936,
-      "block_id": 5
-    },
-    {
-      "line_id": 51,
+      "line_id": 32,
       "token_ids": [
         82,
-        83,
-        84
+        76
       ],
-      "text": "Subscriptions Perceive Intent: humour",
+      "text": "The Ballad Of Marie Curie",
       "bbox": [
-        26,
-        808,
-        1607,
-        834
+        1368,
+        1010,
+        1578,
+        1036
       ],
-      "avg_conf": 0.912546497306247,
-      "block_id": 5
+      "avg_conf": 0.9251345826046788,
+      "block_id": 22
     },
     {
-      "line_id": 52,
+      "line_id": 33,
       "token_ids": [
-        86,
-        87,
-        88,
-        89,
-        90
+        77
       ],
-      "text": "Pick side; or make meme making fun of the dicho Candidates:",
+      "text": "Army of Lovers - Topic",
       "bbox": [
-        973,
-        825,
-        1589,
-        845
+        1370,
+        1037,
+        1526,
+        1063
       ],
-      "avg_conf": 0.9178472784383821,
-      "block_id": 5
+      "avg_conf": 0.902452494955331,
+      "block_id": 22
     },
     {
-      "line_id": 53,
+      "line_id": 34,
       "token_ids": [
-        85
+        78
       ],
-      "text": "Joncne",
+      "text": "218M views 15 years ago #SavageGardenOfficialAudio #SavageGardenOfficialVideo #ToTheMoonBack",
       "bbox": [
-        916,
-        838,
-        942,
-        844
+        256,
+        1050,
+        1078,
+        1078
       ],
-      "avg_conf": 0.0423371059114027,
-      "block_id": 5
+      "avg_conf": 0.7134810923163326,
+      "block_id": 22
     },
     {
-      "line_id": 54,
+      "line_id": 35,
       "token_ids": [
-        91,
-        92
+        79,
+        80
       ],
-      "text": "[ID=12] text-\"you' context_hint=\"You\" score=36.98",
+      "text": "35K views Vparc ann",
       "bbox": [
-        1519,
-        845,
-        1819,
-        861
-      ],
-      "avg_conf": 0.8909742816645168,
-      "block_id": 5
-    },
-    {
-      "line_id": 55,
-      "token_ids": [
-        95,
-        96,
-        98,
-        99,
-        100
-      ],
-      "text": "4K CC [ID=5] text=\"home' context_hint=\"Home' score=36.88",
-      "bbox": [
-        979,
-        859,
-        1835,
-        877
-      ],
-      "avg_conf": 0.8270943837514491,
-      "block_id": 5
-    },
-    {
-      "line_id": 56,
-      "token_ids": [
-        93,
-        94,
-        97
-      ],
-      "text": "Science Channel 3t23] Perceive FullOcR",
-      "bbox": [
-        86,
-        862,
-        1473,
-        886
-      ],
-      "avg_conf": 0.5724491540788527,
-      "block_id": 5
-    },
-    {
-      "line_id": 57,
-      "token_ids": [
-        101
-      ],
-      "text": "[ID=14] text-\"history\" context_hint=\"History\" score=33.28",
-      "bbox": [
-        1519,
-        877,
-        1855,
-        893
-      ],
-      "avg_conf": 0.7404969959559026,
-      "block_id": 5
-    },
-    {
-      "line_id": 58,
-      "token_ids": [
-        102,
-        103,
-        104
-      ],
-      "text": "whole screenshot [ID=18] text-\"your videos\" context_hint=\"Your videos\"",
-      "bbox": [
-        1361,
-        893,
-        1829,
-        909
-      ],
-      "avg_conf": 0.9174999543069909,
-      "block_id": 5
-    },
-    {
-      "line_id": 59,
-      "token_ids": [
-        105
-      ],
-      "text": "score=32.22",
-      "bbox": [
-        1517,
-        909,
-        1593,
-        923
-      ],
-      "avg_conf": 0.9994277163198327,
-      "block_id": 5
-    },
-    {
-      "line_id": 60,
-      "token_ids": [
-        106,
-        107,
-        108
-      ],
-      "text": "TheAIGRID like = meme",
-      "bbox": [
-        87,
-        913,
-        642,
-        933
-      ],
-      "avg_conf": 0.5493808238072683,
-      "block_id": 5
-    },
-    {
-      "line_id": 61,
-      "token_ids": [
-        109,
-        111
-      ],
-      "text": "me \"Laye [ID=35] text-\"irony\" context_hint=\"irony\" score=24.98",
-      "bbox": [
-        453,
-        925,
-        1833,
-        941
-      ],
-      "avg_conf": 0.5987898912870091,
-      "block_id": 5
-    },
-    {
-      "line_id": 62,
-      "token_ids": [
-        110
-      ],
-      "text": "meme",
-      "bbox": [
-        608,
-        930,
-        647,
-        946
-      ],
-      "avg_conf": 0.9667376279830933,
-      "block_id": 5
-    },
-    {
-      "line_id": 63,
-      "token_ids": [
-        112,
-        113,
-        114
-      ],
-      "text": "eme oint; 'memes | [ID=48] text=\"Ilm output (ollama)\" context_hint=\"LLM OUTPUT",
-      "bbox": [
-        469,
-        939,
-        1879,
-        959
-      ],
-      "avg_conf": 0.8827427981493088,
-      "block_id": 5
-    },
-    {
-      "line_id": 64,
-      "token_ids": [
-        115,
-        116
-      ],
-      "text": "(ollama)' score=23.08",
-      "bbox": [
-        1517,
-        957,
-        1649,
-        973
-      ],
-      "avg_conf": 0.867253882186477,
-      "block_id": 5
-    },
-    {
-      "line_id": 65,
-      "token_ids": [
-        117,
-        118
-      ],
-      "text": "David Shapiro ONIC",
-      "bbox": [
-        86,
-        958,
-        658,
-        986
-      ],
-      "avg_conf": 0.8539275770917047,
-      "block_id": 5
-    },
-    {
-      "line_id": 66,
-      "token_ids": [
-        119,
-        120
-      ],
-      "text": "[ID=9] text-=\"subscriptions\" context_hint=\"Subscriptions\"",
-      "bbox": [
-        1519,
-        973,
-        1841,
-        989
-      ],
-      "avg_conf": 0.7343862880377283,
-      "block_id": 5
-    },
-    {
-      "line_id": 67,
-      "token_ids": [
-        121
-      ],
-      "text": "score=22.83",
-      "bbox": [
-        1517,
-        989,
-        1593,
-        1003
-      ],
-      "avg_conf": 0.9875601040427032,
-      "block_id": 5
-    },
-    {
-      "line_id": 68,
-      "token_ids": [
-        122
-      ],
-      "text": "[ID=17] text-=\"usefulclicker\" context_hint=\"UsefulClicker\"",
-      "bbox": [
-        1517,
-        1005,
-        1841,
-        1021
-      ],
-      "avg_conf": 0.6543272331577823,
-      "block_id": 5
-    },
-    {
-      "line_id": 69,
-      "token_ids": [
-        123
-      ],
-      "text": "Wes Roth",
-      "bbox": [
-        87,
-        1013,
-        167,
-        1033
-      ],
-      "avg_conf": 0.9998499893513759,
-      "block_id": 5
-    },
-    {
-      "line_id": 70,
-      "token_ids": [
-        124
-      ],
-      "text": "score=22.67",
-      "bbox": [
-        1517,
-        1021,
-        1593,
-        1035
-      ],
-      "avg_conf": 0.9602947149075459,
-      "block_id": 5
-    },
-    {
-      "line_id": 71,
-      "token_ids": [
-        125
-      ],
-      "text": "1.44",
-      "bbox": [
-        909,
-        1027,
-        943,
-        1043
-      ],
-      "avg_conf": 0.9760910688438271,
-      "block_id": 5
-    },
-    {
-      "line_id": 72,
-      "token_ids": [
-        126
-      ],
-      "text": "Yersham",
-      "bbox": [
-        89,
-        1065,
-        161,
+        1371,
+        1067,
+        1533,
         1080
       ],
-      "avg_conf": 0.9989376920289088,
-      "block_id": 5
+      "avg_conf": 0.2859124133043782,
+      "block_id": 22
     }
   ],
   "method": "cv_baseline"
