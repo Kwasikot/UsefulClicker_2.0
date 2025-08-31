@@ -611,7 +611,10 @@ class MainWindowWrapper:
                         ctx = ' | '.join([r.strip() for r in raw if r])
                     except Exception:
                         ctx = ''
-                    parts.append(f'[ID={lid}] text="{txt}" context_hint="{ctx}"')
+                    if ctx:
+                        parts.append(f'[ID={lid}] text="{txt}" context_hint="{ctx}"')
+                    else:
+                        parts.append(f'[ID={lid}] text="{txt}"')
                 prompt = f"You are a helper that selects the best match for the user's intent.\nIntent: {intent}\nCandidates:\n" + '\n'.join(parts) + "\n\nInstructions: Return only the ID (number) of the best match, or NONE."
                 # call LLM (ollama hardcoded)
                 try:
