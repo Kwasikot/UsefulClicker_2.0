@@ -613,55 +613,9 @@ class MainWindowWrapper:
                 self.win.consoleText.setPlainText(f'easyocr.readtext failed: {e}')
             except Exception:
                 pass
-        try:
-            # Use local screenshot file
-            w = PerceiveWindow('screenshot.png')
-            w.show()
-        except Exception as e:
-            try:
-                self.win.consoleText.setPlainText(f'PerceiveWindow error: {e}')
-            except Exception:
-                pass
-            return
-
-        # collect rects with texts and show in console
-        try:
-            items = getattr(w, 'rects_texts', None)
-            if items is None:
-                # fallback: build from w.rects and w.words
-                items = []
-                for i, r in enumerate(getattr(w, 'rects', []) or []):
-                    txt = ''
-                    try:
-                        txt = (w.words or {}).get(i, '')
-                    except Exception:
-                        txt = ''
-                    items.append({'x': r[0], 'y': r[1], 'w': r[2], 'h': r[3], 'text': txt, 'conf': 0.0})
-            # show only items with non-zero confidence
-            filtered = []
-            for i, it in enumerate(items):
-                try:
-                    conf = float(it.get('conf') or 0)
-                except Exception:
-                    try:
-                        conf = float(str(it.get('conf') or '0').strip())
-                    except Exception:
-                        conf = 0.0
-                if conf != 0.0:
-                    filtered.append((i, it, conf))
-            if not filtered:
-                txt = 'No OCR results with conf != 0'
-            else:
-                lines = []
-                for i, it, conf in filtered:
-                    lines.append(f"{i}: {it.get('x')},{it.get('y')},{it.get('w')},{it.get('h')} -> {it.get('text')} (conf={conf})")
-                txt = "\n".join(lines)
-            try:
-                self.win.consoleText.setPlainText(txt)
-            except Exception:
-                pass
-        except Exception:
-            pass
+        # after full-screen OCR and output, we are done
+        return
+        
 
     def on_regenerate_curiosity(self):
         # best-effort: call curiosity_drive_node.run_node in background and show results
