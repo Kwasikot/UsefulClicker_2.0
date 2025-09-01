@@ -985,21 +985,41 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no comme
 
         # Try to parse JSON out of the response
         parsed = None
+        txt = str(llm_text).strip()
+        # strip code fences
+        if txt.startswith('```'):
+            txt = '\n'.join(txt.splitlines()[1:])
+            if txt.endswith('```'):
+                txt = '\n'.join(txt.splitlines()[:-1])
+
+        # try json.loads, then try to sanitize common issues, then ast.literal_eval
         try:
-            txt = str(llm_text).strip()
-            # strip code fences
-            if txt.startswith('```'):
-                txt = '\n'.join(txt.splitlines()[1:])
-                if txt.endswith('```'):
-                    txt = '\n'.join(txt.splitlines()[:-1])
             parsed = json.loads(txt)
         except Exception:
-            # attempt to find JSON substring
-            import re
-            m = re.search(r'\{\s*"meta"[\s\S]*\}\s*\}', str(llm_text))
-            if m:
+            # attempt to find JSON substring first
+            import re, ast
+            m = re.search(r'\{\s*"meta"[\s\S]*\}\s*\}', txt)
+            candidate = m.group(0) if m else txt
+
+            def _fix_single_quoted_array(s: str) -> str:
+                # replace [ 'a', 'b' ] -> ["a","b"]
+                def repl(m0):
+                    inner = m0.group(0)
+                    # strip [ and ]
+                    body = inner[1:-1]
+                    parts = [p.strip().strip("'\"") for p in body.split(',') if p.strip()]
+                    return '[' + ','.join('"%s"' % p.replace('"','\\"') for p in parts) + ']'
+                return re.sub(r"\[\s*('([^']*)'\s*(,\s*'[^']*'\s*)*)\]", repl, s)
+
+            try:
+                cand2 = _fix_single_quoted_array(candidate)
+                parsed = json.loads(cand2)
+            except Exception:
+                # try ast.literal_eval on original candidate (handles python-style quotes)
                 try:
-                    parsed = json.loads(m.group(0))
+                    parsed_py = ast.literal_eval(candidate)
+                    # convert to normal JSON-compatible dict by re-serializing
+                    parsed = json.loads(json.dumps(parsed_py))
                 except Exception:
                     parsed = None
 
