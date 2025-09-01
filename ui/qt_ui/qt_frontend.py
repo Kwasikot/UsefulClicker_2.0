@@ -396,14 +396,8 @@ class MainWindowWrapper:
                             continue
             except Exception:
                 has_llm = False
-            try:
-                self.win.CuriosityNodeTab.setVisible(has_cur)
-            except Exception:
-                pass
-            try:
-                self.win.llmcall_tab.setVisible(has_llm)
-            except Exception:
-                pass
+            # Do not toggle tab visibility here; showing/hiding tabs from
+            # XML caused overlapping-tab redraw glitches. Keep tabs static.
             # schedule re-init after a short delay in case other UI actions clear widgets
             try:
                 QtCore.QTimer.singleShot(700, lambda: self._init_curiosity_tab() if has_cur else None)

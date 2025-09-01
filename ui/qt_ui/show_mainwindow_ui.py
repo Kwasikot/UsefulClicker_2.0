@@ -163,11 +163,7 @@ def main(argv=None):
                             dlw.itemSelectionChanged.connect(lambda: _on_discipline_changed(dlw.currentItem()))
                         except Exception:
                             pass
-                    # set visibility
-                    try:
-                        win.CuriosityNodeTab.setVisible(True)
-                    except Exception:
-                        pass
+                    # do not toggle tab visibility here to avoid redraw glitches
                     # schedule a re-init to guard against later UI resets
                     try:
                         QtCore.QTimer.singleShot(700, lambda: (
