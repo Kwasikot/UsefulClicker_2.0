@@ -490,6 +490,36 @@ class XMLProgram:
         for _ in range(times):
             for ch in list(node): self._exec_node(ch)
 
+    def handle_list(self, node: ET.Element):
+        """Handle <list> node: create a list or text variable from inline text.
+
+        Attributes supported:
+        - output_var (required): variable name to store result
+        - output_format: 'list' or 'text' (default 'list')
+        - separator: separator string for list (default '\n')
+        - text: inline text block (can contain newlines)
+        """
+        out_var = node.get("output_var")
+        if not out_var:
+            self.logger.info("<list> missing output_var"); return
+        out_fmt = (node.get("output_format") or "list").lower()
+        separator = (node.get("separator") or "\n").encode("utf-8").decode("unicode_escape")
+        # collect text: prefer attribute 'text', else element text
+        raw = node.get("text")
+        if raw is None:
+            raw = (node.text or "")
+        raw = _substitute_vars(raw, self.variables)
+        if out_fmt == "list":
+            items = [s for s in re.split(r"[\r\n]+", raw) if s.strip()]
+            # if separator explicitly provided, split by it instead
+            if separator and separator != "\n":
+                items = [s for s in raw.split(separator) if s.strip()]
+            self.variables[out_var] = items
+            self.logger.info(f"LIST -> {out_var} size={len(items)}")
+        else:
+            self.variables[out_var] = raw
+            self.logger.info(f"LIST -> {out_var} text_len={len(raw)}")
+
     def handle_func(self, node: ET.Element): pass
 
     def handle_call(self, node: ET.Element):

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1088</width>
-    <height>748</height>
+    <width>1199</width>
+    <height>727</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -110,7 +110,7 @@
     <item row="1" column="0">
      <widget class="QTabWidget" name="CuriosityNodeSettings">
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="XMLTab">
        <attribute name="title">
@@ -511,6 +511,105 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </layout>
        </widget>
       </widget>
+      <widget class="QWidget" name="RareTermsNodeTab">
+       <attribute name="title">
+        <string>RareTermsNode</string>
+       </attribute>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>23</y>
+          <width>256</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>disciplines</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="disciplinesList_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>401</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>New Item</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QListWidget" name="termsList_2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>50</y>
+          <width>681</width>
+          <height>121</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>light — Slightly uncommon terms; broadly understandable.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>medium-rare (default) — Rare but meaningful expert terms; good balance for advanced talk.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>rare — Niche, specialized vocabulary; include a short gloss/definition.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ultra-rare — Highly esoteric; risk of over-jargon/hallucinations; glosses strongly recommended.</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QCheckBox" name="genRandomDiscpCheckbox_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>10</y>
+          <width>231</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select random disciplines</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>20</y>
+          <width>341</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rare rerms list&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
       <widget class="QWidget" name="llmcall_tab">
        <attribute name="title">
         <string>llmcall</string>
@@ -781,7 +880,7 @@ whole screenshot</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1088</width>
+     <width>1199</width>
      <height>25</height>
     </rect>
    </property>

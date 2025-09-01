@@ -582,60 +582,7 @@ class MainWindowWrapper:
             except Exception:
                 pass
             return
-        # If a layout_result.json exists in cwd, prefer using it to build prompt
         layout_path = os.path.join(os.getcwd(), 'layout_result.json')
-        if os.path.exists(layout_path):
-            try:
-                with open(layout_path, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                lines_from_json = data.get('lines', [])
-                # prepare intent from UI
-                intent = ''
-                try:
-                    if getattr(self.win, 'userIntent', None) is not None:
-                        intent = self.win.userIntent.toPlainText().strip()
-                    elif getattr(self.win, 'perceiveLlmPromt', None) is not None:
-                        intent = self.win.perceiveLlmPromt.toPlainText().strip()
-                except Exception:
-                    intent = ''
-                if not intent:
-                    intent = 'open search menu'
-                # build prompt from all lines
-                parts = []
-                for L in lines_from_json:
-                    lid = L.get('line_id')
-                    txt = L.get('text') or ''
-                    ctx = ''
-                    try:
-                        raw = L.get('raw_texts') or []
-                        ctx = ' | '.join([r.strip() for r in raw if r])
-                    except Exception:
-                        ctx = ''
-                    if ctx:
-                        parts.append(f'[ID={lid}] text="{txt}" context_hint="{ctx}"')
-                    else:
-                        parts.append(f'[ID={lid}] text="{txt}"')
-                prompt = f"You are a helper that selects the best match for the user's intent.\nIntent: {intent}\nCandidates:\n" + '\n'.join(parts) + "\n\nInstructions: Return only the ID (number) of the best match, or NONE."
-                # call LLM (ollama hardcoded)
-                try:
-                    from llm.ollama_client import OllamaClient
-                    client = OllamaClient()
-                    llm_out = client.generate_text(prompt, model='llama3.2:latest')
-                    cur = self.win.consoleText.toPlainText()
-                    self.win.consoleText.setPlainText(cur + '\n\n==== LAYOUT JSON PROMPT ====\n' + prompt + '\n\n==== LLM OUTPUT (ollama) ====\n' + llm_out)
-                except Exception as e:
-                    try:
-                        cur = self.win.consoleText.toPlainText()
-                        self.win.consoleText.setPlainText(cur + f'\n\nLLM call failed: {e}')
-                    except Exception:
-                        pass
-                return
-            except Exception as e:
-                try:
-                    self.win.consoleText.setPlainText(f'Failed to load layout_result.json: {e}')
-                except Exception:
-                    pass
-                # continue with OCR fallback
         # Run ready_layout_infer to produce layout_result.json (run OCR there too)
         try:
             import ready_layout_infer
