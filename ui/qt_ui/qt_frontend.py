@@ -1090,8 +1090,36 @@ class MainWindowWrapper:
             parts.append(s)
         candidates_block = '\n'.join(parts)
         # format template
+        def _safe_format(tpl: str, mapping: dict) -> str:
+            # Protect literal braces used for JSON structure: replace placeholders
+            # with temporary tokens, escape all braces, then restore placeholders
+            tmp_map = {}
+            for k in mapping.keys():
+                token = f'<<<{k}>>>'
+                tpl = tpl.replace('{' + k + '}', token)
+                tmp_map[token] = '{' + k + '}'
+            # escape remaining braces
+            tpl = tpl.replace('{', '{{').replace('}', '}}')
+            # restore placeholder braces
+            for token, ph in tmp_map.items():
+                tpl = tpl.replace(token, ph)
+            try:
+                return tpl.format(**mapping)
+            except Exception:
+                return tpl
+
         try:
-            prompt = prompt_template.format(intent=audience, disciplines=json.dumps(disciplines, ensure_ascii=False), n=n, rarity=rarity, novelty=novelty, candidates=candidates_block, lang='English', yt_lang='English')
+            mapping = {
+                'intent': audience,
+                'disciplines': json.dumps(disciplines, ensure_ascii=False),
+                'n': n,
+                'rarity': rarity,
+                'novelty': novelty,
+                'candidates': candidates_block,
+                'lang': 'English',
+                'yt_lang': 'English'
+            }
+            prompt = _safe_format(prompt_template, mapping)
         except Exception:
             prompt = prompt_template
 
