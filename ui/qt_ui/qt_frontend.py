@@ -527,6 +527,35 @@ class MainWindowWrapper:
         self._curiosity_items = []
         self._curiosity_index = 0
 
+        # populate disciplines from settings file if available
+        try:
+            list_widget = self.cc_widgets.get('listDisciplines')
+            if list_widget is not None:
+                settings_path = Path(__file__).resolve().parents[2] / 'settings' / 'curiosity_catalys_settings.xml'
+                if settings_path.exists():
+                    try:
+                        from lxml import etree as ET
+                    except Exception:
+                        import xml.etree.ElementTree as ET
+                    try:
+                        tree = ET.parse(str(settings_path))
+                        root = tree.getroot()
+                        disc = []
+                        for it in root.findall('.//disciplines/item'):
+                            txt = (it.text or '').strip()
+                            if txt:
+                                disc.append(txt)
+                        list_widget.clear()
+                        for d in disc:
+                            try:
+                                list_widget.addItem(d)
+                            except Exception:
+                                pass
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
         # connect buttons
         try:
             if self.cc_widgets['btnGenerate']:
@@ -1014,15 +1043,18 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no comme
             return
         item = self._curiosity_items[idx]
         w = self.cc_widgets
-        try:
-            if w['editTerm']: w['editTerm'].setText(item.get('rare_term') or '')
-            if w['editConcept']: w['editConcept'].setText(item.get('concept') or '')
-            if w['editGloss']: w['editGloss'].setText(item.get('kid_gloss') or '')
-            if w['editHook']: w['editHook'].setText(item.get('hook_question') or '')
-            if w['editTask']: w['editTask'].setText(item.get('mini_task') or '')
-            if w['labelIndex']: w['labelIndex'].setText(f"{idx+1} / {len(self._curiosity_items)}")
-        except Exception:
-            pass
+            try:
+                if w['editTerm']: w['editTerm'].setText(item.get('rare_term') or '')
+                if w['editConcept']: w['editConcept'].setText(item.get('concept') or '')
+                if w['editGloss']: w['editGloss'].setText(item.get('kid_gloss') or '')
+                if w['editHook']: w['editHook'].setText(item.get('hook_question') or '')
+                if w['editTask']: w['editTask'].setText(item.get('mini_task') or '')
+                if w['labelIndex']:
+                    # paginator format: current\total
+                    total = len(self._curiosity_items) if self._curiosity_items else 0
+                    w['labelIndex'].setText(f"{idx+1}\\{total}")
+            except Exception:
+                pass
 
     def on_next_curiosity(self):
         if not self._curiosity_items: return
