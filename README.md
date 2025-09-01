@@ -134,6 +134,8 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+Note: UsefulClicker requires Python 3.11. Please ensure your virtual environment uses Python 3.11.
+
 ## Run
 run.bat
 
