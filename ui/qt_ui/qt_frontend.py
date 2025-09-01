@@ -1101,6 +1101,11 @@ class MainWindowWrapper:
             prov = (provider_setting or 'ollama').strip().lower()
             model = model_setting or 'llama3.2:latest'
             self._log_console(f'LLM call using provider={prov} model={model}')
+            # show the exact prompt sent to the model for debugging
+            try:
+                self._log_console('=== PROMPT TO LLM ===\n' + prompt)
+            except Exception:
+                pass
             if prov == 'ollama':
                 from llm.ollama_client import OllamaClient
                 client = OllamaClient()
