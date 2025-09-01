@@ -21,8 +21,11 @@ def _load_ui_file(ui_path: Path):
     # uic.loadUi may fail to resolve. Replace such qualifiers with plain
     # enum names before loading.
     txt = Path(ui_path).read_text(encoding='utf-8')
+    # Workarounds for C++-style enum qualifiers that uic may not resolve
     if 'Qt::WindowModality::' in txt:
         txt = txt.replace('Qt::WindowModality::', '')
+    if 'QAbstractItemView::SelectionMode::' in txt:
+        txt = txt.replace('QAbstractItemView::SelectionMode::', '')
     # Use temporary file to feed uic
     import tempfile
     tf = tempfile.NamedTemporaryFile(mode='w', suffix='.ui', delete=False, encoding='utf-8')
