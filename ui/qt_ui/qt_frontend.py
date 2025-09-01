@@ -514,7 +514,8 @@ class MainWindowWrapper:
         self.cc_widgets['editHook'] = getattr(self.win, 'editHook', None)
         self.cc_widgets['editTask'] = getattr(self.win, 'editTask', None)
         self.cc_widgets['textRaw'] = getattr(self.win, 'textRaw', None)
-        self.cc_widgets['labelIndex'] = getattr(self.win, 'labelIndex', None)
+        # label in UI is named 'listIndex' (showing index like '1 / 12')
+        self.cc_widgets['labelIndex'] = getattr(self.win, 'labelIndex', None) or getattr(self.win, 'listIndex', None)
         self.cc_widgets['spinCount'] = getattr(self.win, 'spinCount', None)
 
         # initialize state
@@ -1038,11 +1039,22 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no comme
         item = self._curiosity_items[idx]
         w = self.cc_widgets
         try:
-            if w['editTerm']: w['editTerm'].setText(item.get('rare_term') or '')
-            if w['editConcept']: w['editConcept'].setText(item.get('concept') or '')
-            if w['editGloss']: w['editGloss'].setText(item.get('kid_gloss') or '')
-            if w['editHook']: w['editHook'].setText(item.get('hook_question') or '')
-            if w['editTask']: w['editTask'].setText(item.get('mini_task') or '')
+            # many of these widgets are QTextBrowser/QTextEdit; prefer setPlainText
+            if w['editTerm']:
+                try: w['editTerm'].setPlainText(item.get('rare_term') or '')
+                except Exception: w['editTerm'].setText(item.get('rare_term') or '')
+            if w['editConcept']:
+                try: w['editConcept'].setPlainText(item.get('concept') or '')
+                except Exception: w['editConcept'].setText(item.get('concept') or '')
+            if w['editGloss']:
+                try: w['editGloss'].setPlainText(item.get('kid_gloss') or '')
+                except Exception: w['editGloss'].setText(item.get('kid_gloss') or '')
+            if w['editHook']:
+                try: w['editHook'].setPlainText(item.get('hook_question') or '')
+                except Exception: w['editHook'].setText(item.get('hook_question') or '')
+            if w['editTask']:
+                try: w['editTask'].setPlainText(item.get('mini_task') or '')
+                except Exception: w['editTask'].setText(item.get('mini_task') or '')
             if w['labelIndex']:
                 # paginator format: current\total
                 total = len(self._curiosity_items) if self._curiosity_items else 0
