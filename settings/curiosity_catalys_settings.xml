@@ -216,7 +216,6 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no comme
     "rarity": "{rarity}",
     "novelty": "{novelty}",
     "discipline_pool": {disciplines},
-    "picked_discipline": "",
     "n": {n},
     "timestamp": ""
   },
