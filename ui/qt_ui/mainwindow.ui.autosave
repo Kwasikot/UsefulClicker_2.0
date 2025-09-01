@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1088</width>
-    <height>748</height>
+    <width>1199</width>
+    <height>727</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -110,7 +110,7 @@
     <item row="1" column="0">
      <widget class="QTabWidget" name="CuriosityNodeSettings">
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="XMLTab">
        <attribute name="title">
@@ -330,63 +330,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>RAW LLM OUTPUT</string>
         </property>
        </widget>
-       <widget class="QGroupBox" name="groupBox">
-        <property name="geometry">
-         <rect>
-          <x>870</x>
-          <y>10</y>
-          <width>161</width>
-          <height>111</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Model provider</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="radioButton">
-           <property name="text">
-            <string>ollama</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="radioButton_2">
-           <property name="text">
-            <string>openai</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QListWidget" name="modelSelector">
-        <property name="geometry">
-         <rect>
-          <x>620</x>
-          <y>60</y>
-          <width>221</width>
-          <height>181</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>630</x>
-          <y>30</y>
-          <width>111</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Model selector</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="regenerateButton">
         <property name="geometry">
          <rect>
-          <x>860</x>
-          <y>130</y>
+          <x>900</x>
+          <y>20</y>
           <width>171</width>
           <height>111</height>
          </rect>
@@ -439,7 +387,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>20</x>
           <y>20</y>
-          <width>258</width>
+          <width>321</width>
           <height>221</height>
          </rect>
         </property>
@@ -475,9 +423,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>360</x>
           <y>20</y>
-          <width>258</width>
+          <width>501</width>
           <height>221</height>
          </rect>
         </property>
@@ -509,6 +457,148 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
         </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="RareTermsNodeTab">
+       <attribute name="title">
+        <string>RareTermsNode</string>
+       </attribute>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>23</y>
+          <width>256</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#c629a9;&quot;&gt;disciplines&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="disciplinesList_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>401</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>New Item</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QListWidget" name="termsList_2">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>58</y>
+          <width>681</width>
+          <height>121</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>light — Slightly uncommon terms; broadly understandable.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>medium-rare (default) — Rare but meaningful expert terms; good balance for advanced talk.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>rare — Niche, specialized vocabulary; include a short gloss/definition.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ultra-rare — Highly esoteric; risk of over-jargon/hallucinations; glosses strongly recommended.</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QCheckBox" name="genRandomDiscpCheckbox_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>470</y>
+          <width>231</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select random disciplines</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>190</y>
+          <width>341</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#17ce2c;&quot;&gt;Rare rerms list&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#17ce2c;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>20</y>
+          <width>341</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;Rariry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="termsList_3">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>220</y>
+          <width>681</width>
+          <height>241</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>light — Slightly uncommon terms; broadly understandable.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>medium-rare (default) — Rare but meaningful expert terms; good balance for advanced talk.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>rare — Niche, specialized vocabulary; include a short gloss/definition.</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ultra-rare — Highly esoteric; risk of over-jargon/hallucinations; glosses strongly recommended.</string>
+         </property>
+        </item>
        </widget>
       </widget>
       <widget class="QWidget" name="llmcall_tab">
@@ -573,58 +663,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <property name="text">
          <string>Regenerate list</string>
         </property>
-       </widget>
-       <widget class="QListWidget" name="modelSelector_2">
-        <property name="geometry">
-         <rect>
-          <x>860</x>
-          <y>220</y>
-          <width>201</width>
-          <height>111</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_10">
-        <property name="geometry">
-         <rect>
-          <x>920</x>
-          <y>190</y>
-          <width>111</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Model selector</string>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="geometry">
-         <rect>
-          <x>870</x>
-          <y>350</y>
-          <width>181</width>
-          <height>91</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>Model provider</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="radioButton_3">
-           <property name="text">
-            <string>ollama</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="radioButton_4">
-           <property name="text">
-            <string>openai</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </widget>
        <widget class="QLabel" name="label_11">
         <property name="geometry">
@@ -718,7 +756,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;User Intent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="userIntent">
+       <widget class="QPlainTextEdit" name="perceiveLlmPromt">
         <property name="geometry">
          <rect>
           <x>590</x>
@@ -781,12 +819,30 @@ whole screenshot</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1088</width>
+     <width>1199</width>
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionLLM_Settings"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLLM_Settings">
+   <property name="text">
+    <string>LLM Settings</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
