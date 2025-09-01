@@ -6,7 +6,7 @@ inspect program tree. The UI is intentionally lightweight so other
 frontends (web_ui etc.) can be plugged in similarly.
 """
 from pathlib import Path
-import threading, sys, time
+import threading, sys, time, datetime, os
 try:
     from PyQt5 import QtWidgets, QtCore, uic
 except Exception:
@@ -124,6 +124,12 @@ class MainWindowWrapper:
                 btn.clicked.connect(self.on_load_program_clicked)
             except Exception:
                 pass
+
+        # CuriosityCatalyst tab wiring
+        try:
+            self._init_curiosity_catalyst()
+        except Exception:
+            pass
 
         # PerceiveNode testing: connect Perceive button if present
         try:
@@ -469,6 +475,54 @@ class MainWindowWrapper:
         except Exception:
             pass
 
+    def _init_curiosity_catalyst(self):
+        # find widgets
+        try:
+            tab = getattr(self.win, 'CuriosityCatalystTab', None)
+            if tab is None:
+                return
+        except Exception:
+            return
+        # buttons and lists
+        self.cc_widgets = {}
+        self.cc_widgets['listDisciplines'] = getattr(self.win, 'listDisciplines', None)
+        self.cc_widgets['listRarity'] = getattr(self.win, 'listRarity', None)
+        self.cc_widgets['listNovelty'] = getattr(self.win, 'listNovelty', None)
+        self.cc_widgets['listAudience'] = getattr(self.win, 'listAudience', None)
+        self.cc_widgets['checkRandomDisciplines'] = getattr(self.win, 'checkRandomDisciplines', None)
+        self.cc_widgets['btnGenerate'] = getattr(self.win, 'btnGenerate', None)
+        self.cc_widgets['btnNext'] = getattr(self.win, 'btnNext', None)
+        self.cc_widgets['btnPrev'] = getattr(self.win, 'btnPrev', None)
+        self.cc_widgets['editTerm'] = getattr(self.win, 'editTerm', None)
+        self.cc_widgets['editConcept'] = getattr(self.win, 'editConcept', None)
+        self.cc_widgets['editGloss'] = getattr(self.win, 'editGloss', None)
+        self.cc_widgets['editHook'] = getattr(self.win, 'editHook', None)
+        self.cc_widgets['editTask'] = getattr(self.win, 'editTask', None)
+        self.cc_widgets['textRaw'] = getattr(self.win, 'textRaw', None)
+        self.cc_widgets['labelIndex'] = getattr(self.win, 'labelIndex', None)
+        self.cc_widgets['spinCount'] = getattr(self.win, 'spinCount', None)
+
+        # initialize state
+        self._curiosity_items = []
+        self._curiosity_index = 0
+
+        # connect buttons
+        try:
+            if self.cc_widgets['btnGenerate']:
+                self.cc_widgets['btnGenerate'].clicked.connect(self.on_generate_curiosity)
+        except Exception:
+            pass
+        try:
+            if self.cc_widgets['btnNext']:
+                self.cc_widgets['btnNext'].clicked.connect(self.on_next_curiosity)
+        except Exception:
+            pass
+        try:
+            if self.cc_widgets['btnPrev']:
+                self.cc_widgets['btnPrev'].clicked.connect(self.on_prev_curiosity)
+        except Exception:
+            pass
+
     def populate_tree(self):
         tw = self.win.treeWidget
         tw.clear()
@@ -787,6 +841,195 @@ class MainWindowWrapper:
                     self.prog.request_restart()
             QtCore.QTimer.singleShot(0, ui_update)
         threading.Thread(target=worker, daemon=True).start()
+
+    # --- Curiosity Catalyst handlers ---
+    def on_generate_curiosity(self):
+        w = self.cc_widgets
+        # gather selections
+        disciplines = []
+        try:
+            lw = w.get('listDisciplines')
+            if lw is not None:
+                for it in lw.selectedItems(): disciplines.append(it.text())
+                if not disciplines:
+                    # take all
+                    for i in range(lw.count()): disciplines.append(lw.item(i).text())
+        except Exception:
+            disciplines = []
+        rarity = 'light'
+        try:
+            lr = w.get('listRarity')
+            if lr is not None and lr.currentItem(): rarity = lr.currentItem().text()
+        except Exception:
+            pass
+        novelty = 'low'
+        try:
+            ln = w.get('listNovelty')
+            if ln is not None and ln.currentItem(): novelty = ln.currentItem().text()
+        except Exception:
+            pass
+        audience = 'kids'
+        try:
+            la = w.get('listAudience')
+            if la is not None and la.currentItem(): audience = la.currentItem().text()
+        except Exception:
+            pass
+        pick_random = False
+        try:
+            cb = w.get('checkRandomDisciplines')
+            if cb is not None: pick_random = bool(cb.isChecked())
+        except Exception:
+            pass
+        n = 12
+        try:
+            sp = w.get('spinCount')
+            if sp is not None: n = int(sp.value())
+        except Exception:
+            n = 12
+
+        # Build prompt
+        lang = 'English'
+        yt_lang = 'English'
+        prompt = f"""
+Generate exactly {n} items that spark curiosity for {audience}.
+Topic: pick ONE random discipline from {disciplines} and use it for all items.
+Language: write all fields in {lang}, except yt_query in {yt_lang}.
+Use at most one rare/scientific term per item.
+
+Return ONLY a valid JSON object with this exact structure (no markdown, no comments, no extra keys):
+{{
+  "meta": {{
+    "audience": "{audience}",
+    "rarity": "{rarity}",
+    "novelty": "{novelty}",
+    "discipline_pool": {disciplines},
+    "picked_discipline": "",
+    "n": {n},
+    "timestamp": ""
+  }},
+  "items": [
+    {{
+      "concept": "",
+      "rare_term": null,
+      "kid_gloss": "",
+      "hook_question": "",
+      "mini_task": "",
+      "yt_query": ""
+    }}
+  ]
+}}
+"""
+
+        # Call LLM - prefer Ollama then OpenAI
+        llm_text = None
+        try:
+            from llm.ollama_client import OllamaClient
+            client = OllamaClient()
+            llm_text = client.generate_text(prompt, model='llama3.2:latest')
+        except Exception:
+            try:
+                from llm.openai_client import LLMClient
+                client = LLMClient()
+                llm_text = client.generate_text(prompt)
+            except Exception:
+                llm_text = None
+
+        # Fallback: generate deterministic JSON
+        if not llm_text or not str(llm_text).strip():
+            llm_text = self._curiosity_fallback_json(disciplines, audience, rarity, novelty, n)
+
+        # Try to parse JSON out of the response
+        parsed = None
+        try:
+            txt = str(llm_text).strip()
+            # strip code fences
+            if txt.startswith('```'):
+                txt = '\n'.join(txt.splitlines()[1:])
+                if txt.endswith('```'):
+                    txt = '\n'.join(txt.splitlines()[:-1])
+            parsed = json.loads(txt)
+        except Exception:
+            # attempt to find JSON substring
+            import re
+            m = re.search(r'\{\s*"meta"[\s\S]*\}\s*\}', str(llm_text))
+            if m:
+                try:
+                    parsed = json.loads(m.group(0))
+                except Exception:
+                    parsed = None
+
+        if not parsed:
+            try:
+                self.cc_widgets['textRaw'].setPlainText('Failed to parse LLM JSON.\n' + str(llm_text))
+            except Exception:
+                pass
+            return
+
+        # Save JSON to output
+        try:
+            os.makedirs('output', exist_ok=True)
+            ts = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+            outp = os.path.abspath(os.path.join('output', f'curiosity_hooks_{ts}.json'))
+            with open(outp, 'w', encoding='utf-8') as f:
+                json.dump(parsed, f, ensure_ascii=False, indent=2)
+            try:
+                self.cc_widgets['textRaw'].setPlainText(f'Saved: {outp}\n\n' + str(llm_text))
+            except Exception:
+                pass
+        except Exception:
+            outp = None
+
+        # Populate first item
+        items = parsed.get('items', []) if isinstance(parsed, dict) else []
+        self._curiosity_items = items
+        self._curiosity_index = 0
+        if items:
+            self._show_curiosity_item(0)
+
+    def _show_curiosity_item(self, idx: int):
+        if not self._curiosity_items:
+            return
+        if idx < 0 or idx >= len(self._curiosity_items):
+            return
+        item = self._curiosity_items[idx]
+        w = self.cc_widgets
+        try:
+            if w['editTerm']: w['editTerm'].setText(item.get('rare_term') or '')
+            if w['editConcept']: w['editConcept'].setText(item.get('concept') or '')
+            if w['editGloss']: w['editGloss'].setText(item.get('kid_gloss') or '')
+            if w['editHook']: w['editHook'].setText(item.get('hook_question') or '')
+            if w['editTask']: w['editTask'].setText(item.get('mini_task') or '')
+            if w['labelIndex']: w['labelIndex'].setText(f"{idx+1} / {len(self._curiosity_items)}")
+        except Exception:
+            pass
+
+    def on_next_curiosity(self):
+        if not self._curiosity_items: return
+        self._curiosity_index = min(len(self._curiosity_items)-1, self._curiosity_index+1)
+        self._show_curiosity_item(self._curiosity_index)
+
+    def on_prev_curiosity(self):
+        if not self._curiosity_items: return
+        self._curiosity_index = max(0, self._curiosity_index-1)
+        self._show_curiosity_item(self._curiosity_index)
+
+    def _curiosity_fallback_json(self, disciplines, audience, rarity, novelty, n):
+        # deterministic simple filler
+        import random
+        if not disciplines: disciplines = ['General Science']
+        picked = random.choice(disciplines)
+        meta = {"audience": audience, "rarity": rarity, "novelty": novelty, "discipline_pool": disciplines, "picked_discipline": picked, "n": n, "timestamp": datetime.datetime.now().isoformat()}
+        items = []
+        for i in range(n):
+            items.append({
+                'concept': f'{picked} concept {i+1}',
+                'rare_term': None,
+                'kid_gloss': f'A short explanation for item {i+1}',
+                'hook_question': f'What if {picked} {i+1}?',
+                'mini_task': f'Try a small experiment {i+1}',
+                'yt_query': f'{picked} intro'
+            })
+        return {'meta': meta, 'items': items}
 
     def run(self):
         # start program thread and show UI
