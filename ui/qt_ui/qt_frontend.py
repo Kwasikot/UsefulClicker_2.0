@@ -1052,8 +1052,15 @@ class MainWindowWrapper:
                             pass
                 if all_disc:
                     import random
+                    # ensure system-based randomness even if some other code seeded RNG
+                    try:
+                        random.seed(None)
+                    except Exception:
+                        pass
                     pool_size = min(5, len(all_disc))
-                    disciplines = random.sample(all_disc, pool_size)
+                    random.shuffle(all_disc)
+                    disciplines = list(all_disc[:pool_size])
+                    self._log_console(f'Random discipline pool selected: {disciplines}')
         except Exception:
             pass
 
