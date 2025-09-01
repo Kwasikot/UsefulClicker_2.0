@@ -156,7 +156,8 @@ class XMLProgram:
         self.logger = logger
         self.variables: Dict[str, Any] = {}
         self.functions: Dict[str, ET.Element] = {}
-        self.paused = False
+        # Start the engine in paused mode so UI/runner can inspect before resuming
+        self.paused = True
         self.skip_wait = False
         self._last_ctrlspace = False
         self._hotkeys_started = False
@@ -180,6 +181,11 @@ class XMLProgram:
         self.variables.setdefault("SCREEN_H", 1080)
 
         self._load_xml()
+        # ensure UI shows initial paused state
+        try:
+            self.logger.info("PAUSE ON (initial)")
+        except Exception:
+            pass
         self._start_fallback_hotkeys()
 
     # ---- hotkeys fallback ----
