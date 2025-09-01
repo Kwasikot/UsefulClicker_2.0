@@ -560,8 +560,6 @@ class MainWindowWrapper:
                                 list_widget.addItem(d)
                             except Exception:
                                 pass
-                    except Exception:
-                        pass
                     except Exception as e:
                         self._log_console(f'Failed to parse settings disciplines: {e}')
                         logger.exception('Failed to parse settings disciplines')
