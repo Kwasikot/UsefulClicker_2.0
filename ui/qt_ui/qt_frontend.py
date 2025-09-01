@@ -589,6 +589,24 @@ class MainWindowWrapper:
         except Exception:
             pass
 
+        # Increase font size of edit fields for better readability (at least 14pt)
+        try:
+            for k in ('editTerm','editConcept','editGloss','editHook','editTask'):
+                wdg = self.cc_widgets.get(k)
+                if wdg is not None:
+                    try:
+                        # apply stylesheet to enforce larger font
+                        wdg.setStyleSheet('font-size:14pt;')
+                    except Exception:
+                        try:
+                            f = wdg.font()
+                            f.setPointSize(14)
+                            wdg.setFont(f)
+                        except Exception:
+                            pass
+        except Exception:
+            pass
+
     def populate_tree(self):
         tw = self.win.treeWidget
         tw.clear()
