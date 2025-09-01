@@ -521,7 +521,7 @@ class MainWindowWrapper:
         self.cc_widgets['listRarity'] = getattr(self.win, 'listRarity', None)
         self.cc_widgets['listNovelty'] = getattr(self.win, 'listNovelty', None)
         self.cc_widgets['listAudience'] = getattr(self.win, 'listAudience', None)
-        self.cc_widgets['checkRandomDisciplines'] = getattr(self.win, 'checkRandomDisciplines', None)
+        self.cc_widgets['checkRandomDisciplines'] = getattr(self.win, 'checkRandomDisciplines', None) or getattr(self.win, 'genRandomDiscpCheckbox', None)
         self.cc_widgets['btnGenerate'] = getattr(self.win, 'btnGenerate', None)
         self.cc_widgets['btnNext'] = getattr(self.win, 'btnNext', None)
         self.cc_widgets['btnPrev'] = getattr(self.win, 'btnPrev', None)
