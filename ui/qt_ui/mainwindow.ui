@@ -476,32 +476,658 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#c629a9;&quot;&gt;disciplines&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="disciplinesList_2">
+       <widget class="QListWidget" name="listDisciplines">
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>50</y>
           <width>401</width>
-          <height>91</height>
+          <height>101</height>
          </rect>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
         </property>
         <item>
          <property name="text">
-          <string>1</string>
+          <string>Philosophy</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>2</string>
+          <string>Logic</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>New Item</string>
+          <string>Epistemology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Metaphysics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ethics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Aesthetics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Philosophy of Mind</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Philosophy of Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Semiotics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Rhetoric</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Linguistics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pragmatics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sociolinguistics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Anthropology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Archaeology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>History</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Art History</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Music Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Media Studies</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Literary Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sociology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Political Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>International Relations</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Economics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Game Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Operations Research</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Law</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Education</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mathematics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Algebra</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Geometry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Topology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Number Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Analysis</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Probability</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Statistics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Combinatorics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Graph Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Category Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Set Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Theoretical Computer Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Information Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cryptography</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Computer Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Algorithms</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>HCI</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Software Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Databases</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Artificial Intelligence</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Machine Learning</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Deep Learning</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Data Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Reinforcement Learning</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Natural Language Processing</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Computer Vision</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Causal Inference</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>AI Safety</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Alignment</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Physics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Classical Mechanics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Quantum Mechanics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Statistical Mechanics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Thermodynamics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Electrodynamics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Optics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Condensed Matter Physics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Particle Physics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Astrophysics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cosmology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Quantum Information</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Photonics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Nanotechnology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Chemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Organic Chemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Inorganic Chemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Physical Chemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Analytical Chemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Biochemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Materials Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Earth Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Geology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Geochemistry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Geophysics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Climatology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Meteorology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Oceanography</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Hydrology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Remote Sensing</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Biology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Molecular Biology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Genetics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Epigenetics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Microbiology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Virology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Immunology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Physiology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Neuroscience</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Developmental Biology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Ecology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Evolutionary Biology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Systems Biology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Synthetic Biology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bioinformatics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Medicine</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Psychiatry</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Psychology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cognitive Science</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Pharmacology</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Public Health</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Electrical Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Electronics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Signal Processing</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Control Theory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Robotics</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mechanical Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Civil Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Aerospace Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Nuclear Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Chemical Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Biomedical Engineering</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Architecture</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Urban Planning</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Energy Systems</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Renewable Energy</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Cybersecurity</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Blockchain</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Operations Management</string>
          </property>
         </item>
        </widget>
-       <widget class="QListWidget" name="termsList_2">
+       <widget class="QListWidget" name="listRarity">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -531,11 +1157,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
         </item>
        </widget>
-       <widget class="QCheckBox" name="genRandomDiscpCheckbox_2">
+       <widget class="QCheckBox" name="checkRandomDisciplines">
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>470</y>
+          <y>460</y>
           <width>231</width>
           <height>26</height>
          </rect>
@@ -570,7 +1196,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;Rariry&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="termsList_3">
+       <widget class="QListWidget" name="listNovelty">
         <property name="geometry">
          <rect>
           <x>30</x>
@@ -608,7 +1234,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:14pt; font-weight:700;&quot;&gt;Audience&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QListWidget" name="termsList_4">
+       <widget class="QListWidget" name="listAudience">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -659,7 +1285,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#cb21af;&quot;&gt;Term: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser">
+       <widget class="QTextBrowser" name="editTerm">
         <property name="geometry">
          <rect>
           <x>550</x>
@@ -679,7 +1305,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;convection&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_2">
+       <widget class="QTextBrowser" name="editHook">
         <property name="geometry">
          <rect>
           <x>570</x>
@@ -699,7 +1325,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Where at home can you see convection right now?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_3">
+       <widget class="QTextBrowser" name="editConcept">
         <property name="geometry">
          <rect>
           <x>560</x>
@@ -732,7 +1358,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#cb21af;&quot;&gt;Concept: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_4">
+       <widget class="QTextBrowser" name="editGloss">
         <property name="geometry">
          <rect>
           <x>560</x>
@@ -778,7 +1404,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700; color:#cb21af;&quot;&gt;mini task: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser_5">
+       <widget class="QTextBrowser" name="editTask">
         <property name="geometry">
          <rect>
           <x>570</x>
@@ -798,7 +1424,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hold your hand above a toaster/radiator and compare from the side&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btnGenerate">
         <property name="geometry">
          <rect>
           <x>50</x>
@@ -814,7 +1440,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>Generate</string>
         </property>
        </widget>
-       <widget class="QCommandLinkButton" name="commandLinkButton">
+       <widget class="QCommandLinkButton" name="btnPrev">
         <property name="geometry">
          <rect>
           <x>570</x>
@@ -830,7 +1456,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <iconset theme="QIcon::ThemeIcon::MediaSkipBackward"/>
         </property>
        </widget>
-       <widget class="QCommandLinkButton" name="commandLinkButton_2">
+       <widget class="QCommandLinkButton" name="btnNext">
         <property name="geometry">
          <rect>
           <x>830</x>
@@ -849,7 +1475,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QLabel" name="label_21">
         <property name="geometry">
          <rect>
-          <x>520</x>
+          <x>690</x>
           <y>480</y>
           <width>241</width>
           <height>20</height>
@@ -859,7 +1485,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>RAW LLM OUTPUT</string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="raw_llm_output_textarea_3">
+       <widget class="QTextBrowser" name="textRaw">
         <property name="geometry">
          <rect>
           <x>510</x>
@@ -882,6 +1508,35 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. Synthetic genomics for biofuels production: Scientists are exploring the use of synthetic biology techniques to design novel microorganisms capable of producing high-performance biofuels.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinCount">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>370</y>
+          <width>61</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>10</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_22">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>321</y>
+          <width>21</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;N&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -1117,6 +1772,7 @@ whole screenshot</string>
      <string>Settings</string>
     </property>
     <addaction name="actionLLM_Settings"/>
+    <addaction name="actionLanguage"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -1125,6 +1781,11 @@ whole screenshot</string>
   <action name="actionLLM_Settings">
    <property name="text">
     <string>LLM Settings</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
    </property>
   </action>
  </widget>
