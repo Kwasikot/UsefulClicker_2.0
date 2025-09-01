@@ -949,6 +949,26 @@ class MainWindowWrapper:
                 for it in lw.selectedItems(): disciplines.append(it.text())
                 if not disciplines:
                     # take all
+                    # if list empty, try reloading from settings just-in-time
+                    if lw.count() == 0:
+                        try:
+                            settings_path = Path(__file__).resolve().parents[2] / 'settings' / 'curiosity_catalys_settings.xml'
+                            if settings_path.exists():
+                                try:
+                                    try:
+                                        from lxml import etree as ET
+                                    except Exception:
+                                        import xml.etree.ElementTree as ET
+                                    tree = ET.parse(str(settings_path))
+                                    root = tree.getroot()
+                                    for it in root.findall('.//disciplines/item'):
+                                        txt = (it.text or '').strip()
+                                        if txt:
+                                            lw.addItem(txt)
+                                except Exception:
+                                    pass
+                        except Exception:
+                            pass
                     for i in range(lw.count()): disciplines.append(lw.item(i).text())
         except Exception:
             disciplines = []
