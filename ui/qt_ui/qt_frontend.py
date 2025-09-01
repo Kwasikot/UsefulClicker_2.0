@@ -740,7 +740,19 @@ class MainWindowWrapper:
             except Exception:
                 ctx = ''
             parts.append(f'[ID={lid}] text="{txt}" context_hint="{ctx}"')
-        prompt = f"You are a helper that selects the best match for the user's intent.\nIntent: {intent}\nCandidates:\n" + '\n'.join(parts) + "\n\nInstructions: Return only the ID (number) of the best match, or NONE."
+        # Improve prompt to encourage providing a meaningful rare_term where applicable.
+        prompt = (
+            f"You are a helper that selects the best match for the user's intent.\n"
+            f"Intent: {intent}\nCandidates:\n" + '\n'.join(parts) +
+            "\n\nWhen producing the JSON, follow these rules exactly:\n"
+            "- For the field 'rare_term' prefer a concise technical or scientific word or short phrase (1-3 words) that is relevant to the concept.\n"
+            "- Use null for 'rare_term' ONLY if there truly is no meaningful technical term for that item.\n"
+            "- Keep 'kid_gloss' short and simple (<=12 words).\n"
+            "- 'yt_query' should be 2-6 words suitable for a YouTube search.\n"
+            "- Do NOT include any explanatory text outside the returned JSON.\n\n"
+            "Return ONLY a valid JSON object with this exact structure (no markdown, no comments, no extra keys):\n"
+            "{\n  \"meta\": {\n    \"audience\": \"{intent}\",\n    \"rarity\": \"{rarity}\",\n    \"novelty\": \"{novelty}\",\n    \"discipline_pool\": {disciplines},\n    \"picked_discipline\": \"\",\n    \"n\": {n},\n    \"timestamp\": \"\"\n  },\n  \"items\": [\n    {\n      \"concept\": \"string\",\n      \"rare_term\": \"string or null\",\n      \"kid_gloss\": \"<= 12 words\",\n      \"hook_question\": \"open question\",\n      \"mini_task\": \"small at-home activity\",\n      \"yt_query\": \"2-6 words\"\n    }\n  ]\n}"
+        )
 
         try:
             from llm.ollama_client import OllamaClient
