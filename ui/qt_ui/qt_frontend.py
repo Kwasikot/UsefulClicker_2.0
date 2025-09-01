@@ -980,22 +980,19 @@ class MainWindowWrapper:
                     prompt_template = ''.join(pt_elem.itertext()).strip()
                 # llm settings
                 prov = root.find('.//llm/provider')
-                if prov is not None and prov.get('value'):
-                    provider_setting = prov.get('value')
-                m = root.find('.//llm/ollama/fallback_models/model')
-                # also try top-level attribute
-                if root.get('provider'):
-                    provider_setting = root.get('provider')
-                if root.get('model'):
-                    model_setting = root.get('model')
-                if provider_setting is None:
-                    pnode = root.find('.//llm/provider')
-                    if pnode is not None and pnode.get('value'):
-                        provider_setting = pnode.get('value')
-                if model_setting is None:
-                    mnode = root.find('.//llm/model')
-                    if mnode is not None and mnode.get('value'):
-                        model_setting = mnode.get('value')
+                if prov is not None:
+                    provider_setting = (prov.get('value') or (prov.text or '')).strip()
+                # also check top-level attributes and other nodes
+                if not provider_setting:
+                    provider_setting = (root.get('provider') or '').strip()
+                # model: try several common places
+                mnode = root.find('.//llm/model')
+                if mnode is not None:
+                    model_setting = (mnode.get('value') or (mnode.text or '')).strip()
+                if not model_setting:
+                    model_setting = (root.get('model') or '').strip()
+                # log loaded settings for debug
+                self._log_console(f'Loaded settings: provider={provider_setting} model={model_setting} (from {settings_path})')
             except Exception as e:
                 prompt_template = None
                 self._log_console(f'Failed to load settings file for prompt/template: {e}')
