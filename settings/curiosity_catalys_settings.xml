@@ -6,6 +6,7 @@
     <!-- <model value="llama3.2:latest"/> -->
     <provider value="openai"/>
     <model value="gpt-4o"/>
+	<temperature value="0.7"/>
     <!-- OpenAI model list (static) -->
     <openai>
       <models>
@@ -196,7 +197,7 @@
     <item>Operations Management</item>
   </disciplines>
   <!-- Prompt template for CuriosityCatalyst. Use Python-style format placeholders: {intent}, {disciplines}, {n}, {rarity}, {novelty} -->
-  <prompt_template>
+ <prompt_template xml:space="preserve"><![CDATA[
 Generate exactly {n} items that spark curiosity for {intent}.
 Topic: pick ONE random discipline from {disciplines} (a JSON array of strings) and use it for all items.
 Language: write all fields in {lang}, except yt_query in {yt_lang}.
@@ -204,7 +205,6 @@ Use at most one rare/scientific term per item.
 
 When producing the JSON, follow these rules exactly:
 - For the field 'rare_term' prefer a concise technical or scientific word or short phrase (1-3 words) that is relevant to the concept.
-- Use null for 'rare_term' ONLY if there truly is no meaningful technical term for that item.
 - Keep 'kid_gloss' short and simple (<=12 words).
 - 'yt_query' should be 2-6 words suitable for a YouTube search.
 - Do NOT include any explanatory text outside the returned JSON.
@@ -231,5 +231,6 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no comme
     }
   ]
 }
-  </prompt_template>
+]]></prompt_template>
+
 </curiosity_catalyst_settings>
