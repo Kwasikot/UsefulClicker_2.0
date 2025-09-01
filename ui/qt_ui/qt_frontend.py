@@ -500,7 +500,8 @@ class MainWindowWrapper:
             return
         # buttons and lists
         self.cc_widgets = {}
-        self.cc_widgets['listDisciplines'] = getattr(self.win, 'listDisciplines', None)
+        # support multiple possible names used in .ui files
+        self.cc_widgets['listDisciplines'] = getattr(self.win, 'listDisciplines', None) or getattr(self.win, 'disciplinesList', None) or getattr(self.win, 'disciplines_list', None)
         self.cc_widgets['listRarity'] = getattr(self.win, 'listRarity', None)
         self.cc_widgets['listNovelty'] = getattr(self.win, 'listNovelty', None)
         self.cc_widgets['listAudience'] = getattr(self.win, 'listAudience', None)
@@ -525,7 +526,7 @@ class MainWindowWrapper:
         # populate disciplines from settings file if available
         try:
             list_widget = self.cc_widgets.get('listDisciplines')
-            if list_widget is not None:
+            if list_widget is not None and hasattr(list_widget, 'clear') and hasattr(list_widget, 'addItem'):
                 settings_path = Path(__file__).resolve().parents[2] / 'settings' / 'curiosity_catalys_settings.xml'
                 if settings_path.exists():
                     try:
