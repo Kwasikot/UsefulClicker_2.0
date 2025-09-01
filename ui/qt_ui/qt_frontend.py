@@ -148,11 +148,14 @@ class MainWindowWrapper:
             except Exception:
                 pass
 
-        # CuriosityCatalyst tab wiring
+        # CuriosityCatalyst tab wiring: schedule init after event loop to ensure widgets exist
         try:
-            self._init_curiosity_catalyst()
+            QtCore.QTimer.singleShot(300, lambda: self._init_curiosity_catalyst())
         except Exception:
-            pass
+            try:
+                self._init_curiosity_catalyst()
+            except Exception:
+                pass
 
         # PerceiveNode testing: connect Perceive button if present
         try:
@@ -991,6 +994,17 @@ class MainWindowWrapper:
                     model_setting = (mnode.get('value') or (mnode.text or '')).strip()
                 if not model_setting:
                     model_setting = (root.get('model') or '').strip()
+                # temperature (optional)
+                tnode = root.find('.//llm/temperature') or root.find('.//temperature')
+                temperature_setting = None
+                if tnode is not None:
+                    temperature_setting = (tnode.get('value') or (tnode.text or '')).strip()
+                try:
+                    temperature = float(temperature_setting) if temperature_setting else None
+                except Exception:
+                    temperature = None
+                # log loaded settings for debug
+                self._log_console(f'Loaded settings: provider={provider_setting} model={model_setting} temperature={temperature} (from {settings_path})')
                 # log loaded settings for debug
                 self._log_console(f'Loaded settings: provider={provider_setting} model={model_setting} (from {settings_path})')
             except Exception as e:
@@ -1028,12 +1042,12 @@ class MainWindowWrapper:
                 from llm.ollama_client import OllamaClient
                 client = OllamaClient()
                 self._log_console(f'Ollama client ready (model={getattr(client, "model", model)})')
-                llm_text = client.generate_text(prompt, model=model)
+                llm_text = client.generate_text(prompt, model=model, temperature=temperature)
             elif prov == 'openai':
                 from llm.openai_client import LLMClient
                 client = LLMClient()
                 self._log_console(f'OpenAI client ready (model={getattr(client, "model", model)})')
-                llm_text = client.generate_text(prompt, model=model)
+                llm_text = client.generate_text(prompt, model=model, temperature=temperature)
             else:
                 # try openai by default if unknown
                 from llm.openai_client import LLMClient
@@ -1045,12 +1059,12 @@ class MainWindowWrapper:
             try:
                 from llm.openai_client import LLMClient
                 client = LLMClient()
-                llm_text = client.generate_text(prompt)
+                llm_text = client.generate_text(prompt, model=model, temperature=temperature)
             except Exception:
                 try:
                     from llm.ollama_client import OllamaClient
                     client = OllamaClient()
-                    llm_text = client.generate_text(prompt, model='llama3.2:latest')
+                    llm_text = client.generate_text(prompt, model='llama3.2:latest', temperature=temperature)
                 except Exception:
                     llm_text = None
                     self._log_console('LLM call failed for all providers (no credentials or service)')
