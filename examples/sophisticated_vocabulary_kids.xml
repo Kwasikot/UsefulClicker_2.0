@@ -4,8 +4,8 @@
 <func name="Main">
 <list output_var="kids_vocablurary_search_list"
 			 output_format="list"
-			 separator="\n"
-			 text="
+			 separator="\n">
+			
 dialogic reading rich vocabulary
 tier two vocabulary read aloud
 sophisticated vocabulary kids
@@ -17,7 +17,8 @@ kid-friendly definitions science terms
 Socratic dialogue kids science
 dialogic reading strategies vocabulary
 read aloud advanced vocabulary
-Sesame Street Word of the Day"/>
+Sesame Street Word of the Day
+</list>
 
 	<func name="SearchYoutube">
 	  <click button="left" x="200" y="10" />
