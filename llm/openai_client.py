@@ -30,11 +30,12 @@ class LLMClient:
 
         self.client = OpenAI(api_key=api_key, http_client=http_client)
         self.model = os.getenv("USEFULCLICKER_OPENAI_MODEL", "gpt-5")
-        #log.info(f"Client ready (model={self.model}, proxy={proxy_state}).")
+        log.info(f"OpenAI client ready (default_model={self.model}, proxy={proxy_state}).")
 
     def generate_text(self, prompt: str, model: str | None = None, temperature: float | None = None) -> str:
         log.info("generate_text()")
         use_model = model or self.model
+        log.info(f"OpenAI generate_text: using model={use_model} temperature={temperature}")
         use_temp = 1 if temperature is None else float(temperature)
         resp = self.client.chat.completions.create(
             model=use_model,
