@@ -1039,6 +1039,24 @@ class MainWindowWrapper:
                 "{\n  \"meta\": {\n    \"audience\": \"{intent}\",\n    \"rarity\": \"{rarity}\",\n    \"novelty\": \"{novelty}\",\n    \"discipline_pool\": {disciplines},\n    \"picked_discipline\": \"\",\n    \"n\": {n},\n    \"timestamp\": \"\"\n  },\n  \"items\": [ ... ]\n}"
             )
 
+        # If random pool requested, select a small random set of disciplines (pool size 5)
+        try:
+            if pick_random:
+                all_disc = []
+                lw = self.cc_widgets.get('listDisciplines')
+                if lw is not None and hasattr(lw, 'count'):
+                    for ii in range(lw.count()):
+                        try:
+                            all_disc.append(lw.item(ii).text())
+                        except Exception:
+                            pass
+                if all_disc:
+                    import random
+                    pool_size = min(5, len(all_disc))
+                    disciplines = random.sample(all_disc, pool_size)
+        except Exception:
+            pass
+
         # assemble candidates string
         parts = []
         for i, s in enumerate([f'[ID={i}] text="{d}"' for i,d in enumerate(disciplines)], start=0):
