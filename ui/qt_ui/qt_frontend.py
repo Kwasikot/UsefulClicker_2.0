@@ -944,52 +944,89 @@ class MainWindowWrapper:
         except Exception:
             n = 12
 
-        # Build prompt
-        lang = 'English'
-        yt_lang = 'English'
-        prompt = f"""
-Generate exactly {n} items that spark curiosity for {audience}.
-Topic: pick ONE random discipline from {disciplines} and use it for all items.
-Language: write all fields in {lang}, except yt_query in {yt_lang}.
-Use at most one rare/scientific term per item.
+        # Read prompt template and llm settings from settings XML (reload each time)
+        settings_path = Path(__file__).resolve().parents[2] / 'settings' / 'curiosity_catalys_settings.xml'
+        prompt_template = None
+        provider_setting = None
+        model_setting = None
+        if settings_path.exists():
+            try:
+                try:
+                    from lxml import etree as ET
+                except Exception:
+                    import xml.etree.ElementTree as ET
+                tree = ET.parse(str(settings_path))
+                root = tree.getroot()
+                pt_elem = root.find('.//prompt_template')
+                if pt_elem is not None:
+                    prompt_template = ''.join(pt_elem.itertext()).strip()
+                # llm settings
+                prov = root.find('.//llm/provider')
+                if prov is not None and prov.get('value'):
+                    provider_setting = prov.get('value')
+                m = root.find('.//llm/ollama/fallback_models/model')
+                # also try top-level attribute
+                if root.get('provider'):
+                    provider_setting = root.get('provider')
+                if root.get('model'):
+                    model_setting = root.get('model')
+                if provider_setting is None:
+                    pnode = root.find('.//llm/provider')
+                    if pnode is not None and pnode.get('value'):
+                        provider_setting = pnode.get('value')
+                if model_setting is None:
+                    mnode = root.find('.//llm/model')
+                    if mnode is not None and mnode.get('value'):
+                        model_setting = mnode.get('value')
+            except Exception:
+                prompt_template = None
 
-Return ONLY a valid JSON object with this exact structure (no markdown, no comments, no extra keys):
-{{
-  "meta": {{
-    "audience": "{audience}",
-    "rarity": "{rarity}",
-    "novelty": "{novelty}",
-    "discipline_pool": {disciplines},
-    "picked_discipline": "",
-    "n": {n},
-    "timestamp": ""
-  }},
-  "items": [
-    {{
-      "concept": "",
-      "rare_term": null,
-      "kid_gloss": "",
-      "hook_question": "",
-      "mini_task": "",
-      "yt_query": ""
-    }}
-  ]
-}}
-"""
+        if not prompt_template:
+            # fallback inline template
+            prompt_template = (
+                "You are a helper that selects the best match for the user's intent.\n"
+                "Intent: {intent}\nCandidates:\n{candidates}\n\n"
+                "Return ONLY a valid JSON object with this exact structure (no markdown, no comments, no extra keys):\n"
+                "{\n  \"meta\": {\n    \"audience\": \"{intent}\",\n    \"rarity\": \"{rarity}\",\n    \"novelty\": \"{novelty}\",\n    \"discipline_pool\": {disciplines},\n    \"picked_discipline\": \"\",\n    \"n\": {n},\n    \"timestamp\": \"\"\n  },\n  \"items\": [ ... ]\n}"
+            )
 
-        # Call LLM - prefer Ollama then OpenAI
+        # assemble candidates string
+        parts = []
+        for i, s in enumerate([f'[ID={i}] text="{d}"' for i,d in enumerate(disciplines)], start=0):
+            parts.append(s)
+        candidates_block = '\n'.join(parts)
+        # format template
+        try:
+            prompt = prompt_template.format(intent=audience, disciplines=json.dumps(disciplines, ensure_ascii=False), n=n, rarity=rarity, novelty=novelty, candidates=candidates_block, lang='English', yt_lang='English')
+        except Exception:
+            prompt = prompt_template
+
+        # Call LLM according to settings provider/model if available
         llm_text = None
         try:
-            from llm.ollama_client import OllamaClient
-            client = OllamaClient()
-            llm_text = client.generate_text(prompt, model='llama3.2:latest')
+            prov = provider_setting or 'ollama'
+            model = model_setting or 'llama3.2:latest'
+            if prov and prov.strip().lower() == 'ollama':
+                from llm.ollama_client import OllamaClient
+                client = OllamaClient()
+                llm_text = client.generate_text(prompt, model=model)
+            else:
+                from llm.openai_client import LLMClient
+                client = LLMClient()
+                llm_text = client.generate_text(prompt, model=model)
         except Exception:
+            # fallback try the other client
             try:
                 from llm.openai_client import LLMClient
                 client = LLMClient()
                 llm_text = client.generate_text(prompt)
             except Exception:
-                llm_text = None
+                try:
+                    from llm.ollama_client import OllamaClient
+                    client = OllamaClient()
+                    llm_text = client.generate_text(prompt, model='llama3.2:latest')
+                except Exception:
+                    llm_text = None
 
         # Fallback: generate deterministic JSON
         if not llm_text or not str(llm_text).strip():
