@@ -31,7 +31,19 @@ def _load_ui_file(ui_path: Path):
     tf = tempfile.NamedTemporaryFile(mode='w', suffix='.ui', delete=False, encoding='utf-8')
     try:
         tf.write(txt); tf.flush(); tf.close()
-        return uic.loadUi(tf.name)
+        try:
+            return uic.loadUi(tf.name)
+        except Exception as e:
+            # save problematic ui for inspection
+            try:
+                err_path = tf.name + '.failed'
+                with open(err_path, 'w', encoding='utf-8') as ef:
+                    ef.write(txt[:4000])
+            except Exception:
+                err_path = '<unavailable>'
+            import traceback
+            tb = traceback.format_exc()
+            raise RuntimeError(f'uic.loadUi failed: {e}\nSaved preview: {err_path}\nTrace:\n{tb}')
     finally:
         try:
             import os; os.unlink(tf.name)
