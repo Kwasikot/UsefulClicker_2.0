@@ -504,10 +504,17 @@ class XMLProgram:
             self.logger.info("<list> missing output_var"); return
         out_fmt = (node.get("output_format") or "list").lower()
         separator = (node.get("separator") or "\n").encode("utf-8").decode("unicode_escape")
-        # collect text: prefer attribute 'text', else element text
-        raw = node.get("text")
-        if raw is None:
-            raw = (node.text or "")
+        # collect text: prefer element body (preserves newlines) else attribute 'text'
+        raw_attr = node.get("text")
+        try:
+            # use itertext() to preserve internal newlines and avoid HTML-escaping
+            body = ''.join(t for t in node.itertext()) if hasattr(node, 'itertext') else None
+        except Exception:
+            body = None
+        if body and body.strip():
+            raw = body
+        else:
+            raw = raw_attr or (node.text or "")
         raw = _substitute_vars(raw, self.variables)
         if out_fmt == "list":
             items = [s for s in re.split(r"[\r\n]+", raw) if s.strip()]
