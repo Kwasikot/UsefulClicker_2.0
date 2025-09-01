@@ -14,6 +14,8 @@ except Exception:
 import json
 
 from core.xml_engine import XMLProgram
+import logging
+logger = logging.getLogger('usefulclicker.ui')
 
 def _load_ui_file(ui_path: Path):
     # Workaround: some .ui files produced by QtDesigner contain C++-style enum
@@ -184,6 +186,17 @@ class MainWindowWrapper:
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.refresh_state)
         self.timer.start(200)
+
+    def _log_console(self, msg: str):
+        try:
+            cur = self.win.consoleText.toPlainText()
+            self.win.consoleText.setPlainText(cur + "\n" + str(msg))
+        except Exception:
+            pass
+        try:
+            logger.info(msg)
+        except Exception:
+            pass
 
     def start_program(self):
         # create XMLProgram and start thread
@@ -549,9 +562,12 @@ class MainWindowWrapper:
                                 pass
                     except Exception:
                         pass
-        except Exception:
-            pass
+                    except Exception as e:
+                        self._log_console(f'Failed to parse settings disciplines: {e}')
+                        logger.exception('Failed to parse settings disciplines')
 
+                else:
+                    self._log_console(f'Settings file not found: {settings_path}')
         # connect buttons
         try:
             if self.cc_widgets['btnGenerate']:
@@ -979,8 +995,10 @@ class MainWindowWrapper:
                     mnode = root.find('.//llm/model')
                     if mnode is not None and mnode.get('value'):
                         model_setting = mnode.get('value')
-            except Exception:
+            except Exception as e:
                 prompt_template = None
+                self._log_console(f'Failed to load settings file for prompt/template: {e}')
+                logger.exception('Failed loading settings for prompt_template')
 
         if not prompt_template:
             # fallback inline template
@@ -1028,6 +1046,7 @@ class MainWindowWrapper:
                     llm_text = client.generate_text(prompt, model='llama3.2:latest')
                 except Exception:
                     llm_text = None
+                    self._log_console('LLM call failed for all providers (no credentials or service)')
 
         # Fallback: generate deterministic JSON
         if not llm_text or not str(llm_text).strip():
