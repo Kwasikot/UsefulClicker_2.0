@@ -1043,18 +1043,18 @@ Return ONLY a valid JSON object with this exact structure (no markdown, no comme
             return
         item = self._curiosity_items[idx]
         w = self.cc_widgets
-            try:
-                if w['editTerm']: w['editTerm'].setText(item.get('rare_term') or '')
-                if w['editConcept']: w['editConcept'].setText(item.get('concept') or '')
-                if w['editGloss']: w['editGloss'].setText(item.get('kid_gloss') or '')
-                if w['editHook']: w['editHook'].setText(item.get('hook_question') or '')
-                if w['editTask']: w['editTask'].setText(item.get('mini_task') or '')
-                if w['labelIndex']:
-                    # paginator format: current\total
-                    total = len(self._curiosity_items) if self._curiosity_items else 0
-                    w['labelIndex'].setText(f"{idx+1}\\{total}")
-            except Exception:
-                pass
+        try:
+            if w['editTerm']: w['editTerm'].setText(item.get('rare_term') or '')
+            if w['editConcept']: w['editConcept'].setText(item.get('concept') or '')
+            if w['editGloss']: w['editGloss'].setText(item.get('kid_gloss') or '')
+            if w['editHook']: w['editHook'].setText(item.get('hook_question') or '')
+            if w['editTask']: w['editTask'].setText(item.get('mini_task') or '')
+            if w['labelIndex']:
+                # paginator format: current\total
+                total = len(self._curiosity_items) if self._curiosity_items else 0
+                w['labelIndex'].setText(f"{idx+1}\\{total}")
+        except Exception:
+            pass
 
     def on_next_curiosity(self):
         if not self._curiosity_items: return
