@@ -1024,15 +1024,24 @@ class MainWindowWrapper:
         # Call LLM according to settings provider/model if available
         llm_text = None
         try:
-            prov = provider_setting or 'ollama'
+            prov = (provider_setting or 'ollama').strip().lower()
             model = model_setting or 'llama3.2:latest'
-            if prov and prov.strip().lower() == 'ollama':
+            self._log_console(f'LLM call using provider={prov} model={model}')
+            if prov == 'ollama':
                 from llm.ollama_client import OllamaClient
                 client = OllamaClient()
+                self._log_console(f'Ollama client ready (model={getattr(client, "model", model)})')
                 llm_text = client.generate_text(prompt, model=model)
-            else:
+            elif prov == 'openai':
                 from llm.openai_client import LLMClient
                 client = LLMClient()
+                self._log_console(f'OpenAI client ready (model={getattr(client, "model", model)})')
+                llm_text = client.generate_text(prompt, model=model)
+            else:
+                # try openai by default if unknown
+                from llm.openai_client import LLMClient
+                client = LLMClient()
+                self._log_console(f'OpenAI client ready (model={getattr(client, "model", model)})')
                 llm_text = client.generate_text(prompt, model=model)
         except Exception:
             # fallback try the other client
