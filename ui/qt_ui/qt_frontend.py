@@ -566,6 +566,9 @@ class MainWindowWrapper:
 
                 else:
                     self._log_console(f'Settings file not found: {settings_path}')
+        except Exception:
+            # guard against any error while populating disciplines
+            self._log_console('Unexpected error while populating disciplines from settings')
         # connect buttons
         try:
             if self.cc_widgets['btnGenerate']:
