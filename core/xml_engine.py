@@ -889,6 +889,7 @@ class XMLProgram:
         elif tagl=="focus": self.handle_focus(node)
         elif tagl=="if": self.handle_if(node)
         elif tagl=="repeat": self.handle_repeat(node)
+        elif tagl=="list": self.handle_list(node)
         elif tagl=="func": self.handle_func(node)
         elif tagl=="call": self.handle_call(node)
         elif tagl == "llmcall": self.handle_llmcall(node)
