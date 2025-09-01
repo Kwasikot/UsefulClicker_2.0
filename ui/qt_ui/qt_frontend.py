@@ -26,6 +26,12 @@ def _load_ui_file(ui_path: Path):
         txt = txt.replace('Qt::WindowModality::', '')
     if 'QAbstractItemView::SelectionMode::' in txt:
         txt = txt.replace('QAbstractItemView::SelectionMode::', '')
+    # Generic strip of C++-style qualifiers like SomeEnum::Sub::Value -> Value
+    import re
+    txt = re.sub(r"\b[A-Za-z0-9_]+::", "", txt)
+    # Replace empty enum tags which may produce None during uic processing
+    txt = re.sub(r"<enum\s*/>", "<enum>0</enum>", txt)
+    txt = re.sub(r"<enum\s*>\s*</enum>", "<enum>0</enum>", txt)
     # Use temporary file to feed uic
     import tempfile
     tf = tempfile.NamedTemporaryFile(mode='w', suffix='.ui', delete=False, encoding='utf-8')
