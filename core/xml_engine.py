@@ -404,10 +404,13 @@ class XMLProgram:
         self._sleep_ms_interruptible(ms)
 
     def handle_shell(self, node: ET.Element):
-        cmd = _substitute_vars(node.get("cmd",""), self.variables)
-        self.logger.info(f"SHELL: {cmd}")
-        try: subprocess.call(cmd, shell=True)
-        except Exception as e: self.logger.info(f"shell error: {e}")
+        # For safety: disallow execution of arbitrary shell commands from XML.
+        # This node is retained for compatibility but will not execute.
+        try:
+            cmd = node.get("cmd","")
+            self.logger.info(f"SHELL node blocked for safety; command suppressed: {cmd}")
+        except Exception:
+            self.logger.info("SHELL node blocked for safety; command suppressed")
 
     def handle_hotkey(self, node: ET.Element):
         hk = _substitute_vars(node.get("hotkey",""), self.variables)
@@ -569,7 +572,10 @@ class XMLProgram:
 
     def handle_llmcall(self, node: ET.Element):
         # параметры
-        prompt = _substitute_vars(node.get("prompt",""), self.variables)
+        # For safety: do NOT perform variable substitution inside LLM prompt
+        # declared in XML. Use the raw prompt text as authored by the user.
+        # This prevents leaking internal variables into prompts.
+        prompt = node.get("prompt","")
         out_var = node.get("output_var")
         out_fmt = (node.get("output_format") or "text").lower()
         separator = (node.get("separator") or "\n").encode("utf-8").decode("unicode_escape")
