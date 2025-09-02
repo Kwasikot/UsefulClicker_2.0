@@ -4,6 +4,16 @@
 
 **UsefulClicker** is an XML-driven clicker that automates mouse and keyboard actions, executes shell commands, calls LLM models, and supports modular extensions.
 
+IMPORTANT SECURITY NOTICE
+-------------------------
+This project has known security limitations and can be dangerous if run with untrusted XML scripts or on machines with sensitive data. In particular:
+- XML can trigger code paths that may access network, files, or external services (extnode modules).
+- Older versions executed shell commands from <shell> nodes; this is now blocked but review your environment.
+- Prompts passed to LLMs can leak internal variables if misused.
+- Running the clicker with elevated privileges (Administrator/root) increases risk substantially.
+
+Treat all XML programs as untrusted input unless they come from a trusted source. See the "Security" section below for mitigations.
+
 * * *
 
 ## 🚀 New Feature: Curiosity Drive Node
@@ -135,6 +145,24 @@ pip install -r requirements.txt
 ```
 
 Note: UsefulClicker requires Python 3.11. Please ensure your virtual environment uses Python 3.11.
+
+Security
+--------
+Known issues and risks (summary):
+
+- Remote code execution risks via XML extension nodes (<extnode>) if modules are untrusted.
+- Shell execution (<shell>) used to be allowed; it is now disabled, but old scripts may assume it.
+- Prompts sent to external LLM providers can leak local variables/paths — avoid placing secrets in XML.
+- Voice and screen capture features may record sensitive information; review privacy settings before use.
+- The UI loads .ui files and performs minor preprocessing; do not load .ui files from untrusted sources.
+
+Mitigations:
+
+- Do not run UsefulClicker as Administrator/root.
+- Only run XML programs from trusted sources and review <extnode> usages.
+- Keep API keys out of XML and environment variables under restricted permissions.
+- Review and enable OS-level network restrictions for the process where possible.
+
 
 ## Run
 run.bat
