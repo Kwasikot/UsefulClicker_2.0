@@ -74,10 +74,10 @@
         <string>RESTART</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="currentClickerItemLabel">
        <property name="geometry">
         <rect>
-         <x>470</x>
+         <x>520</x>
          <y>40</y>
          <width>561</width>
          <height>51</height>
@@ -110,7 +110,7 @@
     <item row="1" column="0">
      <widget class="QTabWidget" name="CuriosityNodeSettings">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="XMLTab">
        <attribute name="title">
