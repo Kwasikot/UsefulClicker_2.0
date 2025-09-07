@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 import sys, os, re, time, math, random, logging, subprocess, importlib, threading, platform
@@ -157,7 +156,7 @@ class XMLProgram:
         self.variables: Dict[str, Any] = {}
         self.functions: Dict[str, ET.Element] = {}
         # Start the engine in paused mode so UI/runner can inspect before resuming
-        self.paused = True
+        self.paused = False
         self.skip_wait = False
         self._last_ctrlspace = False
         self._hotkeys_started = False
@@ -188,7 +187,7 @@ class XMLProgram:
         self.variables.setdefault("SCREEN_W", 1920)
         self.variables.setdefault("SCREEN_H", 1080)
 
-        self._load_xml()
+        #self._load_xml()
         # ensure UI shows initial paused state
         try:
             self.logger.info("PAUSE ON (initial)")
@@ -442,8 +441,8 @@ class XMLProgram:
         text = _substitute_vars(node.get("text",""), self.variables)
         self.logger.info(f"TYPE mode={mode} text='{text[:30]}'")
         # suppress hotkeys briefly to avoid synthetic key events triggering hotkey handlers
-        try: self._suppress_hotkeys_for(0.6)
-        except Exception: pass
+        #try: self._suppress_hotkeys_for(0.6)
+        #except Exception: pass
         _type_text(text, mode=mode)
 
     def handle_click(self, node: ET.Element):
@@ -462,8 +461,8 @@ class XMLProgram:
             rx = random.randint(min(x1,x2), max(x1,x2))
             ry = random.randint(min(y1,y2), max(y1,y2))
             self.logger.info(f"CLICK area={vals} -> ({rx},{ry})")
-            try: self._suppress_hotkeys_for(0.6)
-            except Exception: pass
+            #try: self._suppress_hotkeys_for(0.6)
+            #except Exception: pass
             _click_xy(rx, ry, button=btn)
         else:
             xs = _substitute_vars(node.get("x","0"), self.variables)
@@ -474,8 +473,8 @@ class XMLProgram:
             except Exception:
                 x = int(float(xs)); y = int(float(ys))
             self.logger.info(f"CLICK ({x},{y})")
-            try: self._suppress_hotkeys_for(0.6)
-            except Exception: pass
+            #try: self._suppress_hotkeys_for(0.6)
+            #except Exception: pass
             _click_xy(x,y,button=btn)
 
     def handle_focus(self, node: ET.Element):
@@ -947,6 +946,12 @@ class XMLProgram:
             for ch in list(node): self._exec_node(ch)
 
     def run(self):
+        # Load XML and initialize screen defaults and hotkeys
+        self._load_xml()
+        try:
+            self._suppress_hotkeys_for(0)
+        except Exception:
+            pass
         self.logger.info("RUN start")
         try:
             for node in list(self.tree):
