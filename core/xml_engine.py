@@ -248,13 +248,18 @@ class XMLProgram:
             pass
         if keyboard is None: return
         try:
-            if keyboard.is_pressed("ctrl") and keyboard.is_pressed("n"):
-                self.skip_wait = True
-            pressed = keyboard.is_pressed("ctrl") and keyboard.is_pressed("space")
-            if pressed and not self._last_ctrlspace:
-                self._toggle_pause(); self._last_ctrlspace=True
-            if not pressed and self._last_ctrlspace:
-                self._last_ctrlspace=False
+            # If fallback hotkeys (keyboard.add_hotkey) have been started in a
+            # separate thread, avoid inline polling toggles to prevent double
+            # toggles caused by both mechanisms. Use inline polling only if no
+            # fallback hotkeys are active.
+            if not self._hotkeys_started:
+                if keyboard.is_pressed("ctrl") and keyboard.is_pressed("n"):
+                    self.skip_wait = True
+                pressed = keyboard.is_pressed("ctrl") and keyboard.is_pressed("space")
+                if pressed and not self._last_ctrlspace:
+                    self._toggle_pause(); self._last_ctrlspace=True
+                if not pressed and self._last_ctrlspace:
+                    self._last_ctrlspace=False
         except Exception:
             pass
 
