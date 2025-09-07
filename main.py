@@ -29,12 +29,6 @@ def main():
             except Exception as e:
                 print(f"Failed to start UI '{args.ui}': {e}")
     prog = XMLProgram(xml_path, debug=args.debug, log_path=log_path)
-    # Ensure program starts paused when run from console so user can inspect state
-    try:
-        prog.paused = True
-        print('[main] XMLProgram started in PAUSED mode. Use hotkeys or UI to resume.')
-    except Exception:
-        pass
     prog.run()
 if __name__ == "__main__":
     main()
