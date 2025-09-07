@@ -20,7 +20,7 @@
 	  <type mode="type" text="https://www.youtube.com/results?search_query=${arg0|url}"/>
 	  <wait ms="150"/>
 	  <hotkey hotkey="enter"/>
-	  <wait ms="1500"/>
+	  <wait ms="2500"/>
 	  
 	  <!-- Случайный скролл вниз 3..7 раз -->
 		<repeat times="randint(3,7)">
