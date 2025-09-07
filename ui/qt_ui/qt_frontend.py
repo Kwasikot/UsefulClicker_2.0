@@ -204,6 +204,11 @@ class MainWindowWrapper:
     def start_program(self):
         # create XMLProgram and start thread
         self.prog = XMLProgram(self.current_xml_path)
+        # unpause engine to run immediately
+        try:
+            self.prog.paused = False
+        except Exception:
+            pass
         self.worker = ProgramThread(self.prog, on_finish=self.on_thread_finish)
         self.worker.start()
 
@@ -332,6 +337,13 @@ class MainWindowWrapper:
         except Exception:
             # fallback: ensure nothing crashes if dialog fails
             return
+
+        # After loading XML, start the clicker program
+        try:
+            self.start_program()
+            self._log_console(f"Program started: {self.current_xml_path}")
+        except Exception as e:
+            self._log_console(f"Failed to start program: {e}")
 
     def save_xml(self):
         # save contents of xmlEditor to current file
