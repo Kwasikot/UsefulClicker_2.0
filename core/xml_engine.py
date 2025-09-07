@@ -168,6 +168,14 @@ class XMLProgram:
         self.restart_requested = False
         # Flag to signal program exit via hotkey
         self.exit_flag = False
+        # timestamp until which hotkey handling (external) should be suppressed
+        self._suppress_hotkeys_until = 0.0
+
+    def _suppress_hotkeys_for(self, seconds: float):
+        try:
+            self._suppress_hotkeys_until = time.monotonic() + float(seconds)
+        except Exception:
+            self._suppress_hotkeys_until = time.monotonic() + 0.5
 
         # Screen defaults
         try:
@@ -224,6 +232,13 @@ class XMLProgram:
         self.restart_requested = True
 
     def _toggle_pause(self):
+        # ignore toggle requests if we suppressed hotkeys recently
+        try:
+            if time.monotonic() < getattr(self, '_suppress_hotkeys_until', 0):
+                self.logger.info('PAUSE toggle suppressed (recent automated action)')
+                return
+        except Exception:
+            pass
         self.paused = not self.paused
         self.logger.info(f"PAUSE {'ON' if self.paused else 'OFF'}")
 
@@ -426,6 +441,9 @@ class XMLProgram:
         mode = node.get("mode","type")
         text = _substitute_vars(node.get("text",""), self.variables)
         self.logger.info(f"TYPE mode={mode} text='{text[:30]}'")
+        # suppress hotkeys briefly to avoid synthetic key events triggering hotkey handlers
+        try: self._suppress_hotkeys_for(0.6)
+        except Exception: pass
         _type_text(text, mode=mode)
 
     def handle_click(self, node: ET.Element):
@@ -444,6 +462,8 @@ class XMLProgram:
             rx = random.randint(min(x1,x2), max(x1,x2))
             ry = random.randint(min(y1,y2), max(y1,y2))
             self.logger.info(f"CLICK area={vals} -> ({rx},{ry})")
+            try: self._suppress_hotkeys_for(0.6)
+            except Exception: pass
             _click_xy(rx, ry, button=btn)
         else:
             xs = _substitute_vars(node.get("x","0"), self.variables)
@@ -454,6 +474,8 @@ class XMLProgram:
             except Exception:
                 x = int(float(xs)); y = int(float(ys))
             self.logger.info(f"CLICK ({x},{y})")
+            try: self._suppress_hotkeys_for(0.6)
+            except Exception: pass
             _click_xy(x,y,button=btn)
 
     def handle_focus(self, node: ET.Element):
