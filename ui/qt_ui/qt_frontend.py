@@ -102,6 +102,8 @@ class MainWindowWrapper:
         # cached lists to keep UI stable if other code clears widgets
         self._cached_disciplines = []
         self._cached_subtopics = {}
+        # name of foreach list variable (for current/next display)
+        self._foreach_list_name = None
 
         # Wire basic controls
         self.win.playButton.clicked.connect(self.on_play_pause)
@@ -147,6 +149,11 @@ class MainWindowWrapper:
                 btn.clicked.connect(self.on_load_program_clicked)
             except Exception:
                 pass
+        # connect nextButton to skip (ctrl+N behavior)
+        try:
+            self.win.nextButton.clicked.connect(self.on_next)
+        except Exception:
+            pass
 
         # CuriosityCatalyst tab wiring: schedule init after event loop to ensure widgets exist
         try:
@@ -291,6 +298,27 @@ class MainWindowWrapper:
                         pass
         except Exception:
             pass
+        # update currentClickerItemLabel for foreach list elements
+        try:
+            flist = getattr(self, '_foreach_list_name', None)
+            if flist and self.prog:
+                items = self.prog.variables.get(flist)
+                idx = self.prog.variables.get('index')
+                if isinstance(items, (list, tuple)) and isinstance(idx, int):
+                    cur = items[idx] if 0 <= idx < len(items) else ''
+                    nxt = items[(idx + 1) % len(items)] if len(items) > 0 else ''
+                    html = (
+                        f'<html><head/><body>'
+                        f'<p><span style=" font-size:10pt; font-weight:700; color:#9ece1b;">Now: {cur}</span></p>'
+                        f'<p><span style=" font-size:10pt; font-weight:700; color:#9ece1b;">Next: {nxt}</span></p>'
+                        f'</body></html>'
+                    )
+                    try:
+                        self.win.currentClickerItemLabel.setText(html)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
         # Ensure discipline/subtopics lists stay populated (repair if cleared externally)
         try:
             dlw = getattr(self.win, 'disciplinesList', None)
@@ -389,6 +417,17 @@ class MainWindowWrapper:
         except Exception:
             self.parsed_tree = None
         self.populate_tree()
+        # detect foreach list for clicker program (for current/next display)
+        try:
+            self._foreach_list_name = None
+            if self.parsed_tree is not None:
+                for n in self.parsed_tree.findall('.//foreach'):
+                    ln = n.get('list')
+                    if ln:
+                        self._foreach_list_name = ln
+                        break
+        except Exception:
+            self._foreach_list_name = None
         # initialize CuriosityNode controls if present in XML
         try:
             has_cur = False
