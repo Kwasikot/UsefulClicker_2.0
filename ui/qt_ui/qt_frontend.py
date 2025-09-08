@@ -659,7 +659,10 @@ class MainWindowWrapper:
             pass
 
     def populate_tree(self):
-        tw = self.win.treeWidget
+        # If no treeWidget in UI (widget removed), skip populating tree
+        tw = getattr(self.win, 'treeWidget', None)
+        if tw is None:
+            return
         tw.clear()
         if not getattr(self, 'parsed_tree', None):
             return
