@@ -2,6 +2,10 @@
 
 ## 🔹 UsefulClicker
 
+<br><img src="http://github.com/Kwasikot/UsefulClicker_2.0/blob/main/images/Dunning-Kruger%20Journey%20with%20UsefulClicker%20Robot.png" alt="Graph" width="600">
+
+
+
 **UsefulClicker** is an XML-driven clicker that automates mouse and keyboard actions, executes shell commands, calls LLM models, and supports modular extensions.
 
 IMPORTANT SECURITY NOTICE
