@@ -147,35 +147,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QTreeWidget" name="treeWidget">
-            <column>
-             <property name="text">
-              <string>1</string>
-             </property>
-            </column>
-            <item>
-             <property name="text">
-              <string>1</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>2</string>
-              </property>
-             </item>
-            </item>
-            <item>
-             <property name="text">
-              <string>2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>3</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
            <widget class="QTextEdit" name="xmlEditor">
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -254,71 +225,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <attribute name="title">
         <string>CuriosityNode</string>
        </attribute>
-       <widget class="QCheckBox" name="checkRandomDisciplines">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>286</y>
-          <width>231</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Select random disciplines</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>320</y>
-          <width>151</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>science_terms_list</string>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="termsList">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>340</y>
-          <width>381</width>
-          <height>241</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>1</string>
-         </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="1" column="0">
+         <widget class="QToolButton" name="plusButton">
+          <property name="text">
+           <string>+</string>
+          </property>
+         </widget>
         </item>
-        <item>
-         <property name="text">
-          <string>2</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>New Item</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QTextBrowser" name="raw_llm_output_textarea">
-        <property name="geometry">
-         <rect>
-          <x>420</x>
-          <y>340</y>
-          <width>541</width>
-          <height>241</height>
-         </rect>
-        </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <item row="5" column="4" colspan="2">
+         <widget class="QTextBrowser" name="raw_llm_output_textarea">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
@@ -331,149 +249,134 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3. Synthetic genomics for biofuels production: Scientists are exploring the use of synthetic biology techniques to design novel microorganisms capable of producing high-performance biofuels.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>430</x>
-          <y>310</y>
-          <width>241</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>RAW LLM OUTPUT</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="regenerateButton">
-        <property name="geometry">
-         <rect>
-          <x>900</x>
-          <y>20</y>
-          <width>171</width>
-          <height>111</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Regenerate list</string>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="plusButton">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>250</y>
-          <width>41</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>+</string>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="minusButton">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>250</y>
-          <width>41</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
-       <widget class="QToolButton" name="clearButton">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>250</y>
-          <width>101</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>clear</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>20</y>
-          <width>321</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <widget class="QLabel" name="label_2">
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
+         <widget class="QCheckBox" name="checkRandomDisciplines">
+          <property name="text">
+           <string>Select random disciplines</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>disciplines</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="disciplinesList">
+            <item>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="2">
+         <widget class="QToolButton" name="clearButton">
+          <property name="text">
+           <string>clear</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="3">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>science_terms_list</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="minusButton">
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="4">
+         <widget class="QListWidget" name="termsList">
+          <item>
            <property name="text">
-            <string>disciplines</string>
+            <string>1</string>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="disciplinesList">
-           <item>
-            <property name="text">
-             <string>1</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>2</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>New Item</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="layoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>20</y>
-          <width>501</width>
-          <height>221</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QLabel" name="label_3">
+          </item>
+          <item>
            <property name="text">
-            <string>subtopics</string>
+            <string>2</string>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="subtopicsList">
-           <item>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="3" colspan="2">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>1</string>
+             <string>subtopics</string>
             </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>2</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>New Item</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="subtopicsList">
+            <item>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="4" rowspan="2" colspan="2">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>RAW LLM OUTPUT</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QPushButton" name="regenerateButton">
+          <property name="text">
+           <string>Regenerate list</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="CuriosityCatalystTab">
        <attribute name="title">
