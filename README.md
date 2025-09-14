@@ -2,7 +2,7 @@
 
 ## 🔹 UsefulClicker
 
-<br><img src="http://github.com/Kwasikot/UsefulClicker_2.0/blob/main/images/Dunning-Kruger%20Journey%20with%20UsefulClicker%20Robot.png" alt="Graph" width="600">
+<br><img src="https://github.com/Kwasikot/UsefulClicker_2.0/blob/main/images/Dunning-Kruger%20Journey%20with%20UsefulClicker%20Robot.png?raw=true" alt="Graph" width="600">
 
 
 
