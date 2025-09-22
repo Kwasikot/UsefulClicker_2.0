@@ -217,6 +217,71 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QGroupBox" name="editorPanelGB">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Editor panel</string>
+            </property>
+            <widget class="QPushButton" name="addClickButton">
+             <property name="geometry">
+              <rect>
+               <x>30</x>
+               <y>50</y>
+               <width>111</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Add click</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="mouseCoordinatesLabel">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>60</y>
+               <width>191</width>
+               <height>20</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Mouse coordinates:</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="addHotkeyButton">
+             <property name="geometry">
+              <rect>
+               <x>30</x>
+               <y>110</y>
+               <width>111</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Add hotkey</string>
+             </property>
+            </widget>
+            <widget class="QPlainTextEdit" name="pressAKeyTB">
+             <property name="geometry">
+              <rect>
+               <x>164</x>
+               <y>116</y>
+               <width>131</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="plainText">
+              <string>press a key...</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
