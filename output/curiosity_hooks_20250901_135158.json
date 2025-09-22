@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "high",
+    "novelty": "fresh",
+    "discipline_pool": [
+      "Astronomy",
+      "Botany",
+      "Physics",
+      "Chemistry",
+      "Mathematics"
+    ],
+    "picked_discipline": "Botany",
+    "n": 3,
+    "timestamp": "2023-10-24T10:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Carnivorous Plants",
+      "rare_term": "digestive enzymes",
+      "kid_gloss": "Plants that eat insects!",
+      "hook_question": "How do plants digest insects?",
+      "mini_task": "Draw a Venus flytrap catching a bug.",
+      "yt_query": "carnivorous plants"
+    },
+    {
+      "concept": "Photosynthesis",
+      "rare_term": "chlorophyll",
+      "kid_gloss": "How plants make food from sunlight.",
+      "hook_question": "Can plants live without sunlight?",
+      "mini_task": "Observe how leaves turn towards sunlight.",
+      "yt_query": "photosynthesis process"
+    },
+    {
+      "concept": "Plant Communication",
+      "rare_term": "allelopathy",
+      "kid_gloss": "How plants talk to each other.",
+      "hook_question": "Do plants warn each other of danger?",
+      "mini_task": "Research which plants can affect others' growth.",
+      "yt_query": "plant communication"
+    }
+  ]
+}

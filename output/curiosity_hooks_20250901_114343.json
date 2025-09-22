@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "audience": "teens",
+    "rarity": "rare — Niche, specialized vocabulary; include a short gloss/definition.",
+    "novelty": "low",
+    "discipline_pool": [
+      "Astrophysics"
+    ],
+    "picked_discipline": "Astrophysics",
+    "n": 12,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "Black Holes and Time Dilation",
+      "rare_term": "Gravitational Lensing",
+      "kid_gloss": "A phenomenon where the bending of light around a massive object can create a false image or Einstein Ring.",
+      "hook_question": "Can you escape a black hole's gravitational pull?",
+      "mini_task": "Design an experiment to test the effects of gravitational lensing on starlight.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Search for Extraterrestrial Intelligence (SETI)",
+      "rare_term": "Arecibo Message",
+      "kid_gloss": "A mathematical and scientific message sent into space in 1974 to potentially communicate with extraterrestrial life.",
+      "hook_question": "Can we really detect signals from other civilizations?",
+      "mini_task": "Decode a simplified version of the Arecibo Message for a hypothetical alien civilization.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Stellar Evolution and the Life Cycle of Stars",
+      "rare_term": "Thermohaline Circulation",
+      "kid_gloss": "A global ocean circulation system that helps regulate Earth's climate by transporting heat around the globe.",
+      "hook_question": "How do stars like our sun get their energy?",
+      "mini_task": "Create a diagram illustrating the thermohaline circulation and its impact on climate change.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Cosmic Rays and Particle Acceleration",
+      "rare_term": "Pomme de Terre",
+      "kid_gloss": "A type of cosmic ray that originates from the Earth's crust and atmosphere.",
+      "hook_question": "What is the source of cosmic rays?",
+      "mini_task": "Simulate a particle accelerator to study the effects of cosmic rays on matter.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Dark Matter and Dark Energy",
+      "rare_term": "Galaxy Rotation Curves",
+      "kid_gloss": "A graphical representation showing how stars orbit around galaxies, often used to detect dark matter.",
+      "hook_question": "What is the nature of dark matter?",
+      "mini_task": "Analyze a galaxy rotation curve to determine if it contains dark matter.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Planetary Atmospheres and Climate Change",
+      "rare_term": "Thermal Tides",
+      "kid_gloss": "Ocean tides caused by the gravitational pull of celestial bodies, affecting planetary atmospheres.",
+      "hook_question": "How do atmospheric changes impact planetary climates?",
+      "mini_task": "Design a climate model to study the effects of thermal tides on a hypothetical planet.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Gravitational Waves and Black Hole Mergers",
+      "rare_term": "Hawking Radiation",
+      "kid_gloss": "A theoretical prediction that black holes emit radiation due to quantum effects.",
+      "hook_question": "Can we detect gravitational waves from black hole mergers?",
+      "mini_task": "Simulate a binary black hole merger and analyze the resulting gravitational wave signature.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Search for Dark Energy",
+      "rare_term": "Baryon Acoustic Oscillations (BAOs)",
+      "kid_gloss": "A feature in the large-scale structure of the universe, used as a cosmic ruler to measure distances and expansion rates.",
+      "hook_question": "How do scientists detect dark energy?",
+      "mini_task": "Analyze BAO data to estimate the expansion history of the universe.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Stellar Nurseries and Star Formation",
+      "rare_term": "Molecular Clouds",
+      "kid_gloss": "Dense regions in space filled with gas and dust, where new stars form.",
+      "hook_question": "How do molecular clouds give birth to new stars?",
+      "mini_task": "Design an experiment to study the formation of molecular clouds in a star-forming region.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Life Cycle of Neutron Stars",
+      "rare_term": "Magnetars",
+      "kid_gloss": "A type of neutron star characterized by extremely strong magnetic fields.",
+      "hook_question": "What happens to a neutron star after it cools down?",
+      "mini_task": "Model the cooling process of a magnetar, predicting its eventual decay into a black dwarf.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Cosmic Microwave Background Radiation",
+      "rare_term": "CMB Anisotropies",
+      "kid_gloss": "Small variations in temperature and polarization across the sky, providing clues about the universe's structure and evolution.",
+      "hook_question": "Can we use CMB anisotropies to test models of dark matter?",
+      "mini_task": "Analyze simulated CMB data to identify patterns indicative of dark matter effects.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Supernovae and the Formation of Heavy Elements",
+      "rare_term": "Neutron-Capture Process (NCP)",
+      "kid_gloss": "A nuclear reaction mechanism responsible for creating heavy elements during explosive supernovae.",
+      "hook_question": "How do supernovae enrich the universe with heavy elements?",
+      "mini_task": "Simulate the NCP in a supernova explosion, predicting the resulting element composition.",
+      "yt_query": ""
+    }
+  ]
+}

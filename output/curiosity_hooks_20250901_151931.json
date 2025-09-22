@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "audience": "teens",
+    "rarity": "rare — Niche, specialized vocabulary; include a short gloss/definition.",
+    "novelty": "mid",
+    "discipline_pool": [
+      "Media Studies",
+      "Architecture",
+      "Migration Studies",
+      "Biomedical Engineering",
+      "Literary Theory"
+    ],
+    "n": 10,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "The Role of Sound in Film",
+      "rare_term": "diegesis",
+      "kid_gloss": "Sounds within a movie's world.",
+      "hook_question": "How do sound effects change movie experiences?",
+      "mini_task": "Watch a silent film and add sounds.",
+      "yt_query": "sound in film"
+    },
+    {
+      "concept": "Representation in Media",
+      "rare_term": "intersectionality",
+      "kid_gloss": "Multiple social identities overlap.",
+      "hook_question": "How does media portray different cultures?",
+      "mini_task": "List diverse characters in a favorite show.",
+      "yt_query": "media representation"
+    },
+    {
+      "concept": "The Influence of Social Media",
+      "rare_term": "algorithm",
+      "kid_gloss": "A set of rules for tasks.",
+      "hook_question": "How do social media platforms decide what you see?",
+      "mini_task": "Track your feed's changes over a week.",
+      "yt_query": "social media algorithms"
+    },
+    {
+      "concept": "Media and Reality",
+      "rare_term": "simulacrum",
+      "kid_gloss": "A copy without an original.",
+      "hook_question": "Can media distort reality?",
+      "mini_task": "Create a collage of media images.",
+      "yt_query": "media reality distortion"
+    },
+    {
+      "concept": "The Evolution of Television",
+      "rare_term": "syndication",
+      "kid_gloss": "Selling TV shows to multiple markets.",
+      "hook_question": "How has TV changed over the decades?",
+      "mini_task": "Research the first color TV show.",
+      "yt_query": "history of television"
+    },
+    {
+      "concept": "Advertising Techniques",
+      "rare_term": "subliminal messaging",
+      "kid_gloss": "Hidden messages in ads.",
+      "hook_question": "Can ads influence us subconsciously?",
+      "mini_task": "Identify hidden messages in ads.",
+      "yt_query": "subliminal advertising"
+    },
+    {
+      "concept": "News and Bias",
+      "rare_term": "framing effect",
+      "kid_gloss": "Presentation influences perception.",
+      "hook_question": "How do news headlines affect opinions?",
+      "mini_task": "Compare headlines from different sources.",
+      "yt_query": "news bias examples"
+    },
+    {
+      "concept": "Virtual Reality in Media",
+      "rare_term": "immersion",
+      "kid_gloss": "Being deeply involved in something.",
+      "hook_question": "How does VR change storytelling?",
+      "mini_task": "Try a VR experience or simulation.",
+      "yt_query": "virtual reality stories"
+    },
+    {
+      "concept": "Media Literacy",
+      "rare_term": "critical consumption",
+      "kid_gloss": "Thoughtfully analyzing information.",
+      "hook_question": "Why is it important to question media?",
+      "mini_task": "Discuss a news article with friends.",
+      "yt_query": "media literacy skills"
+    },
+    {
+      "concept": "The Impact of Memes",
+      "rare_term": "virality",
+      "kid_gloss": "Rapid spread online.",
+      "hook_question": "Why do some memes become so popular?",
+      "mini_task": "Create and share your own meme.",
+      "yt_query": "viral memes explained"
+    }
+  ]
+}

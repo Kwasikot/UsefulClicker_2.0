@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "common",
+    "novelty": "fresh",
+    "discipline_pool": [
+      "biology",
+      "astronomy",
+      "mathematics",
+      "linguistics",
+      "chemistry"
+    ],
+    "picked_discipline": "astronomy",
+    "n": 1,
+    "timestamp": "2023-11-01T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Black Holes",
+      "rare_term": "event horizon",
+      "kid_gloss": "A place where gravity traps light.",
+      "hook_question": "What happens if you fall into a black hole?",
+      "mini_task": "Create a gravity well using a stretched sheet and marbles.",
+      "yt_query": "Black holes explained"
+    }
+  ]
+}

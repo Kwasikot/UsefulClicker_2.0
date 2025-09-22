@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "light",
+    "novelty": "low",
+    "discipline_pool": [
+      "Communication Studies",
+      "Demography",
+      "Econometrics",
+      "Medicine",
+      "Paleontology"
+    ],
+    "n": 10,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "Dinosaur Extinction",
+      "rare_term": "Cretaceous-Paleogene",
+      "kid_gloss": "Why did dinosaurs disappear?",
+      "hook_question": "What do you think killed the dinosaurs?",
+      "mini_task": "Draw your favorite dinosaur.",
+      "yt_query": "dinosaur extinction"
+    },
+    {
+      "concept": "Fossil Formation",
+      "rare_term": "Petrification",
+      "kid_gloss": "How are fossils made?",
+      "hook_question": "How do bones turn into rocks?",
+      "mini_task": "Find a rock and imagine it's a fossil.",
+      "yt_query": "how fossils form"
+    },
+    {
+      "concept": "Dinosaur Eggs",
+      "rare_term": null,
+      "kid_gloss": "What did dinosaur eggs look like?",
+      "hook_question": "How big were dinosaur eggs?",
+      "mini_task": "Draw a dinosaur egg.",
+      "yt_query": "dinosaur eggs"
+    },
+    {
+      "concept": "Tyrannosaurus Rex",
+      "rare_term": null,
+      "kid_gloss": "How big was the T. Rex?",
+      "hook_question": "Why is T. Rex so famous?",
+      "mini_task": "Roar like a T. Rex.",
+      "yt_query": "T. Rex facts"
+    },
+    {
+      "concept": "Dinosaur Diets",
+      "rare_term": "Herbivore",
+      "kid_gloss": "What did dinosaurs eat?",
+      "hook_question": "Which dinosaurs ate plants?",
+      "mini_task": "List three plant-eating dinosaurs.",
+      "yt_query": "dinosaur diets"
+    },
+    {
+      "concept": "Pterosaurs",
+      "rare_term": null,
+      "kid_gloss": "Did flying dinosaurs exist?",
+      "hook_question": "What were the flying reptiles called?",
+      "mini_task": "Make a paper pterosaur.",
+      "yt_query": "flying dinosaurs"
+    },
+    {
+      "concept": "Stegosaurus Plates",
+      "rare_term": null,
+      "kid_gloss": "Why did Stegosaurus have plates?",
+      "hook_question": "Why are Stegosaurus plates special?",
+      "mini_task": "Draw a Stegosaurus.",
+      "yt_query": "Stegosaurus facts"
+    },
+    {
+      "concept": "Dinosaur Sounds",
+      "rare_term": "Vocalization",
+      "kid_gloss": "What sounds did dinosaurs make?",
+      "hook_question": "Did dinosaurs roar like in movies?",
+      "mini_task": "Make a dinosaur sound.",
+      "yt_query": "dinosaur sounds"
+    },
+    {
+      "concept": "Triceratops Horns",
+      "rare_term": null,
+      "kid_gloss": "Why did Triceratops have horns?",
+      "hook_question": "How many horns did Triceratops have?",
+      "mini_task": "Make a horn hat.",
+      "yt_query": "Triceratops horns"
+    },
+    {
+      "concept": "Dinosaur Names",
+      "rare_term": "Nomenclature",
+      "kid_gloss": "How do dinosaurs get their names?",
+      "hook_question": "What does Tyrannosaurus Rex mean?",
+      "mini_task": "Invent a dinosaur name.",
+      "yt_query": "dinosaur names"
+    }
+  ]
+}

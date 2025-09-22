@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "audience": "curious minds",
+    "rarity": "uncommon",
+    "novelty": "high",
+    "discipline_pool": [
+      "Physics",
+      "Biology",
+      "Chemistry",
+      "Astronomy"
+    ],
+    "picked_discipline": "Astronomy",
+    "n": 1,
+    "timestamp": "2023-10-15T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Exoplanet Atmospheres",
+      "rare_term": "Spectroscopy",
+      "kid_gloss": "Air around planets far away.",
+      "hook_question": "How do we know what distant planets' atmospheres are made of?",
+      "mini_task": "Create a model of an exoplanet atmosphere using colored layers.",
+      "yt_query": "exoplanet atmospheres"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "Astronomy",
+      "Botany",
+      "Zoology",
+      "Physics",
+      "Chemistry"
+    ],
+    "picked_discipline": "Botany",
+    "n": 3,
+    "timestamp": "2023-11-02T10:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Carnivorous Plants",
+      "rare_term": "Phytotelmata",
+      "kid_gloss": "Plants that eat insects.",
+      "hook_question": "Why do some plants eat insects?",
+      "mini_task": "Draw a picture of a Venus Flytrap.",
+      "yt_query": "Carnivorous plants"
+    },
+    {
+      "concept": "Photosynthesis",
+      "rare_term": "Chlorophyll",
+      "kid_gloss": "How plants make their food.",
+      "hook_question": "Why are leaves usually green?",
+      "mini_task": "Watch a leaf change color in water.",
+      "yt_query": "Photosynthesis process"
+    },
+    {
+      "concept": "Plant Communication",
+      "rare_term": "Volatile Organic Compounds",
+      "kid_gloss": "How plants talk to each other.",
+      "hook_question": "Can plants warn each other of danger?",
+      "mini_task": "Observe how plants react to touch.",
+      "yt_query": "Plant communication"
+    }
+  ]
+}

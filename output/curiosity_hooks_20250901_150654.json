@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "moderate",
+    "novelty": "medium",
+    "discipline_pool": [
+      "Astronomy",
+      "Biology",
+      "Chemistry",
+      "Physics",
+      "Geology"
+    ],
+    "picked_discipline": "Geology",
+    "n": 3,
+    "timestamp": "2023-10-25T14:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "plate tectonics",
+      "rare_term": "subduction zone",
+      "kid_gloss": "Earth's plates move and shape the land.",
+      "hook_question": "How do mountains form from Earth's moving plates?",
+      "mini_task": "Create a model with clay showing plate movements.",
+      "yt_query": "plate tectonics animation"
+    },
+    {
+      "concept": "volcanic eruptions",
+      "rare_term": "pyroclastic flow",
+      "kid_gloss": "Volcanoes erupt with hot lava and ash.",
+      "hook_question": "What happens inside a volcano before it erupts?",
+      "mini_task": "Make a volcano using baking soda and vinegar.",
+      "yt_query": "volcano eruption experiment"
+    },
+    {
+      "concept": "fossil formation",
+      "rare_term": "petrification",
+      "kid_gloss": "Fossils are ancient remains turned to stone.",
+      "hook_question": "How does an animal become a fossil?",
+      "mini_task": "Bury a leaf in mud to simulate fossil creation.",
+      "yt_query": "how fossils form"
+    }
+  ]
+}

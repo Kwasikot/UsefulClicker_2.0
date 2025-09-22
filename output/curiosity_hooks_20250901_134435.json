@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "moderate",
+    "novelty": "high",
+    "discipline_pool": [
+      "biology",
+      "astronomy",
+      "psychology",
+      "economics"
+    ],
+    "picked_discipline": "astronomy",
+    "n": 3,
+    "timestamp": "2023-11-01T09:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "dark matter",
+      "rare_term": "WIMP",
+      "kid_gloss": "Invisible matter we can't see.",
+      "hook_question": "What if everything you see is just a small part of the universe?",
+      "mini_task": "Look at the night sky and imagine what's invisible.",
+      "yt_query": "dark matter explained"
+    },
+    {
+      "concept": "black holes",
+      "rare_term": "event horizon",
+      "kid_gloss": "Powerful space holes that pull everything in.",
+      "hook_question": "Could we ever escape a black hole?",
+      "mini_task": "Create a small model using a ball and fabric to mimic gravity.",
+      "yt_query": "black holes for kids"
+    },
+    {
+      "concept": "exoplanets",
+      "rare_term": "habitable zone",
+      "kid_gloss": "Planets around other stars.",
+      "hook_question": "Is there life on planets outside our solar system?",
+      "mini_task": "Make a list of what makes a planet livable.",
+      "yt_query": "what are exoplanets"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<program>
+
+	<repeat times="randint(100,200)">
+	  <click button="left" x="206" y="579" />
+	  <wait ms="150"/>
+	  <hotkey hotkey="up"/>
+	  <wait ms="150"/>
+	  <hotkey hotkey="enter"/>
+	  <wait ms="150"/>
+	  <hotkey hotkey="enter"/>
+	  <wait ms="1500"/>
+	  
+
+	</repeat>
+
+
+
+
+
+
+
+
+
+</program>

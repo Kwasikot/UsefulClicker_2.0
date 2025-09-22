@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "audience": "curiosity-driven",
+    "rarity": "high",
+    "novelty": "medium",
+    "discipline_pool": [
+      "astrophysics",
+      "genetics",
+      "neuroscience"
+    ],
+    "picked_discipline": "neuroscience",
+    "n": 3,
+    "timestamp": "2023-10-26T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Brain Plasticity",
+      "rare_term": "synaptic pruning",
+      "kid_gloss": "The brain changes as you learn.",
+      "hook_question": "How does your brain adapt when you learn new things?",
+      "mini_task": "Try learning a new skill, like juggling.",
+      "yt_query": "brain plasticity explained"
+    },
+    {
+      "concept": "Mirror Neurons",
+      "rare_term": "empathy neurons",
+      "kid_gloss": "These neurons help us understand others.",
+      "hook_question": "Why do you feel excited when others do?",
+      "mini_task": "Watch someone dance and try to mimic them.",
+      "yt_query": "mirror neurons in action"
+    },
+    {
+      "concept": "Circadian Rhythms",
+      "rare_term": "suprachiasmatic nucleus",
+      "kid_gloss": "Your body clock controls sleep.",
+      "hook_question": "Why do you feel sleepy at night?",
+      "mini_task": "Track your sleep schedule for a week.",
+      "yt_query": "circadian rhythms explained"
+    }
+  ]
+}

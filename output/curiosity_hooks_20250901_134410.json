@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "audience": "child",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "Astronomy",
+      "Biology",
+      "Chemistry",
+      "Physics"
+    ],
+    "picked_discipline": "Astronomy",
+    "n": 1,
+    "timestamp": "2023-11-04T15:30:00Z"
+  },
+  "items": [
+    {
+      "concept": "Stars and Constellations",
+      "rare_term": "asterism",
+      "kid_gloss": "Stars form shapes in the sky.",
+      "hook_question": "Why do some stars seem to form patterns?",
+      "mini_task": "Draw a constellation and invent a story about it.",
+      "yt_query": "star constellations for kids"
+    }
+  ]
+}
