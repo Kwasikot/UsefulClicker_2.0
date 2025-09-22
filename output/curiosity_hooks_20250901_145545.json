@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "astronomy",
+      "biology",
+      "chemistry",
+      "physics",
+      "mathematics"
+    ],
+    "picked_discipline": "biology",
+    "n": 1,
+    "timestamp": "2023-11-04T13:50:00Z"
+  },
+  "items": [
+    {
+      "concept": "Symbiosis",
+      "rare_term": "Mutualism",
+      "kid_gloss": "Living together helps both organisms.",
+      "hook_question": "How do different species help each other survive?",
+      "mini_task": "Observe ants and plants in your garden.",
+      "yt_query": "symbiosis in nature"
+    }
+  ]
+}

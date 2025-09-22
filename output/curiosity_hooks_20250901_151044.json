@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "medium-rare (default) — Rare but meaningful expert terms; good balance for advanced talk.",
+    "novelty": "mid",
+    "discipline_pool": [
+      "Transportation Engineering",
+      "Business Administration",
+      "Inorganic Chemistry",
+      "Quantum Computing",
+      "Comparative Literature"
+    ],
+    "picked_discipline": "Quantum Computing",
+    "n": 10,
+    "timestamp": "2023-11-03T14:25:00Z"
+  },
+  "items": [
+    {
+      "concept": "Quantum Bits",
+      "rare_term": "Qubit",
+      "kid_gloss": "Tiny pieces of quantum information.",
+      "hook_question": "How can a qubit be both 0 and 1?",
+      "mini_task": "Draw a picture of a qubit.",
+      "yt_query": "What is a qubit?"
+    },
+    {
+      "concept": "Superposition",
+      "rare_term": "Superposition",
+      "kid_gloss": "Being in many states at once.",
+      "hook_question": "Why is superposition like magic?",
+      "mini_task": "Think of times you multitask.",
+      "yt_query": "Superposition for kids"
+    },
+    {
+      "concept": "Quantum Entanglement",
+      "rare_term": "Entanglement",
+      "kid_gloss": "Particles connected no matter the distance.",
+      "hook_question": "Can entangled particles talk to each other?",
+      "mini_task": "Link two toys to show connection.",
+      "yt_query": "Quantum entanglement simple"
+    },
+    {
+      "concept": "Quantum Tunneling",
+      "rare_term": "Tunneling",
+      "kid_gloss": "Particles pass through barriers.",
+      "hook_question": "How do particles tunnel like ghosts?",
+      "mini_task": "Use a ball to show tunneling.",
+      "yt_query": "Quantum tunneling explained"
+    },
+    {
+      "concept": "Quantum Computing Power",
+      "rare_term": "Quantum Advantage",
+      "kid_gloss": "Better than classical computers for some tasks.",
+      "hook_question": "Why are quantum computers super fast?",
+      "mini_task": "List tasks a quantum computer might do.",
+      "yt_query": "Quantum computing power"
+    },
+    {
+      "concept": "Quantum Algorithms",
+      "rare_term": "Algorithm",
+      "kid_gloss": "Special instructions for computers.",
+      "hook_question": "What is a quantum recipe?",
+      "mini_task": "Write a simple recipe for a task.",
+      "yt_query": "Quantum algorithms kids"
+    },
+    {
+      "concept": "Quantum Gates",
+      "rare_term": "Quantum Gates",
+      "kid_gloss": "Tiny switches for qubits.",
+      "hook_question": "How do quantum gates control qubits?",
+      "mini_task": "Make a paper switch to flip.",
+      "yt_query": "Quantum gates explained"
+    },
+    {
+      "concept": "Quantum Decoherence",
+      "rare_term": "Decoherence",
+      "kid_gloss": "When quantum systems lose their magic.",
+      "hook_question": "Why do quantum systems stop being weird?",
+      "mini_task": "Describe something that loses magic over time.",
+      "yt_query": "Quantum decoherence simple"
+    },
+    {
+      "concept": "Quantum Supremacy",
+      "rare_term": "Supremacy",
+      "kid_gloss": "Quantum computers outperform classical ones.",
+      "hook_question": "What makes quantum computers supreme?",
+      "mini_task": "Imagine a future with quantum computers.",
+      "yt_query": "Quantum supremacy kids"
+    },
+    {
+      "concept": "Quantum Error Correction",
+      "rare_term": "Error Correction",
+      "kid_gloss": "Fixing mistakes in quantum computing.",
+      "hook_question": "How do we correct quantum mistakes?",
+      "mini_task": "Find and correct a mistake in a sentence.",
+      "yt_query": "Quantum error correction"
+    }
+  ]
+}

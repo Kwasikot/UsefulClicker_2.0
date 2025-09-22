@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "Astronomy",
+      "Biology",
+      "Chemistry",
+      "Physics",
+      "Mathematics"
+    ],
+    "picked_discipline": "Biology",
+    "n": 3,
+    "timestamp": "2023-10-20T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Bioluminescence",
+      "rare_term": "luciferin",
+      "kid_gloss": "Animals glowing in the dark.",
+      "hook_question": "Why do some animals glow in the dark?",
+      "mini_task": "Watch fireflies at night and describe their glow.",
+      "yt_query": "Bioluminescent animals"
+    },
+    {
+      "concept": "Photosynthesis",
+      "rare_term": "chlorophyll",
+      "kid_gloss": "Plants making food with sunlight.",
+      "hook_question": "How do plants eat sunlight?",
+      "mini_task": "Grow a plant and observe it daily.",
+      "yt_query": "Photosynthesis process"
+    },
+    {
+      "concept": "Genetic Inheritance",
+      "rare_term": "allele",
+      "kid_gloss": "Traits passed from parents to kids.",
+      "hook_question": "Why do we look like our parents?",
+      "mini_task": "Make a family tree with traits.",
+      "yt_query": "Genetic inheritance basics"
+    }
+  ]
+}

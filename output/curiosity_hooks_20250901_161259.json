@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "light",
+    "novelty": "low",
+    "discipline_pool": [
+      "Sociology of Education",
+      "Evolutionary Biology",
+      "Architecture",
+      "Econometrics",
+      "Cybersecurity"
+    ],
+    "n": 10,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "Animal Camouflage",
+      "rare_term": "mimicry",
+      "kid_gloss": "Animals hide using colors.",
+      "hook_question": "Why do some animals change colors?",
+      "mini_task": "Draw an animal hiding in its environment.",
+      "yt_query": "animal camouflage"
+    },
+    {
+      "concept": "Dinosaur Evolution",
+      "rare_term": "theropods",
+      "kid_gloss": "How dinosaurs changed over time.",
+      "hook_question": "What did dinosaurs become?",
+      "mini_task": "List as many dinosaurs as you can.",
+      "yt_query": "dinosaur evolution"
+    },
+    {
+      "concept": "Bird Migration",
+      "rare_term": "flyway",
+      "kid_gloss": "Why birds travel far.",
+      "hook_question": "How do birds know where to go?",
+      "mini_task": "Track a bird's journey on a map.",
+      "yt_query": "bird migration journey"
+    },
+    {
+      "concept": "Plant Adaptations",
+      "rare_term": "xerophytes",
+      "kid_gloss": "How plants survive in tough places.",
+      "hook_question": "Can plants live in deserts?",
+      "mini_task": "Find plants in your backyard.",
+      "yt_query": "plant adaptations desert"
+    },
+    {
+      "concept": "Insect Metamorphosis",
+      "rare_term": "instar",
+      "kid_gloss": "How insects change shape.",
+      "hook_question": "Why do caterpillars become butterflies?",
+      "mini_task": "Draw the life cycle of a butterfly.",
+      "yt_query": "insect metamorphosis"
+    },
+    {
+      "concept": "Aquatic Adaptations",
+      "rare_term": "gill filaments",
+      "kid_gloss": "How fish breathe underwater.",
+      "hook_question": "Why do fish have gills?",
+      "mini_task": "Look for fish at the pet store.",
+      "yt_query": "how fish breathe"
+    },
+    {
+      "concept": "Human Evolution",
+      "rare_term": "hominins",
+      "kid_gloss": "How humans have changed.",
+      "hook_question": "Where did humans come from?",
+      "mini_task": "Draw a timeline of human evolution.",
+      "yt_query": "human evolution timeline"
+    },
+    {
+      "concept": "Survival of the Fittest",
+      "rare_term": "natural selection",
+      "kid_gloss": "Why strong animals survive.",
+      "hook_question": "What makes some animals better survivors?",
+      "mini_task": "Find an animal that adapts well.",
+      "yt_query": "survival of the fittest"
+    },
+    {
+      "concept": "Animal Behavior",
+      "rare_term": "ethology",
+      "kid_gloss": "Why animals act a certain way.",
+      "hook_question": "Why do dogs wag their tails?",
+      "mini_task": "Observe a pet and note its actions.",
+      "yt_query": "animal behavior explained"
+    },
+    {
+      "concept": "Fossil Formation",
+      "rare_term": "petrification",
+      "kid_gloss": "How fossils are made.",
+      "hook_question": "How do we find dinosaur bones?",
+      "mini_task": "Create a fossil using clay.",
+      "yt_query": "how fossils form"
+    }
+  ]
+}

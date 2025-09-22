@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "astronomy",
+      "biology",
+      "chemistry",
+      "physics",
+      "mathematics"
+    ],
+    "picked_discipline": "biology",
+    "n": 3,
+    "timestamp": "2023-11-04T16:32:00Z"
+  },
+  "items": [
+    {
+      "concept": "Bioluminescent Plants",
+      "rare_term": "luciferin",
+      "kid_gloss": "Plants that glow in the dark.",
+      "hook_question": "How do some plants glow without light?",
+      "mini_task": "Find a picture of a glowing plant.",
+      "yt_query": "glowing plants"
+    },
+    {
+      "concept": "Ant Supercolonies",
+      "rare_term": "supercolony",
+      "kid_gloss": "Huge ant groups that work together.",
+      "hook_question": "Why do some ants form mega colonies?",
+      "mini_task": "Draw a map of an ant colony.",
+      "yt_query": "ant supercolony"
+    },
+    {
+      "concept": "Photosynthetic Animals",
+      "rare_term": "photosynthesis",
+      "kid_gloss": "Animals that use sunlight like plants.",
+      "hook_question": "Can animals really use sunlight to live?",
+      "mini_task": "List animals that might use sunlight.",
+      "yt_query": "photosynthetic animals"
+    }
+  ]
+}

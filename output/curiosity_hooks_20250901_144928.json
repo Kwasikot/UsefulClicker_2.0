@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "general curiosity",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "astronomy",
+      "biology",
+      "chemistry",
+      "physics",
+      "geology"
+    ],
+    "picked_discipline": "geology",
+    "n": 3,
+    "timestamp": "2023-10-08T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Erosion by Water",
+      "rare_term": "fluvial processes",
+      "kid_gloss": "Water wears away rock over time.",
+      "hook_question": "How does a river shape the land?",
+      "mini_task": "Observe how water changes sand in a tray.",
+      "yt_query": "river erosion"
+    },
+    {
+      "concept": "Volcanic Activity",
+      "rare_term": "pyroclastic flow",
+      "kid_gloss": "Volcanoes can erupt with lots of force.",
+      "hook_question": "What happens during a volcanic eruption?",
+      "mini_task": "Make a baking soda volcano at home.",
+      "yt_query": "volcanic eruption"
+    },
+    {
+      "concept": "Rock Cycle",
+      "rare_term": "metamorphic rock",
+      "kid_gloss": "Rocks change forms over time.",
+      "hook_question": "How do rocks transform in nature?",
+      "mini_task": "Collect different rocks and sort them.",
+      "yt_query": "rock cycle process"
+    }
+  ]
+}

@@ -197,6 +197,47 @@ class MainWindowWrapper:
         self.timer.timeout.connect(self.refresh_state)
         self.timer.start(200)
 
+        # Editor panel (XMLTab): wire buttons and inputs if present
+        # - Add click overlay + live coordinates
+        try:
+            if getattr(self.win, 'addClickButton', None) is not None:
+                self.win.addClickButton.clicked.connect(self.on_add_click_button)
+        except Exception:
+            pass
+        # - Capture hotkey to pressAKeyTB only when focused
+        self._hotkey_target = getattr(self.win, 'pressAKeyTB', None)
+        if self._hotkey_target is not None:
+            try:
+                # Install a QObject-based event filter; MainWindowWrapper is not a QObject
+                self._hotkey_filter = MainWindowWrapper._HotkeyEventFilter(self._hotkey_target, self._set_hotkey_text)
+                self._hotkey_target.installEventFilter(self._hotkey_filter)
+            except Exception:
+                pass
+        # - Add hotkey tag
+        try:
+            if getattr(self.win, 'addHotkeyButton', None) is not None:
+                self.win.addHotkeyButton.clicked.connect(self.on_add_hotkey_button)
+        except Exception:
+            pass
+        # - Save program to examples/
+        try:
+            if getattr(self.win, 'saveProgram', None) is not None:
+                self.win.saveProgram.clicked.connect(self.on_save_program_clicked)
+        except Exception:
+            pass
+        # - Edit first <llmcall> prompt
+        try:
+            if getattr(self.win, 'editPromptButton', None) is not None:
+                self.win.editPromptButton.clicked.connect(self.on_edit_prompt_button)
+        except Exception:
+            pass
+        # - Add <type>
+        try:
+            if getattr(self.win, 'addType', None) is not None:
+                self.win.addType.clicked.connect(self.on_add_type_button)
+        except Exception:
+            pass
+
     def _log_console(self, msg: str):
         try:
             cur = self.win.consoleText.toPlainText()
@@ -472,6 +513,420 @@ class MainWindowWrapper:
                 pass
         except Exception:
             pass
+
+    # --- Editor panel: utilities and handlers ---
+    def _insert_into_xml_editor(self, text: str):
+        ed = getattr(self.win, 'xmlEditor', None)
+        if ed is None:
+            return
+        try:
+            cur = ed.textCursor()
+            cur.insertText(text + "\n")
+            ed.setTextCursor(cur)
+        except Exception:
+            try:
+                ed.append(text)
+            except Exception:
+                pass
+
+    def _set_hotkey_text(self, hotkey: str):
+        tgt = getattr(self, '_hotkey_target', None)
+        if tgt is None:
+            return
+        try:
+            tgt.setPlainText(hotkey)
+            tc = tgt.textCursor()
+            tc.select(tc.Document)
+            tgt.setTextCursor(tc)
+        except Exception:
+            pass
+
+    class _HotkeyEventFilter(QtCore.QObject):
+        def __init__(self, target, setter_cb):
+            super().__init__()
+            self._target = target
+            self._setter = setter_cb
+
+        def eventFilter(self, obj, event):
+            if obj is self._target and event is not None:
+                # prepare on focus
+                if event.type() == QtCore.QEvent.FocusIn:
+                    try:
+                        if hasattr(obj, 'setPlaceholderText'):
+                            obj.setPlaceholderText('press any key')
+                    except Exception:
+                        pass
+                    try:
+                        obj.setPlainText('')
+                    except Exception:
+                        pass
+                    return False
+                if event.type() == QtCore.QEvent.KeyPress:
+                    if not obj.hasFocus():
+                        return False
+                    key = event.key()
+                    mods = event.modifiers()
+                    parts = []
+                    try:
+                        if mods & QtCore.Qt.ControlModifier:
+                            parts.append('ctrl')
+                        if mods & QtCore.Qt.AltModifier:
+                            parts.append('alt')
+                        if mods & QtCore.Qt.ShiftModifier:
+                            parts.append('shift')
+                        if mods & QtCore.Qt.MetaModifier:
+                            parts.append('meta')
+                    except Exception:
+                        pass
+                    special = {
+                        QtCore.Qt.Key_Return: 'enter',
+                        QtCore.Qt.Key_Enter: 'enter',
+                        QtCore.Qt.Key_Tab: 'tab',
+                        QtCore.Qt.Key_Backspace: 'backspace',
+                        QtCore.Qt.Key_Delete: 'delete',
+                        QtCore.Qt.Key_Escape: 'esc',
+                        QtCore.Qt.Key_PageDown: 'pgdn',
+                        QtCore.Qt.Key_PageUp: 'pgup',
+                        QtCore.Qt.Key_Home: 'home',
+                        QtCore.Qt.Key_End: 'end',
+                        QtCore.Qt.Key_Left: 'left',
+                        QtCore.Qt.Key_Right: 'right',
+                        QtCore.Qt.Key_Up: 'up',
+                        QtCore.Qt.Key_Down: 'down',
+                        QtCore.Qt.Key_Space: 'space',
+                        QtCore.Qt.Key_Insert: 'insert',
+                        QtCore.Qt.Key_Pause: 'pause',
+                        QtCore.Qt.Key_Print: 'printscreen',
+                        QtCore.Qt.Key_CapsLock: 'capslock',
+                        QtCore.Qt.Key_NumLock: 'numlock',
+                    }
+                    if key in special:
+                        key_name = special[key]
+                    else:
+                        try:
+                            if QtCore.Qt.Key_F1 <= key <= QtCore.Qt.Key_F35:
+                                n = key - QtCore.Qt.Key_F1 + 1
+                                key_name = f'f{n}'
+                            else:
+                                key_name = QtWidgets.QKeySequence(key).toString().lower()
+                                if not key_name and 32 <= key <= 126:
+                                    key_name = chr(key).lower()
+                        except Exception:
+                            try:
+                                key_name = chr(key).lower()
+                            except Exception:
+                                key_name = ''
+                    if key_name:
+                        parts.append(key_name)
+                    hotkey = '+'.join([p for p in parts if p])
+                    try:
+                        if callable(self._setter):
+                            self._setter(hotkey)
+                    except Exception:
+                        pass
+                    return True
+            return False
+
+    class _ClickOverlay(QtWidgets.QWidget):
+        def __init__(self, on_move, on_click):
+            super().__init__(None, QtCore.Qt.Window | QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+            self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+            self._on_move = on_move
+            self._on_click = on_click
+            self.setMouseTracking(True)
+
+        def show_fullscreen(self):
+            try:
+                self.showFullScreen()
+            except Exception:
+                self.showMaximized()
+
+        def paintEvent(self, event):
+            try:
+                from PyQt5 import QtGui
+                painter = QtGui.QPainter(self)
+                painter.fillRect(self.rect(), QtGui.QColor(0, 255, 0, 30))
+            except Exception:
+                pass
+
+        def mouseMoveEvent(self, event):
+            if callable(self._on_move):
+                pos = event.globalPos()
+                try:
+                    self._on_move(pos.x(), pos.y())
+                except Exception:
+                    pass
+
+        def mousePressEvent(self, event):
+            if callable(self._on_click):
+                btn = 'left'
+                try:
+                    if event.button() == QtCore.Qt.RightButton:
+                        btn = 'right'
+                except Exception:
+                    pass
+                pos = event.globalPos()
+                try:
+                    self._on_click(btn, pos.x(), pos.y())
+                except Exception:
+                    pass
+            try:
+                self.close()
+            except Exception:
+                pass
+
+    def on_add_click_button(self):
+        def on_move(x, y):
+            try:
+                lbl = getattr(self.win, 'mouseCoordinatesLabel', None)
+                if lbl is not None:
+                    lbl.setText(f"Mouse coordinates: {x}, {y}")
+            except Exception:
+                pass
+
+        def on_click(button, x, y):
+            self._insert_into_xml_editor(f'<click button="{button}" x="{x}" y="{y}" />')
+
+        try:
+            self._overlay = MainWindowWrapper._ClickOverlay(on_move, on_click)
+            self._overlay.show_fullscreen()
+        except Exception:
+            self._log_console('Overlay not supported in this environment')
+
+    def eventFilter(self, obj, event):
+        if obj is getattr(self, '_hotkey_target', None) and event is not None:
+            # Clear helper text when starting to listen
+            if event.type() == QtCore.QEvent.FocusIn:
+                try:
+                    if hasattr(obj, 'setPlaceholderText'):
+                        obj.setPlaceholderText('press any key')
+                except Exception:
+                    pass
+                try:
+                    obj.setPlainText('')
+                except Exception:
+                    pass
+                return False
+            if event.type() == QtCore.QEvent.KeyPress:
+                if not obj.hasFocus():
+                    return False
+                key = event.key()
+                mods = event.modifiers()
+                parts = []
+                try:
+                    if mods & QtCore.Qt.ControlModifier:
+                        parts.append('ctrl')
+                    if mods & QtCore.Qt.AltModifier:
+                        parts.append('alt')
+                    if mods & QtCore.Qt.ShiftModifier:
+                        parts.append('shift')
+                    if mods & QtCore.Qt.MetaModifier:
+                        parts.append('meta')
+                except Exception:
+                    pass
+                special = {
+                    QtCore.Qt.Key_Return: 'enter',
+                    QtCore.Qt.Key_Enter: 'enter',
+                    QtCore.Qt.Key_Tab: 'tab',
+                    QtCore.Qt.Key_Backspace: 'backspace',
+                    QtCore.Qt.Key_Delete: 'delete',
+                    QtCore.Qt.Key_Escape: 'esc',
+                    QtCore.Qt.Key_PageDown: 'pgdn',
+                    QtCore.Qt.Key_PageUp: 'pgup',
+                    QtCore.Qt.Key_Home: 'home',
+                    QtCore.Qt.Key_End: 'end',
+                    QtCore.Qt.Key_Left: 'left',
+                    QtCore.Qt.Key_Right: 'right',
+                    QtCore.Qt.Key_Up: 'up',
+                    QtCore.Qt.Key_Down: 'down',
+                    QtCore.Qt.Key_Space: 'space',
+                    QtCore.Qt.Key_Insert: 'insert',
+                    QtCore.Qt.Key_Pause: 'pause',
+                    QtCore.Qt.Key_Print: 'printscreen',
+                    QtCore.Qt.Key_CapsLock: 'capslock',
+                    QtCore.Qt.Key_NumLock: 'numlock',
+                }
+                if key in special:
+                    key_name = special[key]
+                else:
+                    # Function keys F1..F35
+                    try:
+                        if QtCore.Qt.Key_F1 <= key <= QtCore.Qt.Key_F35:
+                            n = key - QtCore.Qt.Key_F1 + 1
+                            key_name = f'f{n}'
+                        else:
+                            # try to get display text for the key
+                            key_name = QtWidgets.QKeySequence(key).toString().lower()
+                            if not key_name and 32 <= key <= 126:
+                                key_name = chr(key).lower()
+                    except Exception:
+                        try:
+                            key_name = chr(key).lower()
+                        except Exception:
+                            key_name = ''
+                if key_name:
+                    parts.append(key_name)
+                hotkey = '+'.join([p for p in parts if p])
+                try:
+                    obj.setPlainText(hotkey)
+                    tc = obj.textCursor()
+                    tc.select(tc.Document)
+                    obj.setTextCursor(tc)
+                except Exception:
+                    pass
+                return True
+        return super().eventFilter(obj, event)
+
+    def on_add_hotkey_button(self):
+        txt = ''
+        try:
+            tgt = getattr(self.win, 'pressAKeyTB', None)
+            if tgt is not None:
+                txt = (tgt.toPlainText() or '').strip()
+        except Exception:
+            txt = ''
+        if not txt:
+            return
+        self._insert_into_xml_editor(f'<hotkey hotkey="{txt}"/>')
+
+    def on_save_program_clicked(self):
+        try:
+            repo_root = Path(__file__).resolve().parents[2]
+        except Exception:
+            repo_root = Path('.')
+        default_dir = repo_root / 'examples'
+        try:
+            ed = getattr(self.win, 'xmlEditor', None)
+            content = ed.toPlainText() if ed is not None else ''
+        except Exception:
+            content = ''
+        if not content.strip():
+            return
+        fn, _ = QtWidgets.QFileDialog.getSaveFileName(self.win, 'Save XML', str(default_dir), 'XML Files (*.xml);;All Files (*)')
+        if not fn:
+            return
+        Path(fn).write_text(content, encoding='utf-8')
+        self.load_xml_file(Path(fn))
+
+    def on_edit_prompt_button(self):
+        ed = getattr(self.win, 'xmlEditor', None)
+        if ed is None:
+            return
+        raw = ed.toPlainText()
+        if not raw.strip():
+            return
+        llm_node = None
+        prompt_val = ''
+        try:
+            try:
+                from lxml import etree as ET
+            except Exception:
+                import xml.etree.ElementTree as ET
+            root = ET.fromstring(raw.encode('utf-8'))
+            for n in root.findall('.//*'):
+                try:
+                    if (n.tag or '').lower() == 'llmcall':
+                        llm_node = n
+                        prompt_val = n.get('prompt') or ''
+                        break
+                except Exception:
+                    continue
+        except Exception:
+            llm_node = None
+        if llm_node is None:
+            import re
+            m = re.search(r"<\s*llmcall[^>]*prompt=\"(.*?)\"", raw, re.DOTALL)
+            if m:
+                prompt_val = m.group(1)
+        # Show custom dialog with word wrap; also convert literal \n to real newlines for editing
+        orig_had_backslash_n = ('\\n' in prompt_val) and ('\n' not in prompt_val)
+        display_text = prompt_val.replace('\\n', '\n') if orig_had_backslash_n else prompt_val
+        new_prompt = self._prompt_editor_dialog(display_text)
+        if new_prompt is None:
+            return
+        if orig_had_backslash_n:
+            new_prompt = new_prompt.replace('\n', '\\n')
+        updated = None
+        try:
+            try:
+                from lxml import etree as ET
+            except Exception:
+                import xml.etree.ElementTree as ET
+            root = ET.fromstring(raw.encode('utf-8'))
+            for n in root.findall('.//*'):
+                if (n.tag or '').lower() == 'llmcall':
+                    n.set('prompt', new_prompt)
+                    break
+            try:
+                from lxml import etree as LET
+                updated = LET.tostring(root, pretty_print=True, encoding='unicode')
+            except Exception:
+                updated = ET.tostring(root, encoding='unicode')
+        except Exception:
+            updated = None
+        if updated is None:
+            import re
+            if 'prompt=' in raw:
+                updated = re.sub(r"(<\s*llmcall[^>]*prompt=)\".*?\"", lambda m: f"{m.group(1)}\"{new_prompt}\"", raw, count=1, flags=re.DOTALL)
+            else:
+                updated = raw
+        try:
+            ed.setPlainText(updated)
+        except Exception:
+            pass
+
+    def on_add_type_button(self):
+        txt, ok = QtWidgets.QInputDialog.getText(self.win, 'Add type', 'Text to type:')
+        if not ok:
+            return
+        esc = (txt or '').replace('"', '&quot;')
+        self._insert_into_xml_editor(f'<type mode="type" text="{esc}"/>')
+
+    # Helper: open a wrapped multiline editor dialog for prompts
+    def _prompt_editor_dialog(self, text_in: str):
+        try:
+            from PyQt5 import QtGui
+        except Exception:
+            QtGui = None
+        dlg = QtWidgets.QDialog(self.win)
+        dlg.setWindowTitle('Edit llmcall prompt')
+        try:
+            dlg.setMinimumSize(700, 500)
+        except Exception:
+            pass
+        layout = QtWidgets.QVBoxLayout(dlg)
+        edit = QtWidgets.QTextEdit(dlg)
+        try:
+            edit.setLineWrapMode(QtWidgets.QTextEdit.WidgetWidth)
+            if QtGui is not None:
+                opt = edit.document().defaultTextOption()
+                opt.setWrapMode(QtGui.QTextOption.WrapAtWordBoundaryOrAnywhere)
+                edit.document().setDefaultTextOption(opt)
+        except Exception:
+            pass
+        try:
+            f = edit.font(); f.setPointSize(11); edit.setFont(f)
+        except Exception:
+            pass
+        try:
+            edit.setPlainText(text_in or '')
+        except Exception:
+            pass
+        layout.addWidget(edit)
+        btns = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel, parent=dlg)
+        layout.addWidget(btns)
+        btns.accepted.connect(dlg.accept)
+        btns.rejected.connect(dlg.reject)
+        try:
+            ok = dlg.exec_() == QtWidgets.QDialog.Accepted
+        except Exception:
+            ok = False
+        if ok:
+            try:
+                return edit.toPlainText()
+            except Exception:
+                return ''
+        return None
 
     def _init_curiosity_tab(self):
         """Populate disciplinesList and subtopicsList from curiosity_drive_node module."""

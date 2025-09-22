@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "light — Slightly uncommon terms; broadly understandable.",
+    "novelty": "low",
+    "discipline_pool": [
+      "Epistemology"
+    ],
+    "picked_discipline": "",
+    "n": 10,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "The Problem of Other Minds",
+      "rare_term": null,
+      "kid_gloss": "Is it possible to truly know that other people have minds like ours?",
+      "hook_question": "Can you be sure your friend is thinking what you think they're thinking?",
+      "mini_task": "Draw a picture of two people having the same thought.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Nature of Knowledge",
+      "rare_term": null,
+      "kid_gloss": "What is knowledge, and how do we get it?",
+      "hook_question": "Can you really know that your favorite food is delicious?",
+      "mini_task": "Think of a time when you learned something new.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Skeptical Inquiry",
+      "rare_term": null,
+      "kid_gloss": "Trying to figure out what's true by asking questions and looking for answers.",
+      "hook_question": "What would happen if you asked 'Is the sky blue?' 100 times in a row?",
+      "mini_task": "Ask yourself 'Is the sky really blue?'",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Limits of Knowledge",
+      "rare_term": null,
+      "kid_gloss": "What do we know for sure, and what don't we know?",
+      "hook_question": "Can you be 100% sure that gravity exists?",
+      "mini_task": "Think about a thing you're really good at.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Nature of Truth",
+      "rare_term": null,
+      "kid_gloss": "What is truth, and how do we find it?",
+      "hook_question": "Can you prove that your favorite number is the best?",
+      "mini_task": "Try to explain a tricky concept to a friend.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Epistemic Humility",
+      "rare_term": null,
+      "kid_gloss": "Being honest with ourselves about what we don't know.",
+      "hook_question": "Can you admit when you're wrong?",
+      "mini_task": "Write a journal entry about something you don't know.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Role of Experience",
+      "rare_term": null,
+      "kid_gloss": "How do our experiences help us figure out what's true?",
+      "hook_question": "Can you trust your senses to tell you the truth?",
+      "mini_task": "Think about a time when your senses surprised you.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Power of Evidence",
+      "rare_term": null,
+      "kid_gloss": "How does evidence help us make decisions about what's true?",
+      "hook_question": "Can you prove that a certain food is good for you?",
+      "mini_task": "Look up facts about a topic you're interested in.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Importance of Critical Thinking",
+      "rare_term": null,
+      "kid_gloss": "How do we make smart decisions when there's not an obvious answer?",
+      "hook_question": "Can you think of a time when you had to make a tough choice?",
+      "mini_task": "Solve a logic puzzle.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Relationship Between Belief and Reality",
+      "rare_term": null,
+      "kid_gloss": "How do our beliefs match up with what's really true?",
+      "hook_question": "Can you trust your feelings to tell you the truth?",
+      "mini_task": "Think about a time when your feelings surprised you.",
+      "yt_query": ""
+    }
+  ]
+}

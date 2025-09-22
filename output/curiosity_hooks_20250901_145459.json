@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "audience": "curious explorers",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "Astronomy",
+      "Botany",
+      "Chemistry",
+      "Physics"
+    ],
+    "picked_discipline": "Astronomy",
+    "n": 3,
+    "timestamp": "2023-10-07T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Black Holes",
+      "rare_term": "singularity",
+      "kid_gloss": "A place where gravity is super strong.",
+      "hook_question": "What happens inside a black hole?",
+      "mini_task": "Create a model of a black hole using clay.",
+      "yt_query": "black hole mystery"
+    },
+    {
+      "concept": "Exoplanets",
+      "rare_term": "habitable zone",
+      "kid_gloss": "Planets outside our Solar System.",
+      "hook_question": "Could we live on an exoplanet?",
+      "mini_task": "Draw your ideal exoplanet and its features.",
+      "yt_query": "discovering exoplanets"
+    },
+    {
+      "concept": "Supernovae",
+      "rare_term": "nucleosynthesis",
+      "kid_gloss": "A big star explosion in space.",
+      "hook_question": "How does a star explode?",
+      "mini_task": "Use glitter and paper to make a supernova.",
+      "yt_query": "supernova explosion"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "common",
+    "novelty": "high",
+    "discipline_pool": [
+      "Astrophysics",
+      "Botany",
+      "Chemistry",
+      "Geology",
+      "Marine Biology"
+    ],
+    "picked_discipline": "Geology",
+    "n": 1,
+    "timestamp": "2023-10-14T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Volcanic Lightning",
+      "rare_term": "pyrocumulonimbus",
+      "kid_gloss": "Lightning from volcanoes.",
+      "hook_question": "How does a volcano create lightning?",
+      "mini_task": "Draw a volcano with lightning.",
+      "yt_query": "volcanic lightning"
+    }
+  ]
+}

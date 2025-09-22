@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "medium-rare (default) — Rare but meaningful expert terms; good balance for advanced talk.",
+    "novelty": "mid",
+    "discipline_pool": [
+      "Logic"
+    ],
+    "picked_discipline": "Logic",
+    "n": 11,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "The Paradox of the Barber",
+      "rare_term": null,
+      "kid_gloss": "Imagine a barber who always cuts his own hair. Does he cut himself?",
+      "hook_question": "Can you find a contradiction in this situation?",
+      "mini_task": "Write down 3 possible scenarios and explain each one.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Liar Paradox",
+      "rare_term": null,
+      "kid_gloss": "Consider the sentence: 'This sentence is a lie.' Is it true or false?",
+      "hook_question": "Can you think of other statements with similar paradoxes?",
+      "mini_task": "Create your own paradoxical statement and discuss its implications.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Deductive Reasoning",
+      "rare_term": null,
+      "kid_gloss": "Use logic to figure out what can be concluded from given statements.",
+      "hook_question": "Can you use deduction to solve a problem?",
+      "mini_task": "Solve a logical puzzle using only deduction.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Sorites Paradox",
+      "rare_term": null,
+      "kid_gloss": "Consider removing one grain of sand from a pile at a time. When does the pile cease to be?",
+      "hook_question": "How do you think this paradox relates to reality?",
+      "mini_task": "Write down your thoughts on the Sorites Paradox.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Analogies",
+      "rare_term": null,
+      "kid_gloss": "Find similarities between seemingly unrelated things.",
+      "hook_question": "Can you think of an analogy that applies to both math and music?",
+      "mini_task": "Create your own analogy with surprising connections.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Greedy Algorithm",
+      "rare_term": null,
+      "kid_gloss": "A method for solving problems by making local choices that maximize overall gain.",
+      "hook_question": "Can you think of a real-world application of this algorithm?",
+      "mini_task": "Design and test your own greedy algorithm.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Proofs",
+      "rare_term": null,
+      "kid_gloss": "Use logical steps to demonstrate the validity of an argument.",
+      "hook_question": "Can you create a simple proof for a common statement?",
+      "mini_task": "Find and explain a famous mathematical proof.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Counterfactuals",
+      "rare_term": null,
+      "kid_gloss": "Consider what would have happened if a particular event or decision had taken place differently.",
+      "hook_question": "Can you think of an example where counterfactual thinking changed your perspective?",
+      "mini_task": "Create a thought-provoking scenario using counterfactuals.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Abductive Reasoning",
+      "rare_term": null,
+      "kid_gloss": "Make educated guesses based on incomplete information.",
+      "hook_question": "Can you think of a situation where abductive reasoning was helpful?",
+      "mini_task": "Design and test your own hypotheses using only evidence.",
+      "yt_query": ""
+    },
+    {
+      "concept": "Syllogisms",
+      "rare_term": null,
+      "kid_gloss": "Use logical deductions to arrive at a conclusion from two premises.",
+      "hook_question": "Can you solve a syllogism problem using only logic?",
+      "mini_task": "Create your own syllogism puzzle and explain the solution.",
+      "yt_query": ""
+    },
+    {
+      "concept": "The Ship of Theseus",
+      "rare_term": null,
+      "kid_gloss": "If the ship in which Theseus sailed to Crete and defeated the Minotaur was repaired and replaced with new parts over time, eventually replacing every original part, would it still be the same ship?",
+      "hook_question": "How do you think this paradox relates to personal identity?",
+      "mini_task": "Write down your thoughts on the Ship of Theseus Paradox.",
+      "yt_query": ""
+    }
+  ]
+}

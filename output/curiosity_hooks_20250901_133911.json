@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "audience": "curiosity-driven learning",
+    "rarity": "high",
+    "novelty": "fresh",
+    "discipline_pool": [
+      "astronomy",
+      "botany",
+      "geology",
+      "quantum physics"
+    ],
+    "picked_discipline": "astronomy",
+    "n": 3,
+    "timestamp": "2023-10-05T14:30:00"
+  },
+  "items": [
+    {
+      "concept": "black holes",
+      "rare_term": "singularity",
+      "kid_gloss": "Where gravity traps everything.",
+      "hook_question": "What happens inside a black hole?",
+      "mini_task": "Draw what you think a black hole looks like.",
+      "yt_query": "black holes explained"
+    },
+    {
+      "concept": "neutron stars",
+      "rare_term": "pulsar",
+      "kid_gloss": "A super dense star.",
+      "hook_question": "How can a star be as dense as a city?",
+      "mini_task": "Imagine the weight of a teaspoon of neutron star.",
+      "yt_query": "neutron stars facts"
+    },
+    {
+      "concept": "exoplanets",
+      "rare_term": "Goldilocks zone",
+      "kid_gloss": "Planets outside our solar system.",
+      "hook_question": "Could there be life on exoplanets?",
+      "mini_task": "Design your own exoplanet with alien life.",
+      "yt_query": "exoplanets discovery"
+    }
+  ]
+}

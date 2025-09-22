@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "rare — Niche, specialized vocabulary; include a short gloss/definition.",
+    "novelty": "low",
+    "discipline_pool": [
+      "Cybersecurity"
+    ],
+    "picked_discipline": "Cybersecurity",
+    "n": 10,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "What happens when you share a password online?",
+      "rare_term": null,
+      "kid_gloss": "a password shared too much",
+      "hook_question": "Do you think your username is safe?",
+      "mini_task": "Think of 3 things that can make your password less safe.",
+      "yt_query": ""
+    },
+    {
+      "concept": "What does a 'man-in-the-middle' attack look like in real life?",
+      "rare_term": null,
+      "kid_gloss": "A bad guy sitting between you and the internet",
+      "hook_question": "Imagine you're ordering food online. What would happen if someone sat between you and the kitchen?",
+      "mini_task": "Draw a picture of this scenario.",
+      "yt_query": ""
+    },
+    {
+      "concept": "How can hackers use 'phishing' to get your login info?",
+      "rare_term": null,
+      "kid_gloss": "Tricking you into sending in secrets",
+      "hook_question": "Have you ever gotten a message from someone asking for a secret code?",
+      "mini_task": "Write a phishing email that might trick your friend.",
+      "yt_query": ""
+    },
+    {
+      "concept": "What is a 'viruses' and how can it spread through a computer?",
+      "rare_term": null,
+      "kid_gloss": "A bad program that eats up all the space",
+      "hook_question": "Imagine your computer has eaten too much of its own food.",
+      "mini_task": "Draw a picture of what might happen to your computer if it's full of viruses.",
+      "yt_query": ""
+    },
+    {
+      "concept": "What is 'keylogging' and why is it bad?",
+      "rare_term": null,
+      "kid_gloss": "A way for hackers to record every keystroke",
+      "hook_question": "Do you think someone might be watching what you type?",
+      "mini_task": "Think of a time when you needed to keep something secret.",
+      "yt_query": ""
+    },
+    {
+      "concept": "How can 'malware' help cyberbullies?",
+      "rare_term": null,
+      "kid_gloss": "Bad program that helps mean people",
+      "hook_question": "Imagine someone has a special tool to make their online problems worse.",
+      "mini_task": "Write a story about a character who uses malware to bully others online.",
+      "yt_query": ""
+    },
+    {
+      "concept": "What is 'password cracking' and why should you use strong passwords?",
+      "rare_term": null,
+      "kid_gloss": "Trying to guess your password",
+      "hook_question": "Do you think it's hard for someone to guess your password?",
+      "mini_task": "Think of 3 things that can help make your password more difficult to guess.",
+      "yt_query": ""
+    },
+    {
+      "concept": "What is 'social engineering' and how can hackers use it to get what they want?",
+      "rare_term": null,
+      "kid_gloss": "Trying to trick people into doing something bad",
+      "hook_question": "Imagine someone asks you for your lunch money.",
+      "mini_task": "Write a story about a character who uses social engineering to scam someone.",
+      "yt_query": ""
+    },
+    {
+      "concept": "How can 'IP spoofing' help cyberbullies?",
+      "rare_term": null,
+      "kid_gloss": "Hiding your identity online",
+      "hook_question": "Do you think it's easy to hide who you are on the internet?",
+      "mini_task": "Think of a time when you wanted to hide something from someone.",
+      "yt_query": ""
+    },
+    {
+      "concept": "What is 'pharming' and why should you avoid clicking on suspicious links?",
+      "rare_term": null,
+      "kid_gloss": "Trying to trick you into going somewhere bad",
+      "hook_question": "Imagine you click on a link that takes you to a weird website.",
+      "mini_task": "Write a story about a character who falls victim to pharming.",
+      "yt_query": ""
+    }
+  ]
+}

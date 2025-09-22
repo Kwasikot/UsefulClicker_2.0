@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "audience": "curious learners",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "Physics",
+      "Biology",
+      "Chemistry",
+      "Mathematics",
+      "Astronomy"
+    ],
+    "picked_discipline": "Astronomy",
+    "n": 1,
+    "timestamp": "2023-10-26T12:00:00Z"
+  },
+  "items": [
+    {
+      "concept": "Dark Matter",
+      "rare_term": "WIMP",
+      "kid_gloss": "Invisible stuff in space.",
+      "hook_question": "Why can't we see dark matter?",
+      "mini_task": "Look up how much of the universe is dark matter.",
+      "yt_query": "Dark Matter explained"
+    }
+  ]
+}

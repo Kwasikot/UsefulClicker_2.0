@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "audience": "kids",
+    "rarity": "light",
+    "novelty": "low",
+    "discipline_pool": [
+      "Artificial Intelligence",
+      "Quantum Information",
+      "Hydrology",
+      "Topology",
+      "Metaphysics"
+    ],
+    "n": 10,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "Designing a Robot's Personality",
+      "rare_term": "Neural Network",
+      "kid_gloss": "How do robots get smart?",
+      "hook_question": "Can you teach a robot emotions?",
+      "mini_task": "Create a simple personality test for a robot"
+    },
+    {
+      "concept": "Exploring Quantum Entanglement",
+      "rare_term": "Superposition",
+      "kid_gloss": "What happens when particles are connected?",
+      "hook_question": "Can you entangle two toys?",
+      "mini_task": "Create a simulation of quantum entanglement using blocks"
+    },
+    {
+      "concept": "Building a Hydroelectric Dam",
+      "rare_term": "Waterhead Loss",
+      "kid_gloss": "How do we make water flow uphill?",
+      "hook_question": "Can you design a dam that generates electricity from rainwater?",
+      "mini_task": "Research and build a mini hydroelectric turbine"
+    },
+    {
+      "concept": "Discovering Hidden Patterns in Topology",
+      "rare_term": "Homotopy",
+      "kid_gloss": "What are shapes like when you stretch them?",
+      "hook_question": "Can you find shapes that look the same from different angles?",
+      "mini_task": "Create a paper cutout of a shape and try to stretch it into different forms"
+    },
+    {
+      "concept": "Creating a Metaphysical Maze",
+      "rare_term": "Labyrinthine",
+      "kid_gloss": "What is a magical maze?",
+      "hook_question": "Can you design a maze that takes you on a journey through your own mind?",
+      "mini_task": "Create a maze using cardboard boxes and try to navigate it"
+    },
+    {
+      "concept": "Teaching a Robot to Learn from Mistakes",
+      "rare_term": "Backpropagation",
+      "kid_gloss": "How do robots get better at doing things wrong?",
+      "hook_question": "Can you program a robot to learn from its mistakes?",
+      "mini_task": "Create a simple game where a robot learns to play by trial and error"
+    },
+    {
+      "concept": "Exploring the Future of Quantum Information",
+      "rare_term": "Quantum Computing",
+      "kid_gloss": "What will computers be like in 100 years?",
+      "hook_question": "Can you design a computer that uses quantum mechanics to solve problems?",
+      "mini_task": "Research and create a simple algorithm for a quantum computer"
+    },
+    {
+      "concept": "Designing a System to Filter Water",
+      "rare_term": "Adsorption",
+      "kid_gloss": "How do we make water clean again?",
+      "hook_question": "Can you design a system that removes impurities from water using plants?",
+      "mini_task": "Research and build a simple water filter using everyday materials"
+    },
+    {
+      "concept": "Understanding the Mysteries of Metaphysics",
+      "rare_term": "Causality",
+      "kid_gloss": "What is real, what's not?",
+      "hook_question": "Can you explain why things happen without a reason?",
+      "mini_task": "Research and create a simple simulation to explore causality"
+    },
+    {
+      "concept": "Creating a Robot that Can Sense Emotions",
+      "rare_term": "Emotion Recognition",
+      "kid_gloss": "How do robots know when we're happy or sad?",
+      "hook_question": "Can you program a robot to recognize and respond to emotions?",
+      "mini_task": "Create a simple robot that uses sensors to detect emotional changes"
+    }
+  ]
+}

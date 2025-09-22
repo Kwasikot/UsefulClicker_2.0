@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "audience": "curiosity",
+    "rarity": "medium",
+    "novelty": "high",
+    "discipline_pool": [
+      "Biology",
+      "Astronomy",
+      "Physics",
+      "Chemistry",
+      "Mathematics"
+    ],
+    "picked_discipline": "Astronomy",
+    "n": 3,
+    "timestamp": "2023-10-14T15:30:00Z"
+  },
+  "items": [
+    {
+      "concept": "Black Holes",
+      "rare_term": "event horizon",
+      "kid_gloss": "Where nothing can escape, not even light.",
+      "hook_question": "What happens if you fall into a black hole?",
+      "mini_task": "Create a black hole model using a dark fabric.",
+      "yt_query": "black holes explained"
+    },
+    {
+      "concept": "Exoplanets",
+      "rare_term": "habitable zone",
+      "kid_gloss": "Planets outside our solar system.",
+      "hook_question": "Could any exoplanets support life?",
+      "mini_task": "Draw an imaginary exoplanet and its star.",
+      "yt_query": "discovering exoplanets"
+    },
+    {
+      "concept": "Neutron Stars",
+      "rare_term": "pulsar",
+      "kid_gloss": "Dense stars after a supernova.",
+      "hook_question": "How can a star become so dense?",
+      "mini_task": "Use a sponge to mimic star density changes.",
+      "yt_query": "neutron stars facts"
+    }
+  ]
+}

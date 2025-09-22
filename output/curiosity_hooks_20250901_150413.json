@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "audience": "{intent}",
+    "rarity": "{rarity}",
+    "novelty": "{novelty}",
+    "discipline_pool": [
+      "Astronomy",
+      "Psychology",
+      "Botany",
+      "Zoology",
+      "Physics"
+    ],
+    "picked_discipline": "Botany",
+    "n": 1,
+    "timestamp": ""
+  },
+  "items": [
+    {
+      "concept": "Carnivorous Plants",
+      "rare_term": "Phytotelmata",
+      "kid_gloss": "Plants that eat insects.",
+      "hook_question": "How do some plants trap and eat insects?",
+      "mini_task": "Observe a Venus flytrap if you can find one.",
+      "yt_query": "carnivorous plants"
+    }
+  ]
+}
