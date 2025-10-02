@@ -8,6 +8,15 @@ frontends (web_ui etc.) can be plugged in similarly.
 from pathlib import Path
 import threading, sys, time, datetime, os
 try:
+    # Switch layout before creating QApplication
+    from input.keyboard_layout import ensure_english_layout
+    try:
+        ensure_english_layout()
+    except Exception:
+        pass
+except Exception:
+    pass
+try:
     from PyQt5 import QtWidgets, QtCore, uic
 except Exception:
     QtWidgets = None
