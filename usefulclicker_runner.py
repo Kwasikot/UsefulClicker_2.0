@@ -15,6 +15,16 @@ usefulclicker_runner.py — direct-buffer runner + safety tap
   Esc    — выход
 """
 
+try:
+    # Enforce layout extremely early (module import time)
+    from input.keyboard_layout import ensure_english_layout
+    try:
+        ensure_english_layout()
+    except Exception:
+        pass
+except Exception:
+    def ensure_english_layout(*args, **kwargs):
+        return
 import os, sys, time, threading, platform, ctypes, logging
 
 def _setup_logger():

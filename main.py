@@ -1,4 +1,15 @@
 
+try:
+    # Ensure layout as early as possible at import time
+    from input.keyboard_layout import ensure_english_layout
+    try:
+        ensure_english_layout()
+    except Exception:
+        pass
+except Exception:
+    # Fallback no-op if module missing
+    def ensure_english_layout(*args, **kwargs):
+        return
 import argparse
 from pathlib import Path
 from core.xml_engine import XMLProgram
@@ -9,6 +20,7 @@ def main():
     ap.add_argument("--debug", action="store_true", help="Show debug window")
     ap.add_argument("--ui", type=str, default=None, help="UI module to use (eg. qt_ui)")
     args = ap.parse_args()
+    # Already enforced at import time
     xml_path = Path(args.xml_path); log_path = xml_path.with_suffix(".usefulclicker.log")
     # If a UI is requested, try to import corresponding ui module and run it.
     if args.ui:
